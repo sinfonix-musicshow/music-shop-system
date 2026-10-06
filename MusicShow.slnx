@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="MusicShow.Api/MusicShow.Api.csproj" />
+  <Project Path="MusicShow.Application/MusicShow.Application.csproj" Id="af8700f7-a3ed-440f-9f62-fc5ecc1e617a" />
+  <Project Path="MusicShow.Data/MusicShow.Data.csproj" Id="aed22e6e-89fd-4a40-a666-b7381f65dfde" />
+  <Project Path="MusicShow.Domain/MusicShow.Domain.csproj" Id="1a6d0c2e-560a-4028-81d8-ebfdadd933c8" />
+</Solution>
