@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+namespace MusicShow.Domain;
+// Este archivo se mantiene vacío intencionalmente.
+// Las clases del dominio se ubican en las subcarpetas Entities, Interfaces y Exceptions.
 
-namespace MusicShow.Domain
-{
-    public class Class1
-    {
-    }
-}
