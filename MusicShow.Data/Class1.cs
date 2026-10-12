@@ -1,12 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+namespace MusicShow.Data;
+// Este archivo se mantiene vacío intencionalmente.
 
-namespace MusicShow.Data
-{
-    public class Class1
-    {
-    }
-}
