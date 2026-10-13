@@ -1,5 +1,6 @@
 /* Configuración general y transición suave para el cambio de tema */
 body {
+
     font-family: 'Montserrat', sans-serif;
     transition: background-color 0.4s ease, color 0.4s ease;
     padding-top: 90px; /* Compensa la altura del navbar fijo */
@@ -199,6 +200,26 @@ background-color: transparent !important;
 .offcanvas {
     background-color: #121212; 
     border-right: 2px solid var(--color-morado); 
+}
+
+.offcanvas {
+    background-color: #121212; 
+    border-right: 2px solid var(--color-morado); 
+}
+
+/* Ocultamos la barra de desplazamiento vertical en el cuerpo del offcanvas */
+.offcanvas-body {
+    overflow-y: auto;
+    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important; /* IE y Edge antiguo */
+}
+
+/* Chrome, Safari y Edge moderno */
+.offcanvas-body::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    -webkit-appearance: none;
 }
 
 /* Enlaces principales (Mayúsculas) */
@@ -568,4 +589,72 @@ background-color: transparent !important;
 }
 [data-bs-theme="light"] .text-white-50 {
     color: #4a4a4a !important; /* Oscurece el texto gris en fondo claro */
+}
+
+/* -------------------------------------------------------------------------------------------- */
+
+/* ==========================================
+FOOTER
+============================================= */
+.footer-custom {
+    background-color: #0b0710; /* Un tono ligeramente más oscuro que el fondo general */
+}
+
+/* Enlaces del footer con la línea inferior sutil */
+.footer-link-item {
+    transition: transform 0.3s ease;
+}
+
+.footer-link-item a:hover {
+    color: var(--color-naranja) !important;
+}
+
+.footer-link-item:hover {
+    transform: translateX(5px);
+}
+
+/* Cajas de iconos de redes sociales */
+.social-icon-box {
+    width: 85px;
+    height: 75px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.social-icon-box:hover {
+    background-color: var(--color-morado);
+    border-color: var(--color-morado);
+    color: #ffffff !important;
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+.social-icon-box:hover i {
+    color: var(--color-naranja);
+}
+
+/* ------------------------------ */
+
+/* ==========================================
+   CORRECCIÓN RESPONSIVE DEL MENÚ LATERAL (OFFCANVAS)
+============================================= */
+
+/* Forzamos que el offcanvas flote por ENCIMA del header y del logo */
+.offcanvas {
+    z-index: 2000 !important; /* Supera al header fijo que tiene 1040 */
+}
+
+/* En pantallas chicas (celulares), hacemos que el menú cubra toda la pantalla o tenga un ancho cómodo */
+@media (max-width: 768px) {
+    .offcanvas.offcanvas-start {
+        width: 85% !important; /* Ocupa el 85% de la pantalla del celular, dejando espacio para cerrar */
+        max-width: 320px;
+    }
+}
+
+/* Fondo oscuro detrás del offcanvas (backdrop) con mayor opacidad para destacar el menú */
+.offcanvas-backdrop {
+    z-index: 1999 !important;
+    background-color: rgba(0, 0, 0, 0.8) !important;
 }
