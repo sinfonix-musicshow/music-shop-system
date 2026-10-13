@@ -1,0 +1,229 @@
+/* Configuración general y transición suave para el cambio de tema */
+body {
+    font-family: 'Montserrat', sans-serif;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Estilo de botón flotante whatssApp */
+.btn-flotante {
+    position: fixed;
+    bottom: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    z-index: 1050; /* Se asegura de estar por encima de todo */
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.btn-flotante:hover {
+    transform: scale(1.1);
+    filter: brightness(1.1);
+}
+
+/* Posición y color específico WhatsApp (Derecha) */
+.btn-flotante-der {
+    right: 25px;
+    background-color: #25D366;
+    color: white;
+}
+
+/* Posición y color específico Tema (Izquierda) */
+.btn-flotante-izq {
+    left: 25px;
+    background-color: var(--bs-body-color); /* Se adapta automáticamente: negro en modo claro, blanco en modo oscuro */
+    color: var(--bs-body-bg);
+}
+
+/* ------------------------------------------------------------------------- */
+
+:root {
+    --color-morado: #a83bb5; /* Morado */
+    --color-naranja: #ff7a00; /* Naranja para resaltar (Complementario) */
+
+    --color-negro-fondo: #0a0a0a;
+    --color-blanco-fondo: #ffffff;
+}
+
+/* Forzamos el color del body según el tema elegido por el usuario */
+[data-bs-theme="dark"] {
+    --bs-body-bg: var(--color-negro-fondo);
+    --bs-body-color: #ffffff;
+    --border-color: #333333;
+}
+
+[data-bs-theme="light"] {
+    --bs-body-bg: var(--color-blanco-fondo);
+    --bs-body-color: #121212;
+    --border-color: #e0e0e0;
+}
+
+.texto-morado {
+    color: var(--color-morado);
+}
+
+.navbar-custom {
+    /* Degradado de morado oscuro a violeta profundo */
+    background: linear-gradient(90deg, #2a1040 0%, #3e1b59 50%, #201136 100%);
+    padding: 10px 0; 
+    border: none;
+    min-height: 80px;
+}
+
+/* Estilo del Logo (Más grande y Circular) */
+.logo-navbar {
+    width: 140px;  /* Mucho más grande */
+    height: 140px;
+    object-fit: cover;
+    background-color: #050505; 
+    border: 3px solid rgba(255, 255, 255, 0.2); /* Borde blanquecino para separar */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5); /* Sombra fuerte para darle profundidad */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo-navbar:hover {
+transform: scale(1.05); /* Efecto de acercamiento sin perder el centrado */
+    box-shadow: 0 12px 30px rgba(0,0,0,0.7);
+}
+
+/* ==========================================
+   BUSCADOR MINIMALISTA (Solo línea inferior)
+============================================= */
+.buscador-minimalista {
+border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    padding-bottom: 3px;
+    max-width: 380px; /* Ahora puede expandirse mucho más a lo ancho */
+    width: 100%;
+    transition: border-color 0.3s ease;
+}
+
+.buscador-minimalista:focus-within {
+    border-bottom-color: #ffffff; /* Se ilumina al hacer clic */
+}
+
+.input-buscador {
+background-color: transparent !important;
+    border: none;
+    color: #ffffff;
+    padding: 0;
+    font-size: 1.05rem;
+    box-shadow: none !important;
+}
+
+/* Evitar que se ponga negro al hacer clic */
+.input-buscador:focus {
+    background-color: transparent !important;
+    color: #ffffff;
+    outline: none;
+    box-shadow: none !important;
+}
+
+.input-buscador::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 300;
+}
+
+/* ==========================================
+   LOGO SOBRESALIENTE (Estilo Flotante Central)
+============================================= */
+.contenedor-logo {
+    position: absolute;
+    top: 5px; /* Comienza casi desde arriba del navbar... */
+    left: 50%;
+    transform: translateX(-50%); /* Centrado perfecto */
+    z-index: 1060; /* Asegura que el logo caiga por encima de cualquier carrusel o imagen de abajo */
+}
+
+.buscador-minimalista:focus-within {
+    border-bottom-color: #ffffff; /* Se ilumina al 100% de blanco al hacer clic */
+}
+
+/* El campo de texto invisible */
+.input-buscador {
+    background-color: transparent;
+    border: none;
+    color: #ffffff;
+    padding: 0;
+    box-shadow: none !important; /* Evita que Bootstrap le ponga borde azul */
+}
+
+.input-buscador::placeholder {
+    color: rgba(255, 255, 255, 0.6); /* Texto "¿Qué estás buscando?" un poco translúcido */
+    font-weight: 300;
+}
+
+/* Botón de "Buscar" en texto */
+.btn-buscar-texto {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-weight: 500;
+    padding: 0 0 0 10px;
+    transition: color 0.2s ease;
+}
+
+.btn-buscar-texto:hover {
+    color: var(--color-naranja); /* Se pinta de naranja al pasar el cursor */
+}
+
+/* ==========================================
+   BOTONES DE MENÚ Y CONTACTO (BLANCOS)
+============================================= */
+.btn-menu, .btn-contacto {
+    background: none;
+    border: none;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-menu:hover, .btn-contacto:hover {
+    color: var(--color-naranja) !important; /* Interacción naranja */
+    transform: translateY(-2px); /* Pequeño salto visual */
+}
+
+/* ==========================================
+   MENÚ LATERAL (OFFCANVAS)
+============================================= */
+.offcanvas {
+    background-color: #121212; 
+    border-right: 2px solid var(--color-morado); 
+}
+
+/* Enlaces principales (Mayúsculas) */
+.nav-link-custom {
+    transition: color 0.3s ease, transform 0.3s ease;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.nav-link-custom:hover, .nav-link-custom[aria-expanded="true"] {
+    color: var(--color-naranja) !important;
+    transform: translateX(8px); /* Pequeño desliz a la derecha */
+}
+
+/* Animación de la flecha al desplegar PRODUCTOS */
+.nav-link-custom .bi-chevron-down {
+    transition: transform 0.3s ease;
+}
+.nav-link-custom[aria-expanded="true"] .bi-chevron-down {
+    transform: rotate(180deg); /* La flecha gira hacia arriba al abrir */
+}
+
+/* Sub-enlaces de categorías (Minúsculas) */
+.nav-link-sub {
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: inline-block;
+    padding: 2px 0;
+    opacity: 0.8; /* Ligeramente más opacos para jerarquía visual */
+}
+
+.nav-link-sub:hover {
+    color: var(--color-naranja) !important;
+    opacity: 1;
+    transform: translateX(5px);
+}
