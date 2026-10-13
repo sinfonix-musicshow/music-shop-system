@@ -14,7 +14,7 @@
 <body>
 
     <!-- Contenido de Encabezado -->
-  <header class="fixed-top shadow-sm" style="z-index: 1040;">
+<header class="fixed-top shadow-sm" style="z-index: 1040;">
         <nav class="navbar navbar-custom position-relative">
             <div class="container-fluid align-items-center">
                 
@@ -43,7 +43,7 @@
 
                 <!-- DERECHA: Contacto -->
                 <div class="col-5 d-flex justify-content-end align-items-center z-1">
-                    <a href="#" class="btn-contacto d-flex align-items-center text-white text-decoration-none gap-2">
+                    <a href="#seccionContacto" class="btn-contacto d-flex align-items-center text-white text-decoration-none gap-2">
                         <i class="bi bi-person fs-3"></i>
                         <span class="fw-semibold d-none d-md-block">Contáctanos</span>
                     </a>
@@ -132,13 +132,450 @@
     </div>
 
 
-    </header>
+</header>
     <!-- Contenido Principal -->
     <main>
+    <!-- ==========================================
+        HERO BANNER: 3 IMÁGENES INTERACTIVAS
+    =========================================== -->
+    <section class="hero-showroom-seccion overflow-hidden position-relative mb-5">
+        <div class="container-fluid p-0">
+            <div class="row g-0">
+                
+                <!-- Tarjeta 1: Guitarras y Bajos (Mundo de Cuerdas) -->
+                <div class="col-md-4 position-relative overflow-hidden hero-card-wrapper">
+                    <!-- Imagen de fondo con filtro morado -->
+                    <div class="hero-imagen bg-guitarra"></div>
+                    <!-- Capa de oscurecimiento interactiva -->
+                    <div class="hero-capa d-flex flex-column justify-content-end p-4 p-lg-5 text-white">
+                        <span class="badge bg-morado align-self-start mb-2 px-3 py-2 text-uppercase fw-bold text-white small">Instrumentos</span>
+                        <h2 class="display-6 fw-extrabold mb-2 lh-1 text-uppercase text-shadow-sm">Mundo de Cuerdas</h2>
+                        <p class="small text-white-50 mb-3 fw-medium">🎸 Fender, Gibson, Taylor y más. Encontrá tu sonido.</p>
+                        <a href="#cuerdas" class="btn btn-explorar-hero align-self-start">
+                            <span>Ver Colección</span> <i class="bi bi-arrow-right-short fs-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2: Baterías y Percusión (Sección Central) -->
+                <div class="col-md-4 position-relative overflow-hidden hero-card-wrapper border-start-md border-end-md">
+                    <!-- Imagen de fondo con filtro morado -->
+                    <div class="hero-imagen bg-percusion"></div>
+                    <!-- Capa de oscurecimiento interactiva -->
+                    <div class="hero-capa d-flex flex-column justify-content-end p-4 p-lg-5 text-white">
+                        <span class="badge bg-naranja align-self-start mb-2 px-3 py-2 text-uppercase fw-bold text-white small">Percusión</span>
+                        <h2 class="display-6 fw-extrabold mb-2 lh-1 text-uppercase text-shadow-sm">Baterías & Ritmo</h2>
+                        <p class="small text-white-50 mb-3 fw-medium">🥁 Sets completos, platillos y parches. Para todos los estilos.</p>
+                        <a href="#percusion" class="btn btn-explorar-hero align-self-start">
+                            <span>Ver Colección</span> <i class="bi bi-arrow-right-short fs-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3: Teclados, Sintetizadores y Accesorios -->
+                <div class="col-md-4 position-relative overflow-hidden hero-card-wrapper">
+                    <!-- Imagen de fondo con filtro morado -->
+                    <div class="hero-imagen bg-teclados"></div>
+                    <!-- Capa de oscurecimiento interactiva -->
+                    <div class="hero-capa d-flex flex-column justify-content-end p-4 p-lg-5 text-white">
+                        <span class="badge bg-morado align-self-start mb-2 px-3 py-2 text-uppercase fw-bold text-white small">Sintetizadores</span>
+                        <h2 class="display-6 fw-extrabold mb-2 lh-1 text-uppercase text-shadow-sm">Teclas & Control</h2>
+                        <p class="small text-white-50 mb-3 fw-medium">🎹 Sintetizadores, pianos eléctricos y controladores MIDI.</p>
+                        <a href="#teclas" class="btn btn-explorar-hero align-self-start">
+                            <span>Ver Colección</span> <i class="bi bi-arrow-right-short fs-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECCIÓN DESTACADOS (Animación Scroll)
+    =========================================== -->
+    <section id="seccionDestacados" class="container py-5 mt-4">
+        
+        <!-- Título y Botones Agrupados Arriba (Animación 1) -->
+        <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom border-secondary animacion-scroll">
+            <h3 class="fw-bold mb-0 text-uppercase" style="letter-spacing: 2px;">Destacados</h3>
+            
+            <!-- Aquí están las dos flechas juntas -->
+            <div class="d-flex gap-2">
+                <button class="btn btn-flecha d-none d-md-flex shadow-sm" onclick="moverCarrusel(-1)">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                <button class="btn btn-flecha d-none d-md-flex shadow-sm" onclick="moverCarrusel(1)">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Contenedor de Productos (Animación 2 con retraso) -->
+        <div class="animacion-scroll animacion-retraso position-relative">
+            <!-- Grilla de Productos con Scroll Horizontal -->
+            <div class="carrusel-productos d-flex gap-4 overflow-x-auto py-3 px-2" id="carruselDestacados">
+                
+                <!-- Producto 1: Pedalera / Amplificador -->
+                <div class="card card-producto flex-shrink-0 border-0 bg-transparent">
+                    <div class="position-relative mb-3 overflow-hidden rounded-2">
+                        <!-- Imagen cuadrada real de Pexels -->
+                        <img src="https://images.pexels.com/photos/33813494/pexels-photo-33813494.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Amplificador">
+                        <!-- Etiquetas de descuento y envío -->
+                        <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
+                            <span class="etiqueta-descuento fw-bold text-white px-2 py-1 small">-10% OFF</span>
+                            <span class="etiqueta-envio fw-bold text-white px-2 py-1 small">ENVÍO GRATIS</span>
+                        </div>
+                    </div>
+                    <div class="card-body p-0 text-start">
+                        <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Amplificador Sonicake Ampcube QAM-20 Portátil Bluetooth</h5>
+                        <p class="text-muted text-decoration-line-through small mb-1">$ 329.989,00</p>
+                        <p class="fw-extrabold mb-1">Transferencia/cash: $ 269.991,00</p>
+                        <p class="text-muted small mb-0">Lista: $ 299.990,00</p>
+                    </div>
+                </div>
+
+                <!-- Producto 2: Guitarra Eléctrica -->
+                <div class="card card-producto flex-shrink-0 border-0 bg-transparent">
+                    <div class="position-relative mb-3 overflow-hidden rounded-2">
+                        <img src="https://images.pexels.com/photos/31158956/pexels-photo-31158956.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Guitarra Fender">
+                        <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
+                            <span class="etiqueta-descuento fw-bold text-white px-2 py-1 small">-15% OFF</span>
+                            <span class="etiqueta-envio fw-bold text-white px-2 py-1 small">ENVÍO GRATIS</span>
+                        </div>
+                    </div>
+                    <div class="card-body p-0 text-start">
+                        <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Guitarra Eléctrica Fender Stratocaster Americana</h5>
+                        <p class="text-muted text-decoration-line-through small mb-1">$ 1.150.000,00</p>
+                        <p class="fw-extrabold mb-1">Transferencia/cash: $ 977.500,00</p>
+                        <p class="text-muted small mb-0">Lista: $ 1.150.000,00</p>
+                    </div>
+                </div>
+
+                <!-- Producto 3: Batería Acústica -->
+                <div class="card card-producto flex-shrink-0 border-0 bg-transparent">
+                    <div class="position-relative mb-3 overflow-hidden rounded-2">
+                        <img src="https://images.pexels.com/photos/5650534/pexels-photo-5650534.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Batería">
+                        <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
+                            <span class="etiqueta-envio fw-bold text-white px-2 py-1 small">ENVÍO GRATIS</span>
+                        </div>
+                    </div>
+                    <div class="card-body p-0 text-start">
+                        <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Batería Acústica Mapex Prodigy 5 Cuerpos Con Fierros</h5>
+                        <p class="text-muted text-decoration-line-through small mb-1 opacity-0">-</p>
+                        <p class="fw-extrabold mb-1">Transferencia/cash: $ 1.150.000,00</p>
+                        <p class="text-muted small mb-0">Lista: $ 1.350.000,00</p>
+                    </div>
+                </div>
+
+                <!-- Producto 4: Teclado MIDI -->
+                <div class="card card-producto flex-shrink-0 border-0 bg-transparent">
+                    <div class="position-relative mb-3 overflow-hidden rounded-2">
+                        <img src="https://images.pexels.com/photos/37005815/pexels-photo-37005815.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Teclado MIDI">
+                        <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
+                            <span class="etiqueta-descuento fw-bold text-white px-2 py-1 small">-5% OFF</span>
+                        </div>
+                    </div>
+                    <div class="card-body p-0 text-start">
+                        <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Teclado Controlador Midi Arturia Keylab 61 Teclas</h5>
+                        <p class="text-muted text-decoration-line-through small mb-1">$ 568.421,00</p>
+                        <p class="fw-extrabold mb-1">Transferencia/cash: $ 540.000,00</p>
+                        <p class="text-muted small mb-0">Lista: $ 610.000,00</p>
+                    </div>
+                </div>
+
+                <!-- Producto 5: Pedalera de Bajo (Basado en tu referencia) -->
+                <div class="card card-producto flex-shrink-0 border-0 bg-transparent">
+                    <div class="position-relative mb-3 overflow-hidden rounded-2">
+                        <!-- Foto de pedales -->
+                        <img src="https://images.pexels.com/photos/17896555/pexels-photo-17896555.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Pedalera Darkglass">
+                        <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
+                            <span class="etiqueta-descuento fw-bold text-white px-2 py-1 small">-9% OFF</span>
+                            <span class="etiqueta-envio fw-bold text-white px-2 py-1 small">ENVÍO GRATIS</span>
+                        </div>
+                    </div>
+                    <div class="card-body p-0 text-start">
+                        <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Pedalera Para Bajo Darkglass AGM Anagram Pantalla Táctil</h5>
+                        <p class="text-muted text-decoration-line-through small mb-1">$ 2.796.359,04</p>
+                        <p class="fw-extrabold mb-1">Transferencia/cash: $ 2.287.930,62</p>
+                        <p class="text-muted small mb-0">Lista: $ 2.542.145,13</p>
+                    </div>
+                </div>
+
+                <!-- Producto 6: Interfaz de Audio -->
+                <div class="card card-producto flex-shrink-0 border-0 bg-transparent">
+                    <div class="position-relative mb-3 overflow-hidden rounded-2">
+                        <!-- Foto de estudio / interfaz -->
+                        <img src="https://images.pexels.com/photos/9870700/pexels-photo-9870700.png" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Interfaz M-Audio">
+                        <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
+                            <span class="etiqueta-envio fw-bold text-white px-2 py-1 small">ENVÍO GRATIS</span>
+                        </div>
+                    </div>
+                    <div class="card-body p-0 text-start">
+                        <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Interfaz De Audio M-Audio M-Track Solo USB</h5>
+                        <p class="text-muted text-decoration-line-through small mb-1 opacity-0">-</p> <!-- Opacidad 0 para mantener la estructura alineada -->
+                        <p class="fw-extrabold mb-1">Transferencia/cash: $ 85.000,00</p>
+                        <p class="text-muted small mb-0">Lista: $ 95.000,00</p>
+                    </div>
+                </div>
+
+                <!-- Producto 7: Micrófono Dinámico -->
+                <div class="card card-producto flex-shrink-0 border-0 bg-transparent">
+                    <div class="position-relative mb-3 overflow-hidden rounded-2">
+                        <!-- Foto de micrófono -->
+                        <img src="https://images.pexels.com/photos/8132521/pexels-photo-8132521.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Micrófono Shure">
+                        <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
+                            <span class="etiqueta-descuento fw-bold text-white px-2 py-1 small">-12% OFF</span>
+                        </div>
+                    </div>
+                    <div class="card-body p-0 text-start">
+                        <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Micrófono Dinámico Shure SM58 Vocal Original</h5>
+                        <p class="text-muted text-decoration-line-through small mb-1">$ 195.000,00</p>
+                        <p class="fw-extrabold mb-1">Transferencia/cash: $ 171.600,00</p>
+                        <p class="text-muted small mb-0">Lista: $ 195.000,00</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+<!-- ==========================================
+         CINTA DINÁMICA DE CATEGORÍAS (TICKER)
+    =========================================== -->   
+    <div class="cinta-categorias-wrapper mt-2 mb-4">
+        <div class="cinta-track">
+            <!-- Primera vuelta -->
+            <a href="#guitarras">GUITARRAS</a>
+            <a href="#baterias">BATERÍAS</a>
+            <a href="#accesorios">ACCESORIOS</a>
+            <a href="#violines">VIOLINES</a>
+            <a href="#amplificadores">AMPLIFICADORES</a>
+            <a href="#teclados">TECLADOS</a>
+            <a href="#pedales">PEDALES DE EFECTOS</a>
+            <a href="#interfaces">INTERFACES DE AUDIO</a>
+            
+            <!-- Segunda vuelta -->
+            <a href="#guitarras">GUITARRAS</a>
+            <a href="#baterias">BATERÍAS</a>
+            <a href="#accesorios">ACCESORIOS</a>
+            <a href="#violines">VIOLINES</a>
+            <a href="#amplificadores">AMPLIFICADORES</a>
+            <a href="#teclados">TECLADOS</a>
+            <a href="#pedales">PEDALES DE EFECTOS</a>
+            <a href="#interfaces">INTERFACES DE AUDIO</a>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         SECCIÓN NOVEDADES
+    =========================================== -->
+    <section id="seccionNovedades" class="container py-4">
+        
+        <!-- Título y Botones Agrupados -->
+        <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom border-secondary animacion-scroll">
+            <h3 class="fw-bold mb-0 text-uppercase" style="letter-spacing: 2px;">Novedades</h3>
+            
+            <div class="d-flex gap-2">
+                <!-- ATENCIÓN: Aquí usamos una función mejorada de JS pasándole el ID 'carruselNovedades' -->
+                <button class="btn btn-flecha d-none d-md-flex shadow-sm" onclick="moverCarruselUniversal('carruselNovedades', -1)">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                <button class="btn btn-flecha d-none d-md-flex shadow-sm" onclick="moverCarruselUniversal('carruselNovedades', 1)">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Contenedor de Productos de Novedades -->
+        <div class="animacion-scroll animacion-retraso position-relative">
+            <div class="carrusel-productos d-flex gap-4 overflow-x-auto py-3 px-2" id="carruselNovedades">
+                
+                <!-- Novedad 1 -->
+                <div class="card card-producto flex-shrink-0 border-0 bg-transparent">
+                    <div class="position-relative mb-3 overflow-hidden rounded-2">
+                        <img src="https://images.pexels.com/photos/10618242/pexels-photo-10618242.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Sintetizador Nord">
+                        <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
+                            <span class="etiqueta-envio fw-bold text-white px-2 py-1 small">NUEVO INGRESO</span>
+                        </div>
+                    </div>
+                    <div class="card-body p-0 text-start">
+                        <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Sintetizador Nord Stage 3 88 Teclas</h5>
+                        <p class="text-muted text-decoration-line-through small mb-1 opacity-0">-</p>
+                        <p class="fw-extrabold mb-1">Transferencia/cash: $ 4.250.000,00</p>
+                    </div>
+                </div>
+
+                <!-- Novedad 2 -->
+                <div class="card card-producto flex-shrink-0 border-0 bg-transparent">
+                    <div class="position-relative mb-3 overflow-hidden rounded-2">
+                        <img src="https://images.pexels.com/photos/13575087/pexels-photo-13575087.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Violín">
+                        <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
+                            <span class="etiqueta-envio fw-bold text-white px-2 py-1 small">NUEVO INGRESO</span>
+                        </div>
+                    </div>
+                    <div class="card-body p-0 text-start">
+                        <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Violín Acústico Stradella 4/4 Con Estuche</h5>
+                        <p class="text-muted text-decoration-line-through small mb-1 opacity-0">-</p>
+                        <p class="fw-extrabold mb-1">Transferencia/cash: $ 120.000,00</p>
+                    </div>
+                </div>
+
+                <!-- Novedad 3 -->
+                <div class="card card-producto flex-shrink-0 border-0 bg-transparent">
+                    <div class="position-relative mb-3 overflow-hidden rounded-2">
+                        <img src="https://images.pexels.com/photos/5367985/pexels-photo-5367985.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Bajo">
+                        <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
+                            <span class="etiqueta-descuento fw-bold text-white px-2 py-1 small">-5% OFF</span>
+                        </div>
+                    </div>
+                    <div class="card-body p-0 text-start">
+                        <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Bajo Eléctrico Squier Jazz Bass V (5 Cuerdas)</h5>
+                        <p class="text-muted text-decoration-line-through small mb-1">$ 750.000,00</p>
+                        <p class="fw-extrabold mb-1">Transferencia/cash: $ 712.500,00</p>
+                    </div>
+                </div>
+
+                <!-- Novedad 4: Monitores -->
+                <div class="card card-producto flex-shrink-0 border-0 bg-transparent">
+                    <div class="position-relative mb-3 overflow-hidden rounded-2">
+                        <img src="https://images.pexels.com/photos/13978776/pexels-photo-13978776.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Monitores de Estudio">
+                        <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
+                            <span class="etiqueta-envio fw-bold text-white px-2 py-1 small">ENVÍO GRATIS</span>
+                        </div>
+                    </div>
+                    <div class="card-body p-0 text-start">
+                        <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Monitores De Estudio KRK Rokit 5 G4 (Par)</h5>
+                        <p class="text-muted text-decoration-line-through small mb-1 opacity-0">-</p>
+                        <p class="fw-extrabold mb-1">Transferencia/cash: $ 650.000,00</p>
+                        <p class="text-muted small mb-0">Lista: $ 720.000,00</p>
+                    </div>
+                </div>
+
+                <!-- Novedad 5: Electroacústica -->
+                <div class="card card-producto flex-shrink-0 border-0 bg-transparent">
+                    <div class="position-relative mb-3 overflow-hidden rounded-2">
+                        <img src="https://images.pexels.com/photos/9057762/pexels-photo-9057762.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Guitarra Acústica">
+                        <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
+                            <span class="etiqueta-descuento fw-bold text-white px-2 py-1 small">-10% OFF</span>
+                        </div>
+                    </div>
+                    <div class="card-body p-0 text-start">
+                        <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Guitarra Electroacústica Yamaha APX600</h5>
+                        <p class="text-muted text-decoration-line-through small mb-1">$ 820.000,00</p>
+                        <p class="fw-extrabold mb-1">Transferencia/cash: $ 738.000,00</p>
+                        <p class="text-muted small mb-0">Lista: $ 820.000,00</p>
+                    </div>
+                </div>
+
+                <!-- Novedad 6: Pedal Clásico -->
+                <div class="card card-producto flex-shrink-0 border-0 bg-transparent">
+                    <div class="position-relative mb-3 overflow-hidden rounded-2">
+                        <img src="https://images.pexels.com/photos/5050610/pexels-photo-5050610.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Pedal Boss">
+                        <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
+                            <span class="etiqueta-envio fw-bold text-white px-2 py-1 small">NUEVO INGRESO</span>
+                        </div>
+                    </div>
+                    <div class="card-body p-0 text-start">
+                        <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Pedal De Efecto Boss DS-1 Distortion Clásico</h5>
+                        <p class="text-muted text-decoration-line-through small mb-1 opacity-0">-</p>
+                        <p class="fw-extrabold mb-1">Transferencia/cash: $ 145.000,00</p>
+                        <p class="text-muted small mb-0">Lista: $ 160.000,00</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==========================================
+         SECCIÓN UBICACIÓN Y CONTACTO
+    =========================================== -->
+    <section id="seccionContacto" class="container py-5 mt-4 animacion-scroll">
+        <div class="row g-4">
+            
+            <!-- Columna Izquierda: Título y Mapa -->
+            <div class="col-md-6 d-flex flex-column">
+                <h4 class="text-uppercase text-center mb-4 fw-bold fs-5" style="letter-spacing: 2px;">Nuestra Ubicación</h4>
+                
+                <!-- Tarjeta con borde para el Mapa -->
+                <div class="contacto-card rounded-4 p-2 h-100 d-flex flex-column">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.147250462719!2d-65.2078652!3d-26.8351549!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94225d3df13632cf%3A0x87a55b1115b090!2sBatalla%20de%20Ayacucho%20247%2C%20T4000%20San%20Miguel%20de%20Tucum%C3%A1n%2C%20Tucum%C3%A1n!5e0!3m2!1ses-419!2sar!4v1700000000000!5m2!1ses-419!2sar" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0; border-radius: 12px; min-height: 350px;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Título y Datos -->
+            <div class="col-md-6 d-flex flex-column">
+                <h4 class="text-uppercase text-center mb-4 fw-bold fs-5" style="letter-spacing: 2px;">Contáctenos</h4>
+                
+                <!-- Tarjeta con borde para los Datos -->
+                <div class="contacto-card rounded-4 p-4 p-lg-5 d-flex flex-column justify-content-center h-100">
+                    
+                    <ul class="list-unstyled fs-6 mb-0 d-flex flex-column gap-4">
+                        
+                        <!-- Dirección -->
+                        <li class="d-flex align-items-start gap-3">
+                            <i class="bi bi-geo-alt fs-4 text-naranja"></i>
+                            <div>
+                                <strong class="d-block mb-1 text-uppercase">Dirección:</strong>
+                                <span class="text-white-50">Batalla de Ayacucho 247<br>T4000 San Miguel de Tucumán, Tucumán</span>
+                            </div>
+                        </li>
+                        
+                        <!-- Teléfono -->
+                        <li class="d-flex align-items-start gap-3">
+                            <i class="bi bi-telephone fs-4 text-naranja"></i>
+                            <div>
+                                <strong class="d-block mb-1 text-uppercase">Teléfono:</strong>
+                                <span class="text-white-50">3815136085</span>
+                            </div>
+                        </li>
+
+                        <!-- Email -->
+                        <li class="d-flex align-items-start gap-3">
+                            <i class="bi bi-envelope fs-4 text-naranja"></i>
+                            <div>
+                                <strong class="d-block mb-1 text-uppercase">Gmail:</strong>
+                                <span class="text-white-50">musicshowtucuman@gmail.com</span>
+                            </div>
+                        </li>
+
+                        <!-- Horarios (Sintetizados) -->
+                        <li class="d-flex align-items-start gap-3">
+                            <i class="bi bi-clock fs-4 text-naranja"></i>
+                            <div>
+                                <strong class="d-block mb-1 text-uppercase">Horarios:</strong>
+                                <span class="text-white-50">
+                                    Lunes a Viernes: 9:30 a.m. – 1:00 p.m. y 5:30 p.m. – 9:00 p.m.<br>
+                                    Sábados: 9:30 a.m. – 1:00 p.m.<br>
+                                    Domingos: Cerrado
+                                </span>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     </main>
 
     <!-- Contenido de Pie de Página -->
     <footer>
+
+
     </footer>
 
     <!-- Botón Izquierdo: Cambiar Tema (Modo Claro / Oscuro) -->

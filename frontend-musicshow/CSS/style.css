@@ -2,6 +2,13 @@
 body {
     font-family: 'Montserrat', sans-serif;
     transition: background-color 0.4s ease, color 0.4s ease;
+    padding-top: 90px; /* Compensa la altura del navbar fijo */
+}
+
+html{
+    scroll-behavior: smooth;
+    /* Evita que el navbar fijo tape los títulos al hacer clic en los enlaces ancla */
+    scroll-padding-top: 100px;
 }
 
 /* Estilo de botón flotante whatssApp */
@@ -226,4 +233,339 @@ background-color: transparent !important;
     color: var(--color-naranja) !important;
     opacity: 1;
     transform: translateX(5px);
+}
+
+/* --------------------------------------------------------------- */
+
+/* ==========================================
+   HERO BANNER: 3 IMÁGENES INTERACTIVAS
+============================================= */
+
+/* Contenedor del Hero - Altura ideal */
+.hero-showroom-seccion {
+    min-height: 550px;
+    height: 75vh; /* Ajuste automático según la pantalla */
+    z-index: 1;
+}
+
+.hero-showroom-seccion .row, 
+.hero-showroom-seccion .container-fluid,
+.hero-card-wrapper {
+    height: 100%; /* Las tres imágenes cubren el alto total del banner */
+}
+
+/* Envoltura para el desborde en el zoom */
+.hero-card-wrapper {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* Capa de degrade (Ahora adaptada para finalizar en bordes redondos) */
+.hero-capa {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Degradado oscuro para facilitar la lectura sobre la imagen */
+    background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(18, 9, 30, 0.4) 40%, rgba(10, 5, 20, 0.92) 100%);
+    z-index: 2;
+    border-radius: 20px !important;
+    transition: background 0.4s ease;
+}
+
+
+/* Las imágenes con zoom - Usamos fotos reales y gratuitas de alta resolución de Unsplash */
+.hero-imagen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); /* Zoom cinematográfico suave */
+}
+
+/* URLs de las imágenes temáticas de alta definición - Corregido */
+.bg-guitarra {
+    background-image: linear-gradient(rgba(42, 16, 64, 0.45), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1550985616-10810253b84d?auto=format&fit=crop&q=80&w=1200');
+}
+
+.bg-percusion {
+    background-image: linear-gradient(rgba(42, 16, 64, 0.45), rgba(0, 0, 0, 0.7)), url('https://images.pexels.com/photos/30169605/pexels-photo-30169605.jpeg')
+}
+
+.bg-teclados {
+    background-image: linear-gradient(rgba(42, 16, 64, 0.45), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1552422535-c45813c61732?auto=format&fit=crop&q=80&w=1200');
+}
+
+/* EFECTOS AL PASAR EL CURSOR (HOVER) */
+
+/* Zoom suave sobre la imagen de fondo */
+.hero-card-wrapper:hover .hero-imagen {
+    transform: scale(1.08); /* Crece un 8% */
+}
+
+/* Modificación de la iluminación de la capa */
+.hero-card-wrapper:hover .hero-capa {
+    background: linear-gradient(180deg, rgba(0,0,0,0.02) 0%, rgba(18, 9, 30, 0.45) 30%, rgba(10, 5, 20, 0.92) 100%);
+}
+
+/* Ajustes de bordes para pantallas medianas/grandes */
+@media (min-width: 768px) {
+    .border-start-md { border-left: 2px solid rgba(255, 255, 255, 0.08); }
+    .border-end-md { border-right: 2px solid rgba(255, 255, 255, 0.08); }
+}
+
+/* Insignias internas */
+.badge.bg-morado {
+    background-color: var(--color-morado);
+}
+
+.badge.bg-naranja {
+    background-color: var(--color-naranja);
+}
+
+/* Botón explorador dentro de las tarjetas */
+.btn-explorar-hero {
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-radius: 50px;
+    padding: 10px 22px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-explorar-hero i {
+    transition: transform 0.3s ease;
+}
+
+/* Interacción con el botón en hover */
+.hero-card-wrapper:hover .btn-explorar-hero {
+    background-color: var(--color-naranja); /* Cambia al naranja en foco */
+    border-color: var(--color-naranja);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(255, 122, 0, 0.4);
+}
+
+/* Flechita del botón que se desliza al apuntar */
+.hero-card-wrapper:hover .btn-explorar-hero i {
+    transform: translateX(5px);
+}
+
+/* Sombras y tipografía de títulos */
+.text-shadow-sm {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* ----------------------------------------------------------------------- */
+
+/* ==========================================
+   DISEÑO DE TARJETAS DE PRODUCTO (Estilo E-commerce)
+============================================= */
+
+/* Ajustamos el ancho para que la imagen se vea grande y atractiva */
+.card-producto {
+    width: 310px;
+    scroll-snap-align: start;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.card-producto:hover {
+    transform: translateY(-5px); /* Pequeño salto al pasar el cursor */
+}
+
+/* Forzamos que la imagen siempre sea un cuadrado perfecto (1:1) */
+.img-cuadrada {
+    aspect-ratio: 1 / 1;
+    background-color: #222; /* Color de fondo mientras carga */
+}
+
+/* Efecto de zoom suave en la imagen al hacer hover en la tarjeta */
+.card-producto img {
+    transition: transform 0.5s ease;
+}
+.card-producto:hover img {
+    transform: scale(1.05);
+}
+
+/* Tipografía de títulos limitada a 2 líneas */
+.titulo-producto {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Corta el texto si tiene más de 2 líneas */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+}
+
+/* ==========================================
+   ETIQUETAS DE DESCUENTO Y ENVÍO
+============================================= */
+.etiqueta-descuento {
+    background-color: #ff2a85; /* Rosa vibrante de tu referencia */
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+.etiqueta-envio {
+    background-color: #00d1b2; /* Cian / Turquesa de tu referencia */
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+/* ==========================================
+   ANIMACIÓN AL HACER SCROLL
+============================================= */
+.animacion-scroll {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.animacion-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.animacion-retraso {
+    transition-delay: 0.2s; /* El carrusel aparece un instante después del título */
+}
+
+/* ==========================================
+   CARRUSEL HORIZONTAL (OCULTAR BARRA GRIS)
+============================================= */
+/* ==========================================
+   CARRUSEL HORIZONTAL OPTIMIZADO (Sin Lag)
+============================================= */
+.carrusel-productos {
+    scroll-behavior: smooth;
+    /* Cambiamos el scroll-snap a 'proximity' para que no frene de golpe y sea más suave */
+    scroll-snap-type: x proximity; 
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    
+    /* Propiedades de aceleración por hardware (clave para eliminar el lag) */
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.carrusel-productos::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    -webkit-appearance: none;
+}
+/* ==========================================
+   FLECHAS SUPERIORES JUNTAS
+============================================= */
+.btn-flecha {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+[data-bs-theme="light"] .btn-flecha {
+    border-color: rgba(0, 0, 0, 0.2);
+    color: #121212;
+}
+
+.btn-flecha:hover {
+    background-color: var(--color-morado);
+    border-color: var(--color-morado);
+    color: #ffffff !important;
+    transform: scale(1.1);
+}
+
+/* ==========================================
+   CINTA DINÁMICA DE CATEGORÍAS (TICKER)
+============================================= */
+.cinta-categorias-wrapper {
+    background-color: var(--color-morado); 
+    width: 100%;
+    overflow: hidden;
+    padding: 22px 0; /* Aumentamos el grosor de la barra */
+    position: relative;
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.cinta-track {
+    display: flex;
+    width: max-content;
+    animation: scroll-cinta 30s linear infinite;
+}
+
+.cinta-track:hover {
+    animation-play-state: paused;
+}
+
+.cinta-track a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.4rem; /* Letra considerablemente más grande */
+    letter-spacing: 1.5px;
+    padding: 0 50px; /* Aumentamos la distancia entre palabras para que respire mejor */
+    white-space: nowrap;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.cinta-track a:hover {
+    color: var(--color-naranja); 
+    transform: scale(1.1); 
+}
+
+@keyframes scroll-cinta {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } 
+}
+
+/* ------------------------------------------------------------------------------------------ */
+
+/* ==========================================
+   SECCIÓN UBICACIÓN Y CONTACTO
+============================================= */
+.contacto-card {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde fino y sutil estilo boceto */
+    transition: border-color 0.3s ease;
+}
+
+.contacto-card:hover {
+    border-color: rgba(255, 255, 255, 0.5); /* Se ilumina un poco el borde al pasar el cursor */
+}
+
+/* Color naranja para los íconos (Ubicación, Teléfono, Reloj) */
+.text-naranja {
+    color: var(--color-naranja) !important;
+}
+
+/* Adaptación automática para el Modo Claro */
+[data-bs-theme="light"] .contacto-card {
+    border-color: rgba(0, 0, 0, 0.2);
+}
+[data-bs-theme="light"] .contacto-card:hover {
+    border-color: rgba(0, 0, 0, 0.4);
+}
+[data-bs-theme="light"] .text-white-50 {
+    color: #4a4a4a !important; /* Oscurece el texto gris en fondo claro */
 }
