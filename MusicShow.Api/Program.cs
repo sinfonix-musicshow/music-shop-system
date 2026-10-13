@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MusicShow.Application.Interfaces;
 using MusicShow.Application.Services;
+using MusicShow.Data;
 using MusicShow.Data.Context;
 using MusicShow.Data.Repositories;
 using MusicShow.Domain.Interfaces;
@@ -20,13 +21,30 @@ public class Program
 
         // ── Repositorios ───────────────────────────────────────────────────────
         builder.Services.AddScoped<IInstrumentoRepository, InstrumentoRepository>();
+        builder.Services.AddScoped<IFacturaRepository, FacturaRepository>();
+
+        // ── Unit of Work ───────────────────────────────────────────────────────
+        builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         // ── Servicios de aplicación ────────────────────────────────────────────
         builder.Services.AddScoped<IInstrumentoService, InstrumentoService>();
+
+        builder.Services.AddScoped<IFacturaService, FacturaService>();
+
         builder.Services.AddScoped<ICatalogoService, CatalogoService>();
+
 
         // ── Controladores ──────────────────────────────────────────────────────
         builder.Services.AddControllers();
+
+        // ── CORS — permite consumo desde el prototipo HTML ─────────────────────
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("PermitirTodo", policy =>
+                policy.AllowAnyOrigin()
+                      .AllowAnyMethod()
+                      .AllowAnyHeader());
+        });
 
         // ── Swagger / OpenAPI ──────────────────────────────────────────────────
         builder.Services.AddEndpointsApiExplorer();
@@ -38,12 +56,10 @@ public class Program
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MusicShow API v1");
-                c.RoutePrefix = string.Empty; // Swagger en la raíz
-            });
+            app.UseSwaggerUI();
         }
+
+        app.UseCors("PermitirTodo");
 
         app.UseHttpsRedirection();
         app.UseAuthorization();

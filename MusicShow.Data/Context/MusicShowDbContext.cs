@@ -12,11 +12,14 @@ public class MusicShowDbContext : DbContext
         : base(options) { }
 
     public DbSet<Instrumento> Instrumentos => Set<Instrumento>();
+    public DbSet<Factura> Facturas => Set<Factura>();
+    public DbSet<DetalleFactura> DetallesFactura => Set<DetalleFactura>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
+        // Aplica todas las configuraciones IEntityTypeConfiguration del ensamblado
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(MusicShowDbContext).Assembly);
     }
 }
