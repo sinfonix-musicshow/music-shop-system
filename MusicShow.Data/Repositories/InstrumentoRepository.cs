@@ -47,6 +47,26 @@ public class InstrumentoRepository : IInstrumentoRepository
     public async Task AgregarAsync(Instrumento instrumento)
         => await _context.Instrumentos.AddAsync(instrumento);
 
+    public async Task<IEnumerable<Instrumento>> ObtenerEnCatalogoAsync(string? categoria = null)
+    {
+        var query = _context.Instrumentos
+                            .Where(i => i.Activo && i.EnCatalogo)
+                            .AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(categoria))
+            query = query.Where(i => i.Categoria.ToLower() == categoria.ToLower());
+
+        return await query.ToListAsync();
+    }
+
+    public async Task<IEnumerable<Instrumento>> ObtenerPorIdsAsync(IEnumerable<int> ids)
+    {
+        var idList = ids.Distinct().ToList();
+        return await _context.Instrumentos
+                             .Where(i => idList.Contains(i.Id) && i.Activo)
+                             .ToListAsync();
+    }
+
     public async Task GuardarCambiosAsync()
         => await _context.SaveChangesAsync();
 }

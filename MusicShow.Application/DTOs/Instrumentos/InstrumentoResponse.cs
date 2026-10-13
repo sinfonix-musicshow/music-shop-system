@@ -14,5 +14,6 @@ public class InstrumentoResponse
     public decimal Precio { get; set; }
     public string? EmojiIcon { get; set; }
     public bool Activo { get; set; }
+    public bool EnCatalogo { get; set; }
 }
 

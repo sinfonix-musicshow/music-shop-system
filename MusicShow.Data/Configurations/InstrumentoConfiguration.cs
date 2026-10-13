@@ -48,6 +48,10 @@ public class InstrumentoConfiguration : IEntityTypeConfiguration<Instrumento>
         builder.Property(i => i.Activo)
                .IsRequired()
                .HasDefaultValue(true);
+
+        builder.Property(i => i.EnCatalogo)
+               .IsRequired()
+               .HasDefaultValue(false);
     }
 }
 
