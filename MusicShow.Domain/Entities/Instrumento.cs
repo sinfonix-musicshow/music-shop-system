@@ -25,6 +25,8 @@ public class Instrumento
 
     public bool Activo { get; private set; }
 
+    public bool EnCatalogo { get; private set; }
+
     // Constructor requerido por EF Core
     private Instrumento() { }
 
@@ -49,6 +51,7 @@ public class Instrumento
         Precio = precio;
         EmojiIcon = emojiIcon;
         Activo = true;
+        EnCatalogo = false;
     }
 
     // ── Métodos de dominio ────────────────────────────────────────────────────
@@ -97,11 +100,31 @@ public class Instrumento
     }
 
     /// <summary>
-    /// Realiza la baja lógica del instrumento.
+    /// Realiza la baja lógica del instrumento. Si estaba en catálogo, se retira.
     /// </summary>
     public void Desactivar()
     {
         Activo = false;
+        EnCatalogo = false;
+    }
+
+    /// <summary>
+    /// Publica el instrumento en el catálogo para ser exhibido al público.
+    /// </summary>
+    public void PublicarEnCatalogo()
+    {
+        if (!Activo)
+            throw new DomainException($"No se puede agregar al catálogo el instrumento '{Nombre}' porque está inactivo.");//El articulo tiene que tener stock para publicarlo en el catalogo
+
+        EnCatalogo = true;
+    }
+
+    /// <summary>
+    /// Quita el instrumento del catálogo comercial (permanece en inventario).
+    /// </summary>
+    public void QuitarDeCatalogo()
+    {
+        EnCatalogo = false;
     }
 
     // ── Validaciones privadas ─────────────────────────────────────────────────

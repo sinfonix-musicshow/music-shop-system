@@ -112,7 +112,8 @@ public class InstrumentoService : IInstrumentoService
         Stock     = i.Stock,
         Precio    = i.Precio,
         EmojiIcon = i.EmojiIcon,
-        Activo    = i.Activo
+        Activo    = i.Activo,
+        EnCatalogo = i.EnCatalogo
     };
 }
 
