@@ -421,8 +421,9 @@ background-color: transparent !important;
 
 /* Tipografía de títulos limitada a 2 líneas */
 .titulo-producto {
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* Corta el texto si tiene más de 2 líneas */
+display: -webkit-box;
+    line-clamp: 2;                  /* Propiedad estándar recomendada */
+    -webkit-line-clamp: 2;          /* Corta el texto si tiene más de 2 líneas */
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
