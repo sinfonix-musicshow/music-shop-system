@@ -1,6 +1,27 @@
 @MusicShow.Api_HostAddress = http://localhost:5144
 
-GET {{MusicShow.Api_HostAddress}}/weatherforecast/
+### 1. Obtener instrumentos del catálogo (solo los visibles y activos)
+GET {{MusicShow.Api_HostAddress}}/api/catalogo
 Accept: application/json
 
-###
+### 2. Filtrar catálogo por categoría
+GET {{MusicShow.Api_HostAddress}}/api/catalogo?categoria=Cuerdas
+Accept: application/json
+
+### 3. Agregar un instrumento individual al catálogo (por ID)
+POST {{MusicShow.Api_HostAddress}}/api/catalogo/1
+Accept: application/json
+
+### 4. Agregar una lista de instrumentos al catálogo en lote
+POST {{MusicShow.Api_HostAddress}}/api/catalogo/lote
+Content-Type: application/json
+Accept: application/json
+
+{
+  "instrumentoIds": [1, 2, 3]
+}
+
+### 5. Quitar un instrumento del catálogo (permanece en inventario)
+DELETE {{MusicShow.Api_HostAddress}}/api/catalogo/1
+Accept: application/json
+

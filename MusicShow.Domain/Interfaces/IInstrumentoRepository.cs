@@ -29,6 +29,16 @@ public interface IInstrumentoRepository
     Task AgregarAsync(Instrumento instrumento);
 
     /// <summary>
+    /// Devuelve todos los instrumentos activos que están marcados para mostrarse en el catálogo.
+    /// </summary>
+    Task<IEnumerable<Instrumento>> ObtenerEnCatalogoAsync(string? categoria = null);
+
+    /// <summary>
+    /// Devuelve los instrumentos activos correspondientes a la lista de identificadores.
+    /// </summary>
+    Task<IEnumerable<Instrumento>> ObtenerPorIdsAsync(IEnumerable<int> ids);
+
+    /// <summary>
     /// Persiste los cambios realizados sobre una entidad rastreada.
     /// </summary>
     Task GuardarCambiosAsync();

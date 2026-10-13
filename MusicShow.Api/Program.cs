@@ -28,7 +28,11 @@ public class Program
 
         // ── Servicios de aplicación ────────────────────────────────────────────
         builder.Services.AddScoped<IInstrumentoService, InstrumentoService>();
+
         builder.Services.AddScoped<IFacturaService, FacturaService>();
+
+        builder.Services.AddScoped<ICatalogoService, CatalogoService>();
+
 
         // ── Controladores ──────────────────────────────────────────────────────
         builder.Services.AddControllers();
