@@ -659,3 +659,51 @@ FOOTER
     z-index: 1999 !important;
     background-color: rgba(0, 0, 0, 0.8) !important;
 }
+
+/* -------------------------------------------------------------------------------------------- */
+
+/* ========================================= 
+DISEÑO DE BOTONES DE CONTACTO
+ ========================================= */
+
+/* Botón de Consultar por WhatsApp (Adaptable claro/oscuro) */
+.btn-whatsapp-custom {
+    background-color: transparent; 
+    border: 1px solid var(--bs-border-color); /* Borde dinámico según el tema */
+    color: var(--bs-body-color); /* Texto dinámico (negro en claro, blanco en oscuro) */
+    transition: all 0.3s ease;
+}
+
+.btn-whatsapp-custom:hover {
+    background-color: #25d366;
+    border-color: #25d366;
+    color: #ffffff !important; /* Siempre blanco al hacer hover */
+    transform: translateY(-2px);
+}
+
+/* Botón de Consultar por Facebook (Adaptable claro/oscuro) */
+.btn-facebook-custom {
+    background-color: transparent; 
+    border: 1px solid var(--bs-border-color);
+    color: var(--bs-body-color);
+    transition: all 0.3s ease;
+}
+
+.btn-facebook-custom:hover {
+    background-color: #1877f2;
+    border-color: #1877f2;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+}
+
+/* Efecto hover interactivo para la ruta de navegación (Breadcrumb) */
+.breadcrumb-link {
+    display: inline-block; /* Obligatorio para que el texto pueda hacer zoom */
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.breadcrumb-link:hover {
+    transform: scale(1.08); /* Zoom sutil del texto */
+    color: var(--bs-body-color) !important; /* Quita el grisáceo y lo hace más sólido/negro */
+}
+
