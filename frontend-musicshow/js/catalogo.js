@@ -1,7 +1,15 @@
 // Al cargar la página, revisamos si el usuario ya había elegido un color antes
-document.addEventListener("DOMContentLoaded", () => {
-    const temaGuardado = localStorage.getItem("musicShowTema") || "dark";
-    aplicarTema(temaGuardado);
+document.addEventListener('DOMContentLoaded', () => {
+    const tarjetas = document.querySelectorAll('.tarjeta-cliqueable');
+
+    tarjetas.forEach(tarjeta => {
+        tarjeta.addEventListener('click', () => {
+            const idProducto = tarjeta.getAttribute('data-id');
+            if (idProducto) {
+                window.location.href = `producto.html?id=${idProducto}`;
+            }
+        });
+    });
 });
 
 function alternarTema() {

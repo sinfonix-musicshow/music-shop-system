@@ -112,88 +112,74 @@
     </div>
 </header>
 
-    <!-- Contenido Principal -->
-    <main>
-        <!-- ==========================================
-         MAIN: DETALLE DEL PRODUCTO
+
+<!-- ==========================================
+         MAIN: DETALLE DEL PRODUCTO (DINÁMICO)
     =========================================== -->
     <main class="container my-5 pt-4">
         
-<!-- Ruta de navegación (Breadcrumb) -->
-<nav aria-label="breadcrumb" class="mb-4">
-    <ol class="breadcrumb mb-0 small text-uppercase fw-semibold" style="letter-spacing: 0.5px;">
-        <!-- Agregamos la clase breadcrumb-link a los enlaces -->
-        <li class="breadcrumb-item">
-            <a href="index.html" class="text-decoration-none text-muted breadcrumb-link">Catálogo</a>
-        </li>
-        <li class="breadcrumb-item">
-            <a href="index.html" class="text-decoration-none text-muted breadcrumb-link">Guitarras</a>
-        </li>
-        <!-- El elemento activo no lleva enlace ni efecto -->
-        <li class="breadcrumb-item active text-body fw-bold" aria-current="page">Fender CD-60S V3</li>
-    </ol>
-</nav>
+        <!-- Ruta de navegación (Breadcrumb) -->
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb mb-0 small text-uppercase fw-semibold" style="letter-spacing: 0.5px;">
+                <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted breadcrumb-link">Catálogo</a></li>
+                <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted breadcrumb-link">Guitarras</a></li>
+                <!-- ID AÑADIDO AQUÍ -->
+                <li class="breadcrumb-item active text-body fw-bold" aria-current="page" id="bread-modelo">Cargando...</li>
+            </ol>
+        </nav>
 
         <!-- Grilla de Detalle (2 Columnas) -->
         <div class="row g-5 align-items-start">
             
             <!-- Columna Izquierda: Imagen del Producto -->
             <div class="col-lg-6">
-                <!-- Usamos el mismo estilo de borde sutil que en tus tarjetas de contacto -->
-                <div class="p-3 position-relative overflow-hidden rounded-4" style="border: 1px solid rgba(255, 255, 255, 0.2);">
-                    <img src="https://images.pexels.com/photos/164729/pexels-photo-164729.jpeg?auto=compress&cs=tinysrgb&w=900" 
-                         class="img-fluid w-100 rounded-3 object-fit-cover" 
-                         style="aspect-ratio: 1/1;" 
-                         alt="Guitarra Acústica Fender">
+                <div class="tarjeta-detalle p-3 position-relative overflow-hidden rounded-4" style="border: 1px solid var(--bs-border-color);">
+                    <!-- ID AÑADIDO AQUÍ -->
+                    <img src="" id="img-producto" class="img-fluid w-100 rounded-3 object-fit-cover" style="aspect-ratio: 1/1;" alt="Cargando imagen...">
                 </div>
             </div>
 
             <!-- Columna Derecha: Información y Botones de Contacto -->
             <div class="col-lg-6">
-                <div class="p-4 p-lg-5 h-100 d-flex flex-column justify-content-between rounded-4" style="border: 1px solid rgba(255, 255, 255, 0.2); background-color: rgba(255,255,255,0.02);">
+                <div class="tarjeta-detalle p-4 p-lg-5 h-100 d-flex flex-column justify-content-between rounded-4" style="border: 1px solid var(--bs-border-color);">
                     
                     <div>
-                        <!-- Título del Producto -->
-                        <h1 class="h2 fw-extrabold text-uppercase mb-3" style="letter-spacing: 1px;">Fender CD-60S V3</h1>
+                        <!-- ID AÑADIDO AQUÍ -->
+                        <h1 class="h2 fw-extrabold text-uppercase mb-3" style="letter-spacing: 1px;" id="titulo-producto">Cargando...</h1>
                         
                         <!-- Precio de Referencia -->
                         <div class="mb-4 pb-3 border-bottom border-secondary">
                             <span class="text-muted small d-block text-uppercase mb-1">Precio de referencia:</span>
-                            <span class="fs-2 fw-bold text-naranja" style="color: var(--color-naranja, #ff7a00);">$ 480.000,00</span>
+                            <!-- ID AÑADIDO AQUÍ -->
+                            <span class="fs-2 fw-bold text-naranja" style="color: var(--color-naranja, #ff7a00);" id="precio-producto">...</span>
                         </div>
 
                         <!-- Descripción del producto -->
                         <div class="mb-4">
                             <h5 class="fw-bold fs-6 text-uppercase mb-2 text-naranja" style="color: var(--color-naranja, #ff7a00);">Descripción del producto</h5>
-                            <p class="text-white-50 small mb-3 lh-base">
-                                La CD-60S es uno de nuestros modelos más populares. Ideal para músicos que buscan una guitarra dreadnought asequible de alta calidad con gran tono y excelente comodidad al tocar.
+                            <!-- ID AÑADIDO AQUÍ -->
+                            <p class="text-body-secondary small mb-3 lh-base" id="desc-producto">
+                                Cargando descripción...
                             </p>
                         </div>
 
                         <!-- Descripción rápida / Materiales -->
                         <div class="mb-4">
                             <h5 class="fw-bold fs-6 text-uppercase mb-2 text-naranja" style="color: var(--color-naranja, #ff7a00);">Especificaciones rápidas</h5>
-                            <ul class="text-white-50 small ps-3 mb-0 d-flex flex-column gap-1">
-                                <li>Tapa de abeto macizo con refuerzos en "X"</li>
-                                <li>Fondo y aros de caoba</li>
-                                <li>Mástil cómodo con bordes de diapasón redondeados</li>
-                                <li>Forma del cuerpo: Dreadnought</li>
+                            <!-- ID AÑADIDO AQUÍ (La lista arranca vacía, JS pone los <li>) -->
+                            <ul class="text-body-secondary small ps-3 mb-0 d-flex flex-column gap-1" id="specs-producto">
                             </ul>
                         </div>
                     </div>
 
                     <!-- Botones de Acción (WhatsApp y Facebook) -->
                     <div class="d-flex flex-column gap-3 mt-4 pt-3 border-top border-secondary">
-                    <!-- Botón WhatsApp (sin text-white) -->
-                     <a href="https://wa.me/5493815136085?text=Hola,%20estoy%20interesado%20en%20la%20guitarra%20Fender%20CD-60S" target="_blank" class="btn btn-whatsapp-custom d-flex align-items-center justify-content-center gap-2 py-3 rounded-pill fw-bold text-uppercase small shadow-sm" style="letter-spacing: 1px;">
-                        <i class="bi bi-whatsapp fs-5"></i> Consultar por WhatsApp
-                    </a>
-
-                    <!-- Botón Facebook (sin text-white) -->
-                     <a href="https://www.facebook.com/MUSICSHOWTUCUMAN" target="_blank" class="btn btn-facebook-custom d-flex align-items-center justify-content-center gap-2 py-3 rounded-pill fw-bold text-uppercase small shadow-sm" style="letter-spacing: 1px;">
-                        <i class="bi bi-facebook fs-5"></i> Consultar por Facebook
-                    </a>
-
+                        <a href="https://wa.me/5493815136085" target="_blank" class="btn btn-whatsapp-custom d-flex align-items-center justify-content-center gap-2 py-3 rounded-pill fw-bold text-uppercase small shadow-sm" style="letter-spacing: 1px;">
+                            <i class="bi bi-whatsapp fs-5"></i> Consultar por WhatsApp
+                        </a>
+                        <a href="https://www.facebook.com/MUSICSHOWTUCUMAN" target="_blank" class="btn btn-facebook-custom d-flex align-items-center justify-content-center gap-2 py-3 rounded-pill fw-bold text-uppercase small shadow-sm" style="letter-spacing: 1px;">
+                            <i class="bi bi-facebook fs-5"></i> Consultar por Facebook
+                        </a>
                     </div>
 
                 </div>
@@ -201,12 +187,11 @@
 
         </div>
 
-<!-- Nota al pie de la sección adaptable -->
-<div class="text-center mt-5 pt-4 border-top border-secondary text-body-secondary small">
-    <p class="mb-0 fs-6">Para más detalles ir a <strong class="text-body">Batalla de Ayacucho 247 (S.M de Tucumán)</strong></p>
-</div>
+        <!-- Nota al pie de la sección -->
+        <div class="text-center mt-5 pt-4 border-top border-secondary text-body-secondary small">
+            <p class="mb-0 fs-6">Para más detalles ir a <strong class="text-body">Batalla de Ayacucho 247 (S.M de Tucumán)</strong></p>
+        </div>
 
-    </main>
     </main>
 
    <!-- ==========================================
@@ -293,6 +278,7 @@
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/api.js"></script>
+    <script src="js/producto.js"></script>
     <script src="js/catalogo.js"></script> 
 
 </body>
