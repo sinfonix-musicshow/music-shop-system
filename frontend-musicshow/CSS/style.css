@@ -49,6 +49,8 @@ html{
     color: var(--bs-body-bg);
 }
 
+
+
 /* ------------------------------------------------------------------------- */
 
 :root {
@@ -468,9 +470,7 @@ display: -webkit-box;
 /* ==========================================
    CARRUSEL HORIZONTAL (OCULTAR BARRA GRIS)
 ============================================= */
-/* ==========================================
-   CARRUSEL HORIZONTAL OPTIMIZADO (Sin Lag)
-============================================= */
+
 .carrusel-productos {
     scroll-behavior: smooth;
     /* Cambiamos el scroll-snap a 'proximity' para que no frene de golpe y sea más suave */
@@ -723,5 +723,22 @@ DISEÑO DE BOTONES DE CONTACTO
 .breadcrumb-link:hover {
     transform: scale(1.08); /* Zoom sutil del texto */
     color: var(--bs-body-color) !important; /* Quita el grisáceo y lo hace más sólido/negro */
+}
+
+/* ==============================================
+SOBRE NOSOTROS
+ ============================================== */
+
+ /* Estilo para las tarjetas de pilares en Sobre Nosotros */
+.pillar-card {
+    border: 1px solid var(--bs-border-color); /* Usa el borde sutil que ya tienes configurado */
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.pillar-card:hover {
+    border-color: #f37a1f; /* El borde se ilumina con el naranja del sitio */
+    transform: translateY(-5px); /* Se eleva un poco más para destacar */
+    background-color: rgba(243, 122, 31, 0.05) !important; /* Un fondo hiper sutil naranja al pasar el mouse */
 }
 
