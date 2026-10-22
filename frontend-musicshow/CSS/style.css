@@ -666,32 +666,50 @@ FOOTER
 DISEÑO DE BOTONES DE CONTACTO
  ========================================= */
 
-/* Botón de Consultar por WhatsApp (Adaptable claro/oscuro) */
+/* Botón de Consultar por WhatsApp */
 .btn-whatsapp-custom {
     background-color: transparent; 
-    border: 1px solid var(--bs-border-color); /* Borde dinámico según el tema */
-    color: var(--bs-body-color); /* Texto dinámico (negro en claro, blanco en oscuro) */
+    border: 1px solid var(--bs-border-color); 
+    color: var(--bs-body-color); 
+    border-radius: 15px; /* Agrega esta línea para redondear más los bordes */
     transition: all 0.3s ease;
 }
 
 .btn-whatsapp-custom:hover {
-    background-color: #25d366;
+    background-color: #25d366; /* Verde WhatsApp */
     border-color: #25d366;
-    color: #ffffff !important; /* Siempre blanco al hacer hover */
+    color: #ffffff !important; 
     transform: translateY(-2px);
 }
 
-/* Botón de Consultar por Facebook (Adaptable claro/oscuro) */
+/* Botón de Consultar por Facebook */
 .btn-facebook-custom {
     background-color: transparent; 
     border: 1px solid var(--bs-border-color);
     color: var(--bs-body-color);
+    border-radius: 15px; /* Agrega esta línea para redondear más los bordes */
     transition: all 0.3s ease;
 }
 
 .btn-facebook-custom:hover {
-    background-color: #1877f2;
+    background-color: #1877f2; /* Azul Facebook */
     border-color: #1877f2;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+}
+
+/* Botón de Consultar por Instagram */
+.btn-instagram-custom {
+    background-color: transparent; 
+    border: 1px solid var(--bs-border-color);
+    color: var(--bs-body-color);
+    border-radius: 15px; /* Agrega esta línea para redondear más los bordes */
+    transition: all 0.3s ease;
+}
+
+.btn-instagram-custom:hover {
+    background-color: #c13584; /* Rosita Instagram */
+    border-color: #c13584;
     color: #ffffff !important;
     transform: translateY(-2px);
 }
