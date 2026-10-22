@@ -14,9 +14,8 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // ── Base de datos ──────────────────────────────────────────────────────
-        builder.Services.AddDbContext<MusicShowDbContext>(options =>
-            options.UseSqlServer(
-                builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<MusicShowDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
         // ── Repositorios ───────────────────────────────────────────────────────
         builder.Services.AddScoped<IInstrumentoRepository, InstrumentoRepository>();
