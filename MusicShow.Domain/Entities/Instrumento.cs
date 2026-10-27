@@ -25,6 +25,8 @@ public class Instrumento
 
     public bool Activo { get; private set; }
 
+    public string? UrlImagen { get; set; }
+
     // Constructor requerido por EF Core
     private Instrumento() { }
 

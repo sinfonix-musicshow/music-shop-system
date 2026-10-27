@@ -31,5 +31,7 @@ public class CrearInstrumentoRequest
 
     [MaxLength(10)]
     public string? EmojiIcon { get; set; }
+
+    public string? UrlImagen { get; set; }
 }
 

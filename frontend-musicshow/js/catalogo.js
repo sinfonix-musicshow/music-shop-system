@@ -136,10 +136,11 @@ document.addEventListener("DOMContentLoaded", () => {
                         <a href="producto.html?id=${producto.id}" class="text-decoration-none d-block">
                             <div class="card h-100 card-producto-moderna">
                                 
-                                <div class="img-container">
-                                    <div class="emoji-placeholder w-100 h-100 d-flex align-items-center justify-content-center text-white" style="font-size: 5rem;">
-                                        ${producto.emojiIcon || '🎸'}
-                                    </div>
+                            <div class="img-container">
+                                    ${producto.urlImagen 
+                                        ? `<img src="${producto.urlImagen}" alt="${producto.nombre}" class="w-100 h-100" style="object-fit: cover;">` 
+                                        : `<div class="emoji-placeholder w-100 h-100 d-flex align-items-center justify-content-center text-white" style="font-size: 5rem;">${producto.emojiIcon || '🎸'}</div>`
+                                    }
                                     
                                     <div class="badges-container">
                                         <span class="badge-descuento">-${descuento}% OFF</span>
