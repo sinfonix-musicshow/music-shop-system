@@ -14,8 +14,8 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // ── Base de datos ──────────────────────────────────────────────────────
-builder.Services.AddDbContext<MusicShowDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+        builder.Services.AddDbContext<MusicShowDbContext>(options =>
+            options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
         // ── Repositorios ───────────────────────────────────────────────────────
         builder.Services.AddScoped<IInstrumentoRepository, InstrumentoRepository>();
@@ -30,9 +30,24 @@ builder.Services.AddDbContext<MusicShowDbContext>(options =>
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
+        // ── CORS Configuración (Permitir conexión del frontend) ────────────────
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("PermitirFrontend", policy =>
+            {
+                policy.AllowAnyOrigin()
+                      .AllowAnyMethod()
+                      .AllowAnyHeader();
+            });
+        });
+
         var app = builder.Build();
 
         // ── Pipeline HTTP ──────────────────────────────────────────────────────
+        
+        // Aplicar la política de CORS (¡Debe ir aquí, antes de UseAuthorization!)
+        app.UseCors("PermitirFrontend");
+
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
@@ -50,4 +65,3 @@ builder.Services.AddDbContext<MusicShowDbContext>(options =>
         app.Run();
     }
 }
-

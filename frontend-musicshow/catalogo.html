@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SysMusicShow - Catálogo Online</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- CSS Personalizado -->
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+    
+
+    <!-- Contenido de Encabezado -->
+<header class="fixed-top shadow-sm" style="z-index: 1040;">
+        <nav class="navbar navbar-custom position-relative">
+            <div class="container-fluid align-items-center">
+                
+                <!-- IZQUIERDA: Menú Hamburguesa y Buscador Ancho -->
+                <div class="col-5 d-flex align-items-center gap-3 z-1">
+                    
+                    <!-- Botón Hamburguesa -->
+                    <button class="btn btn-menu p-0 text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" aria-controls="menuLateral">
+                        <i class="bi bi-list display-6"></i>
+                    </button>
+                    
+                    <!-- Buscador Minimalista (Más ancho) -->
+                    <div class="buscador-minimalista d-none d-md-flex align-items-end flex-grow-1">
+                        <input type="text" class="form-control input-buscador" placeholder="¿Qué estás buscando?">
+                        <button class="btn btn-buscar-texto" type="button">Buscar</button>
+                    </div>
+
+                </div>
+
+                <!-- CENTRO ABSOLUTO: Logo Sobresaliente -->
+                <div class="contenedor-logo">
+                    <a href="index.html">
+                        <img src="img/music show.jpeg" alt="Logo Music Show" class="logo-navbar rounded-circle">
+                    </a>
+                </div>
+
+                <!-- DERECHA: Contacto -->
+                <div class="col-5 d-flex justify-content-end align-items-center z-1">
+                    <a href="#seccionContacto" class="btn-contacto d-flex align-items-center text-white text-decoration-none gap-2">
+                        <i class="bi bi-person fs-3"></i>
+                        <span class="fw-semibold d-none d-md-block">Contáctanos</span>
+                    </a>
+                </div>
+
+            </div>
+        </nav>
+
+        <!-- ==========================================
+         MENÚ LATERAL (OFFCANVAS)
+    =========================================== -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="menuLateral" aria-labelledby="menuLateralLabel">
+        
+        <!-- Cabecera del Menú -->
+        <div class="offcanvas-header border-bottom border-secondary">
+            <h5 class="offcanvas-title fw-bolder fs-4" id="menuLateralLabel" style="color: var(--color-morado);">
+                <i class="bi bi-list me-2"></i>Menú
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        
+        <!-- Cuerpo del Menú -->
+        <div class="offcanvas-body py-4">
+            
+            <ul class="list-unstyled fw-bold fs-5 d-flex flex-column gap-2">
+                
+                <!-- Ítem 1: PRODUCTOS (Botón Desplegable) -->
+                <li>
+                    <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-custom w-100" 
+                       data-bs-toggle="collapse" href="#collapseProductos" role="button" aria-expanded="false" aria-controls="collapseProductos">
+                        <span>PRODUCTOS</span>
+                        <i class="bi bi-chevron-down fs-6"></i>
+                    </a>
+                    
+                    <!-- Sub-menú de Productos (Grilla desplegable) -->
+                    <div class="collapse mt-2" id="collapseProductos">
+                        <div class="card card-body bg-transparent border-0 p-0 ms-3">
+                            <!-- Borde izquierdo sutil para identificar que es un submenú -->
+                            <ul class="list-unstyled mb-0 fs-6 fw-normal ps-3 border-start border-secondary">
+                                
+                                <!-- Opción General (Destacada con borde inferior) -->
+                                <li class="border-bottom border-secondary mb-2 pb-2">
+                                    <a href="catalogo.html" class="text-decoration-none text-white fw-semibold nav-link-sub">Ver todos los productos</a>
+                                </li>
+                                
+                                <!-- Lista de Categorías -->
+<!-- Lista de Categorías -->
+<li class="mb-2"><a href="catalogo.html?categoria=accesorios" class="text-decoration-none text-white nav-link-sub">Accesorios</a></li>
+<li class="mb-2"><a href="catalogo.html?categoria=amplificadores" class="text-decoration-none text-white nav-link-sub">Amplificadores</a></li>
+<li class="mb-2"><a href="catalogo.html?categoria=cables" class="text-decoration-none text-white nav-link-sub">Cables</a></li>
+<li class="mb-2"><a href="catalogo.html?categoria=consolas" class="text-decoration-none text-white nav-link-sub">Consolas/Mixer</a></li>
+<li class="mb-2"><a href="catalogo.html?categoria=cuerdas" class="text-decoration-none text-white nav-link-sub">Cuerdas</a></li>
+<li class="mb-2"><a href="catalogo.html?categoria=guitarras" class="text-decoration-none text-white nav-link-sub">Guitarras y Bajos</a></li>
+<li class="mb-2"><a href="catalogo.html?categoria=interfaces" class="text-decoration-none text-white nav-link-sub">Interfaces de audio</a></li>
+<li class="mb-2"><a href="catalogo.html?categoria=pedales" class="text-decoration-none text-white nav-link-sub">Pedales de efectos</a></li>
+<li class="mb-2"><a href="catalogo.html?categoria=percusion" class="text-decoration-none text-white nav-link-sub">Percusión</a></li>
+<li class="mb-2"><a href="catalogo.html?categoria=teclados" class="text-decoration-none text-white nav-link-sub">Teclados</a></li>
+<li><a href="catalogo.html?categoria=soportes" class="text-decoration-none text-white nav-link-sub">Soportes</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- Ítem 2: SOBRE NOSOTROS -->
+                <li class="mt-2">
+                    <a href="sobreNosotros.html" class="text-decoration-none text-white d-block nav-link-custom">
+                        SOBRE NOSOTROS
+                    </a>
+                </li>
+
+                <!-- Ítem 3: METODOS DE PAGO -->
+                <li class="mt-2">
+                    <a href="#" class="text-decoration-none text-white d-block nav-link-custom">
+                        MÉTODOS DE PAGO
+                    </a>
+                </li>
+
+                <!-- Ítem 4: PREGUNTAS FRECUENTES -->
+                <li class="mt-2">
+                    <a href="#" class="text-decoration-none text-white d-block nav-link-custom">
+                        PREGUNTAS FRECUENTES
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+
+</header>
+
+<main>
+    <!-- Contenedor Principal (Empujado hacia abajo para que el header no lo tape) -->
+<div class="container mt-5 pt-5">
+    <main class="row">
+        <div class="col-12 mt-4">
+            <!-- Este título cambiará dinámicamente -->
+            <h2 id="titulo-categoria" class="fw-bold mb-4 border-bottom pb-2 text-uppercase">Cargando...</h2>
+            
+            <!-- Aquí JavaScript inyectará las tarjetas -->
+            <div id="contenedor-productos" class="row g-4">
+                <!-- Un mensaje de carga por defecto -->
+                <div class="col-12 text-center text-secondary py-5" id="mensaje-estado">
+                    <div class="spinner-border text-warning" role="status"></div>
+                    <p class="mt-2">Buscando instrumentos...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</main>
+
+<!-- ==========================================
+FOOTER (PIE DE PÁGINA)
+=========================================== -->
+    <footer class="footer-custom text-white pt-5 pb-4 mt-5 border-top border-secondary">
+        <div class="container">
+            <div class="row gy-4 align-items-center">
+                
+                <!-- Columna Izquierda: Enlaces Principales -->
+                <div class="col-md-6">
+                    <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
+                        <li class="footer-link-item pb-2 border-bottom border-secondary w-75">
+                            <a href="#" class="text-decoration-none text-white fw-bold text-uppercase tracking-wider">Métodos de Pago</a>
+                        </li>
+                        <li class="footer-link-item pb-2 border-bottom border-secondary w-75">
+                            <a href="sobreNosotros.html" class="text-decoration-none text-white fw-bold text-uppercase tracking-wider">Sobre Nosotros</a>
+                        </li>
+                        <li class="footer-link-item pb-2 border-bottom border-secondary w-75">
+                            <a href="#" class="text-decoration-none text-white fw-bold text-uppercase tracking-wider">Preguntas Frecuentes</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Columna Derecha: Redes Sociales y Contacto Directo -->
+                <div class="col-md-6">
+                    <!-- Iconos de Redes Sociales con diseño de tarjetas redondeadas -->
+                    <div class="d-flex flex-wrap gap-3 mb-4">
+                        
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/musicshow1/?hl=es" target="_blank" class="social-icon-box text-decoration-none text-white d-flex flex-column align-items-center justify-content-center p-2 rounded-3">
+                            <i class="bi bi-instagram fs-4 mb-1"></i>
+                            <span class="small">Instagram</span>
+                        </a>
+
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/MUSICSHOWTUCUMAN" target="_blank" class="social-icon-box text-decoration-none text-white d-flex flex-column align-items-center justify-content-center p-2 rounded-3">
+                            <i class="bi bi-facebook fs-4 mb-1"></i>
+                            <span class="small">Facebook</span>
+                        </a>
+
+                        <!-- Messenger -->
+                        <a href="https://m.me/MUSICSHOWTUCUMAN" target="_blank" class="social-icon-box text-decoration-none text-white d-flex flex-column align-items-center justify-content-center p-2 rounded-3">
+                            <i class="bi bi-messenger fs-4 mb-1"></i>
+                            <span class="small">Messenger</span>
+                        </a>
+
+                        <!-- WhatsApp Web -->
+                        <a href="https://web.whatsapp.com/send?phone=5493815136085" target="_blank" class="social-icon-box text-decoration-none text-white d-flex flex-column align-items-center justify-content-center p-2 rounded-3">
+                            <i class="bi bi-whatsapp fs-4 mb-1"></i>
+                            <span class="small">WhatsApp</span>
+                        </a>
+
+                    </div>
+
+                    <!-- Datos rápidos debajo de los iconos -->
+                    <div class="d-flex flex-column gap-2 text-white-50 small">
+                        <p class="mb-0"><strong class="text-white">Teléfono:</strong> 3815136085</p>
+                        <p class="mb-0"><strong class="text-white">Gmail:</strong> musicshowtucuman@gmail.com</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Copyright inferior -->
+            <div class="row mt-4 pt-3 border-top border-dark text-center text-white-50 small">
+                <p class="mb-0">&copy; 2026 Music Show - Instrumentos Musicales. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Botón Izquierdo: Cambiar Tema (Modo Claro / Oscuro) -->
+    <button id="btnCambiarTema" class="btn-flotante btn-flotante-izq shadow-lg" onclick="alternarTema()" title="Cambiar color de la página">
+        <i class="bi bi-sun-fill" id="iconoTema"></i>
+    </button>
+
+    <!-- Botón Derecho: Contacto WhatsApp -->
+    <a href="https://wa.me/5493815136085?text=Hola%20Music%20Show!" class="btn-flotante btn-flotante-der shadow-lg" target="_blank" rel="noopener noreferrer" title="Contactar por WhatsApp">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+
+
+<!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/producto.js"></script>
+    <script src="js/catalogo.js"></script> 
+</body>
+</html>

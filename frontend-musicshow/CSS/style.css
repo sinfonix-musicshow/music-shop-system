@@ -742,3 +742,100 @@ SOBRE NOSOTROS
     background-color: rgba(243, 122, 31, 0.05) !important; /* Un fondo hiper sutil naranja al pasar el mouse */
 }
 
+/* =========================================
+   DISEÑO MODERNO DE PRODUCTOS (GRILLA)
+========================================= */
+.card-producto-moderna {
+    background-color: transparent !important;
+    border: none !important;
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Transición fluida para que toda la tarjeta se mueva junta */
+}
+
+/* Al poner el mouse encima, TODA la tarjeta se eleva al unísono */
+.card-producto-moderna:hover {
+    transform: translateY(-6px);
+}
+
+/* Contenedor de la imagen (cuadrado) */
+.img-container {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    background-color: #1a1a1a;
+}
+
+/* Un zoom muy sutil opcional solo para la imagen interna */
+.card-producto-moderna:hover .img-container img,
+.card-producto-moderna:hover .img-container .emoji-placeholder {
+    transform: scale(1.03);
+    transition: transform 0.4s ease;
+}
+.img-container .emoji-placeholder {
+    transition: transform 0.4s ease;
+}
+
+/* Etiquetas (Badges) superpuestas */
+.badges-container {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.badge-descuento {
+    background-color: #ff007f; /* Rosa neón */
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    letter-spacing: 0.5px;
+}
+
+.badge-envio {
+    background-color: #00e5ff; /* Cyan neón */
+    color: #000000;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    letter-spacing: 0.5px;
+}
+
+/* Textos debajo de la imagen */
+.producto-titulo {
+    font-size: 0.85rem;
+    line-height: 1.3;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    color: #ffffff;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.precio-tachado {
+    color: #6c757d;
+    text-decoration: line-through;
+    font-size: 0.75rem;
+    margin-bottom: 2px;
+}
+
+.precio-cash {
+    color: #d1d1d1;
+    font-size: 0.8rem;
+    margin-bottom: 2px;
+}
+
+.precio-cash strong {
+    color: #ffffff;
+}
+
+.precio-lista {
+    color: #6c757d;
+    font-size: 0.75rem;
+}
