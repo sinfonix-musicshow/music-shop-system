@@ -204,11 +204,6 @@ background-color: transparent !important;
     border-right: 2px solid var(--color-morado); 
 }
 
-.offcanvas {
-    background-color: #121212; 
-    border-right: 2px solid var(--color-morado); 
-}
-
 /* Ocultamos la barra de desplazamiento vertical en el cuerpo del offcanvas */
 .offcanvas-body {
     overflow-y: auto;
@@ -224,38 +219,44 @@ background-color: transparent !important;
     -webkit-appearance: none;
 }
 
-/* Enlaces principales (Mayúsculas) */
+/* Enlaces principales (Mayúsculas - p.ej. PRODUCTOS) */
 .nav-link-custom {
     transition: color 0.3s ease, transform 0.3s ease;
     padding: 10px 0;
     cursor: pointer;
 }
 
-.nav-link-custom:hover, .nav-link-custom[aria-expanded="true"] {
+.nav-link-custom:hover, 
+.nav-link-custom[aria-expanded="true"] {
     color: var(--color-naranja) !important;
     transform: translateX(8px); /* Pequeño desliz a la derecha */
 }
 
-/* Animación de la flecha al desplegar PRODUCTOS */
-.nav-link-custom .bi-chevron-down {
-    transition: transform 0.3s ease;
-}
-.nav-link-custom[aria-expanded="true"] .bi-chevron-down {
-    transform: rotate(180deg); /* La flecha gira hacia arriba al abrir */
-}
-
-/* Sub-enlaces de categorías (Minúsculas) */
+/* Sub-enlaces de categorías y sub-categorías */
 .nav-link-sub {
     transition: color 0.2s ease, transform 0.2s ease;
     display: inline-block;
-    padding: 2px 0;
-    opacity: 0.8; /* Ligeramente más opacos para jerarquía visual */
+    padding: 4px 0;
+    opacity: 0.85; /* Jerarquía visual sutil */
+    cursor: pointer;
 }
 
-.nav-link-sub:hover {
+.nav-link-sub:hover,
+.nav-link-sub[aria-expanded="true"] {
     color: var(--color-naranja) !important;
     opacity: 1;
     transform: translateX(5px);
+}
+
+/* Animación de la flecha al desplegar (Principal y Subcategorías) */
+.nav-link-custom .bi-chevron-down,
+.nav-link-sub .bi-chevron-down {
+    transition: transform 0.3s ease;
+}
+
+.nav-link-custom[aria-expanded="true"] .bi-chevron-down,
+.nav-link-sub[aria-expanded="true"] .bi-chevron-down {
+    transform: rotate(180deg); /* La flecha gira hacia arriba al abrir */
 }
 
 /* --------------------------------------------------------------- */
@@ -387,6 +388,17 @@ background-color: transparent !important;
 /* Sombras y tipografía de títulos */
 .text-shadow-sm {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Iguala las alturas internas para alinear badges y botones */
+.hero-capa h2 {
+    min-height: 68px; /* Reserva el espacio equivalente a 2 líneas de título */
+    display: flex;
+    align-items: flex-end; /* Alinea los títulos de 1 sola línea hacia abajo */
+}
+
+.hero-capa p {
+    min-height: 42px; /* Reserva espacio para 2 líneas de descripción */
 }
 
 /* ----------------------------------------------------------------------- */
@@ -658,6 +670,20 @@ FOOTER
 .offcanvas-backdrop {
     z-index: 1999 !important;
     background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Solo se activa en pantallas de computadora (a partir de 992px) */
+@media (min-width: 992px) {
+    .nav-desplegable-neon {
+        display: inline-block;
+    }
+}
+
+/* En celulares se oculta el hover multinivel */
+@media (max-width: 991px) {
+    .nav-desplegable-neon {
+        display: none;
+    }
 }
 
 /* -------------------------------------------------------------------------------------------- */
