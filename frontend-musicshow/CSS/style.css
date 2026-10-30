@@ -866,3 +866,21 @@ SOBRE NOSOTROS
     color: #6c757d;
     font-size: 0.75rem;
 }
+
+/* ==================================================== 
+PREGUNTAS FRECUENTES
+/* ==================================================== */
+
+/* Botón Volver al Inicio - Estilo y Efecto Hover */
+.btn-volver-inicio {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.btn-volver-inicio:hover {
+    background-color: var(--color-naranja, #fd7e14);
+    border-color: var(--color-naranja, #fd7e14);
+    transform: translateY(-2px);
+    color: #ffffff !important;
+}

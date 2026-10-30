@@ -14,27 +14,23 @@
 <body>
 
     <!-- Contenido de Encabezado -->
-<header class="fixed-top shadow-sm" style="z-index: 1040;">
+    <header class="fixed-top shadow-sm" style="z-index: 1040;">
         <nav class="navbar navbar-custom position-relative">
             <div class="container-fluid align-items-center">
                 
-                <!-- IZQUIERDA: Menú Hamburguesa y Buscador Ancho -->
+                <!-- IZQUIERDA: Menú Hamburguesa y Buscador -->
                 <div class="col-5 d-flex align-items-center gap-3 z-1">
-                    
-                    <!-- Botón Hamburguesa -->
                     <button class="btn btn-menu p-0 text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" aria-controls="menuLateral">
                         <i class="bi bi-list display-6"></i>
                     </button>
                     
-                    <!-- Buscador Minimalista (Más ancho) -->
                     <div class="buscador-minimalista d-none d-md-flex align-items-end flex-grow-1">
                         <input type="text" class="form-control input-buscador" placeholder="¿Qué estás buscando?">
                         <button class="btn btn-buscar-texto" type="button">Buscar</button>
                     </div>
-
                 </div>
 
-                <!-- CENTRO ABSOLUTO: Logo Sobresaliente -->
+                <!-- CENTRO ABSOLUTO: Logo -->
                 <div class="contenedor-logo">
                     <a href="index.html">
                         <img src="frontend-musicshow/img/music show.jpeg" alt="Logo Music Show" class="logo-navbar rounded-circle">
@@ -52,993 +48,895 @@
             </div>
         </nav>
 
-<!-- ==========================================
-     MENÚ LATERAL (OFFCANVAS)
-=========================================== -->
-<div class="offcanvas offcanvas-start" tabindex="-1" id="menuLateral" aria-labelledby="menuLateralLabel">
-    
-    <!-- Cabecera del Menú -->
-    <div class="offcanvas-header border-bottom border-secondary">
-        <h5 class="offcanvas-title fw-bolder fs-4" id="menuLateralLabel" style="color: var(--color-morado);">
-            <i class="bi bi-list me-2"></i>Menú
-        </h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    
-    <!-- Cuerpo del Menú -->
-    <div class="offcanvas-body py-4">
-        
-        <ul class="list-unstyled fw-bold fs-5 d-flex flex-column gap-2">
+        <!-- ==========================================
+             MENÚ LATERAL (OFFCANVAS) - EXPANDIDO
+        =========================================== -->
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="menuLateral" aria-labelledby="menuLateralLabel">
             
-            <!-- Ítem Principal: PRODUCTOS -->
-            <li>
-                <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-custom w-100" 
-                data-bs-toggle="collapse" href="#collapseProductos" role="button" aria-expanded="false" aria-controls="collapseProductos">
-                <span>PRODUCTOS</span>
-                <i class="bi bi-chevron-down fs-6"></i>
-            </a>
-                
-                <!-- Nivel 1: Lista de Categorías de Productos -->
-                <div class="collapse mt-2" id="collapseProductos">
-                    <div class="card card-body bg-transparent border-0 p-0 ms-3">
-                        <ul class="list-unstyled mb-0 fs-6 fw-normal ps-3 border-start border-secondary">
-                            
-                            <!-- Opción General Destacada -->
-                            <li class="border-bottom border-secondary mb-2 pb-2">
-                                <a href="catalogo.html" class="text-decoration-none text-white fw-semibold nav-link-sub">Ver todos los productos</a>
-                            </li>
+            <div class="offcanvas-header border-bottom border-secondary">
+                <h5 class="offcanvas-title fw-bolder fs-4" id="menuLateralLabel" style="color: var(--color-morado);">
+                    <i class="bi bi-list me-2"></i>Menú
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            
+            <div class="offcanvas-body py-4">
+                <ul class="list-unstyled fw-bold fs-5 d-flex flex-column gap-2">
+                    
+                    <!-- Ítem Principal: PRODUCTOS -->
+                    <li>
+                        <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-custom w-100" 
+                           data-bs-toggle="collapse" href="#collapseProductos" role="button" aria-expanded="false" aria-controls="collapseProductos">
+                            <span>PRODUCTOS</span>
+                            <i class="bi bi-chevron-down fs-6"></i>
+                        </a>
+                        
+                        <div class="collapse mt-2" id="collapseProductos">
+                            <div class="card card-body bg-transparent border-0 p-0 ms-3">
+                                <ul class="list-unstyled mb-0 fs-6 fw-normal ps-3 border-start border-secondary">
+                                    
+                                    <li class="border-bottom border-secondary mb-2 pb-2">
+                                        <a href="frontend-musicshow/vistas-publicas/catalogo.html" class="text-decoration-none text-white fw-semibold nav-link-sub">Ver todos los productos</a>
+                                    </li>
 
-                            <!-- 1. ACCESORIOS -->
-                            <li class="mb-2">
-                                <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
-                                   data-bs-toggle="collapse" href="#subAccesorios" role="button" aria-expanded="false">
-                                    <span>Accesorios</span>
-                                    <i class="bi bi-chevron-down fs-6"></i>
-                                </a>
-                                <div class="collapse mt-1" id="subAccesorios">
-                                    <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
-                                        <li class="mb-1"><a href="catalogo.html?categoria=accesorios-audio" class="text-decoration-none text-white-50 nav-link-sub">Accesorios para Audio</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=accesorios-amplificadores" class="text-decoration-none text-white-50 nav-link-sub">Accesorios para Amplificadores</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=accesorios-iluminacion" class="text-decoration-none text-white-50 nav-link-sub">Accesorios de Iluminación</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=accesorios-percusion" class="text-decoration-none text-white-50 nav-link-sub">Accesorios para Percusión</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=accesorios-guitarra-bajo-ukelele" class="text-decoration-none text-white-50 nav-link-sub">Accesorios para Guitarra, Bajo y Ukelele</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=accesorios-arco" class="text-decoration-none text-white-50 nav-link-sub">Accesorios para instrumentos de arco</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=accesorios-viento" class="text-decoration-none text-white-50 nav-link-sub">Accesorios para instrumentos de Viento</a></li>
-                                        
-                                        <!-- Subnivel Micrófonos -->
-                                        <li class="mb-1">
-                                            <a class="text-decoration-none text-white-50 d-flex align-items-center justify-content-between nav-link-sub" 
-                                               data-bs-toggle="collapse" href="#subAccMic" role="button">
-                                                <span>Accesorios para micrófonos</span>
-                                                <i class="bi bi-chevron-down fs-6"></i>
-                                            </a>
-                                            <div class="collapse mt-1" id="subAccMic">
-                                                <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
-                                                    <li class="mb-1"><a href="catalogo.html?categoria=pipeta" class="text-decoration-none text-white-50 nav-link-sub">Pipeta</a></li>
-                                                    <li class="mb-1"><a href="catalogo.html?categoria=rompeviento" class="text-decoration-none text-white-50 nav-link-sub">Rompeviento</a></li>
-                                                    <li class="mb-1"><a href="catalogo.html?categoria=antipop" class="text-decoration-none text-white-50 nav-link-sub">Antipop</a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
+                                    <!-- 1. ACCESORIOS -->
+                                    <li class="mb-2">
+                                        <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
+                                           data-bs-toggle="collapse" href="#subAccesorios" role="button" aria-expanded="false">
+                                            <span>Accesorios</span>
+                                            <i class="bi bi-chevron-down fs-6"></i>
+                                        </a>
+                                        <div class="collapse mt-1" id="subAccesorios">
+                                            <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=accesorios-audio" class="text-decoration-none text-white-50 nav-link-sub">Accesorios para Audio</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=accesorios-amplificadores" class="text-decoration-none text-white-50 nav-link-sub">Accesorios para Amplificadores</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=accesorios-iluminacion" class="text-decoration-none text-white-50 nav-link-sub">Accesorios de Iluminación</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=accesorios-percusion" class="text-decoration-none text-white-50 nav-link-sub">Accesorios para Percusión</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=accesorios-guitarra-bajo-ukelele" class="text-decoration-none text-white-50 nav-link-sub">Accesorios para Guitarra, Bajo y Ukelele</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=accesorios-arco" class="text-decoration-none text-white-50 nav-link-sub">Accesorios para instrumentos de arco</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=accesorios-viento" class="text-decoration-none text-white-50 nav-link-sub">Accesorios para instrumentos de Viento</a></li>
+                                                
+                                                <li class="mb-1">
+                                                    <a class="text-decoration-none text-white-50 d-flex align-items-center justify-content-between nav-link-sub" 
+                                                       data-bs-toggle="collapse" href="#subAccMic" role="button">
+                                                        <span>Accesorios para micrófonos</span>
+                                                        <i class="bi bi-chevron-down fs-6"></i>
+                                                    </a>
+                                                    <div class="collapse mt-1" id="subAccMic">
+                                                        <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
+                                                            <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=pipeta" class="text-decoration-none text-white-50 nav-link-sub">Pipeta</a></li>
+                                                            <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=rompeviento" class="text-decoration-none text-white-50 nav-link-sub">Rompeviento</a></li>
+                                                            <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=antipop" class="text-decoration-none text-white-50 nav-link-sub">Antipop</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
 
-                                        <!-- Subnivel Pianos y Teclados -->
-                                        <li class="mb-1">
-                                            <a class="text-decoration-none text-white-50 d-flex align-items-center justify-content-between nav-link-sub" 
-                                               data-bs-toggle="collapse" href="#subAccPianos" role="button">
-                                                <span>Accesorios para pianos y teclados</span>
-                                                <i class="bi bi-chevron-down fs-6"></i>
-                                            </a>
-                                            <div class="collapse mt-1" id="subAccPianos">
-                                                <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
-                                                    <li class="mb-1"><a href="catalogo.html?categoria=accesorios-varios-teclados" class="text-decoration-none text-white-50 nav-link-sub">Accesorios varios para pianos y teclados</a></li>
-                                                    <li class="mb-1"><a href="catalogo.html?categoria=banquetas" class="text-decoration-none text-white-50 nav-link-sub">Banquetas</a></li>
-                                                    <li class="mb-1"><a href="catalogo.html?categoria=pedales-sustain-volumen" class="text-decoration-none text-white-50 nav-link-sub">Pedales sustain/volumen</a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
+                                                <li class="mb-1">
+                                                    <a class="text-decoration-none text-white-50 d-flex align-items-center justify-content-between nav-link-sub" 
+                                                       data-bs-toggle="collapse" href="#subAccPianos" role="button">
+                                                        <span>Accesorios para pianos y teclados</span>
+                                                        <i class="bi bi-chevron-down fs-6"></i>
+                                                    </a>
+                                                    <div class="collapse mt-1" id="subAccPianos">
+                                                        <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
+                                                            <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=accesorios-varios-teclados" class="text-decoration-none text-white-50 nav-link-sub">Accesorios varios para pianos y teclados</a></li>
+                                                            <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=banquetas" class="text-decoration-none text-white-50 nav-link-sub">Banquetas</a></li>
+                                                            <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=pedales-sustain-volumen" class="text-decoration-none text-white-50 nav-link-sub">Pedales sustain/volumen</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
 
-                                        <li class="mb-1"><a href="catalogo.html?categoria=afinadores" class="text-decoration-none text-white-50 nav-link-sub">Afinadores</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=cuadernos-pentagramados" class="text-decoration-none text-white-50 nav-link-sub">Cuadernos pentagramados</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=diapasones" class="text-decoration-none text-white-50 nav-link-sub">Diapasones</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=fuentes-alimentacion" class="text-decoration-none text-white-50 nav-link-sub">Fuentes de alimentación</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=limpiadores" class="text-decoration-none text-white-50 nav-link-sub">Limpiadores</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=metronomos" class="text-decoration-none text-white-50 nav-link-sub">Metrónomos</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=bordonas" class="text-decoration-none text-white-50 nav-link-sub">Bordonas</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=hardware-bateria" class="text-decoration-none text-white-50 nav-link-sub">Hardware para batería</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=afinadores" class="text-decoration-none text-white-50 nav-link-sub">Afinadores</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=cuadernos-pentagramados" class="text-decoration-none text-white-50 nav-link-sub">Cuadernos pentagramados</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=diapasones" class="text-decoration-none text-white-50 nav-link-sub">Diapasones</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=fuentes-alimentacion" class="text-decoration-none text-white-50 nav-link-sub">Fuentes de alimentación</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=limpiadores" class="text-decoration-none text-white-50 nav-link-sub">Limpiadores</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=metronomos" class="text-decoration-none text-white-50 nav-link-sub">Metrónomos</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=bordonas" class="text-decoration-none text-white-50 nav-link-sub">Bordonas</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=hardware-bateria" class="text-decoration-none text-white-50 nav-link-sub">Hardware para batería</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
 
-                            <!-- 2. AUDIO -->
-                            <li class="mb-2">
-                                <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
-                                   data-bs-toggle="collapse" href="#subAudio" role="button">
-                                    <span>Audio</span>
-                                    <i class="bi bi-chevron-down fs-6"></i>
-                                </a>
-                                <div class="collapse mt-1" id="subAudio">
-                                    <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
-                                        <li class="mb-1">
-                                            <a class="text-decoration-none text-white-50 d-flex align-items-center justify-content-between nav-link-sub" 
-                                               data-bs-toggle="collapse" href="#subAmplis" role="button">
-                                                <span>Amplificadores</span>
-                                                <i class="bi bi-chevron-down fs-6"></i>
-                                            </a>
-                                            <div class="collapse mt-1" id="subAmplis">
-                                                <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
-                                                    <li class="mb-1"><a href="catalogo.html?categoria=amplificadores-bateria" class="text-decoration-none text-white-50 nav-link-sub">Amplificadores para batería</a></li>
-                                                    <li class="mb-1"><a href="catalogo.html?categoria=amplificadores-guitarra" class="text-decoration-none text-white-50 nav-link-sub">Amplificadores para guitarra</a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=auriculares" class="text-decoration-none text-white-50 nav-link-sub">Auriculares</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=bafles" class="text-decoration-none text-white-50 nav-link-sub">Bafles</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=bafles-activos" class="text-decoration-none text-white-50 nav-link-sub">Bafles activos</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=consolas-mixers" class="text-decoration-none text-white-50 nav-link-sub">Consolas y Mixers</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=in-ears" class="text-decoration-none text-white-50 nav-link-sub">In Ears</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=interfaces-audio" class="text-decoration-none text-white-50 nav-link-sub">Interfaces de audio</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=sistemas-inalambricos" class="text-decoration-none text-white-50 nav-link-sub">Sistemas Inalámbricos</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=potencias" class="text-decoration-none text-white-50 nav-link-sub">Potencias</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                                    <!-- 2. AUDIO -->
+                                    <li class="mb-2">
+                                        <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
+                                           data-bs-toggle="collapse" href="#subAudio" role="button">
+                                            <span>Audio</span>
+                                            <i class="bi bi-chevron-down fs-6"></i>
+                                        </a>
+                                        <div class="collapse mt-1" id="subAudio">
+                                            <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
+                                                <li class="mb-1">
+                                                    <a class="text-decoration-none text-white-50 d-flex align-items-center justify-content-between nav-link-sub" 
+                                                       data-bs-toggle="collapse" href="#subAmplis" role="button">
+                                                        <span>Amplificadores</span>
+                                                        <i class="bi bi-chevron-down fs-6"></i>
+                                                    </a>
+                                                    <div class="collapse mt-1" id="subAmplis">
+                                                        <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
+                                                            <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=amplificadores-bateria" class="text-decoration-none text-white-50 nav-link-sub">Amplificadores para batería</a></li>
+                                                            <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=amplificadores-guitarra" class="text-decoration-none text-white-50 nav-link-sub">Amplificadores para guitarra</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=auriculares" class="text-decoration-none text-white-50 nav-link-sub">Auriculares</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=bafles" class="text-decoration-none text-white-50 nav-link-sub">Bafles</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=bafles-activos" class="text-decoration-none text-white-50 nav-link-sub">Bafles activos</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=consolas-mixers" class="text-decoration-none text-white-50 nav-link-sub">Consolas y Mixers</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=in-ears" class="text-decoration-none text-white-50 nav-link-sub">In Ears</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=interfaces-audio" class="text-decoration-none text-white-50 nav-link-sub">Interfaces de audio</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=sistemas-inalambricos" class="text-decoration-none text-white-50 nav-link-sub">Sistemas Inalámbricos</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=potencias" class="text-decoration-none text-white-50 nav-link-sub">Potencias</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
 
-                            <!-- 3. BATERÍAS -->
-                            <li class="mb-2">
-                                <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
-                                   data-bs-toggle="collapse" href="#subBaterias" role="button">
-                                    <span>Baterías</span>
-                                    <i class="bi bi-chevron-down fs-6"></i>
-                                </a>
-                                <div class="collapse mt-1" id="subBaterias">
-                                    <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
-                                        <li class="mb-1"><a href="catalogo.html?categoria=baterias-acusticas" class="text-decoration-none text-white-50 nav-link-sub">Baterías Acústicas</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=baterias-nino" class="text-decoration-none text-white-50 nav-link-sub">Baterías de niño</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=pad-practica" class="text-decoration-none text-white-50 nav-link-sub">Pad de práctica</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=baterias-electronicas" class="text-decoration-none text-white-50 nav-link-sub">Baterías electrónicas</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=redoblantes" class="text-decoration-none text-white-50 nav-link-sub">Redoblantes</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                                    <!-- 3. BATERÍAS -->
+                                    <li class="mb-2">
+                                        <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
+                                           data-bs-toggle="collapse" href="#subBaterias" role="button">
+                                            <span>Baterías</span>
+                                            <i class="bi bi-chevron-down fs-6"></i>
+                                        </a>
+                                        <div class="collapse mt-1" id="subBaterias">
+                                            <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=baterias-acusticas" class="text-decoration-none text-white-50 nav-link-sub">Baterías Acústicas</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=baterias-nino" class="text-decoration-none text-white-50 nav-link-sub">Baterías de niño</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=pad-practica" class="text-decoration-none text-white-50 nav-link-sub">Pad de práctica</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=baterias-electronicas" class="text-decoration-none text-white-50 nav-link-sub">Baterías electrónicas</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=redoblantes" class="text-decoration-none text-white-50 nav-link-sub">Redoblantes</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
 
-                            <!-- 4. CABLES Y CONECTORES -->
-                            <li class="mb-2">
-                                <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
-                                   data-bs-toggle="collapse" href="#subCables" role="button">
-                                    <span>Cables y Conectores</span>
-                                    <i class="bi bi-chevron-down fs-6"></i>
-                                </a>
-                                <div class="collapse mt-1" id="subCables">
-                                    <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
-                                        <li class="mb-1"><a href="catalogo.html?categoria=cables-canon" class="text-decoration-none text-white-50 nav-link-sub">Cables canon</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=cables-canon-plug" class="text-decoration-none text-white-50 nav-link-sub">Cables canon plug</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=cables-bafle" class="text-decoration-none text-white-50 nav-link-sub">Cables para bafle</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=cables-plug-plug" class="text-decoration-none text-white-50 nav-link-sub">Cables plug plug</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=cables-varios" class="text-decoration-none text-white-50 nav-link-sub">Cables varios</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=midi" class="text-decoration-none text-white-50 nav-link-sub">MIDI</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                                    <!-- 4. CABLES Y CONECTORES -->
+                                    <li class="mb-2">
+                                        <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
+                                           data-bs-toggle="collapse" href="#subCables" role="button">
+                                            <span>Cables y Conectores</span>
+                                            <i class="bi bi-chevron-down fs-6"></i>
+                                        </a>
+                                        <div class="collapse mt-1" id="subCables">
+                                            <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=cables-canon" class="text-decoration-none text-white-50 nav-link-sub">Cables canon</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=cables-canon-plug" class="text-decoration-none text-white-50 nav-link-sub">Cables canon plug</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=cables-bafle" class="text-decoration-none text-white-50 nav-link-sub">Cables para bafle</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=cables-plug-plug" class="text-decoration-none text-white-50 nav-link-sub">Cables plug plug</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=cables-varios" class="text-decoration-none text-white-50 nav-link-sub">Cables varios</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=midi" class="text-decoration-none text-white-50 nav-link-sub">MIDI</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
 
-                            <!-- 5. CORREAS -->
-                            <li class="mb-2">
-                                <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
-                                   data-bs-toggle="collapse" href="#subCorreas" role="button">
-                                    <span>Correas</span>
-                                    <i class="bi bi-chevron-down fs-6"></i>
-                                </a>
-                                <div class="collapse mt-1" id="subCorreas">
-                                    <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
-                                        <li class="mb-1"><a href="catalogo.html?categoria=correas-guitarra-bajo" class="text-decoration-none text-white-50 nav-link-sub">Correas para guitarra y bajos</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=correas-viento" class="text-decoration-none text-white-50 nav-link-sub">Correas para instrumentos de viento</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=correas-murga" class="text-decoration-none text-white-50 nav-link-sub">Correas para murga</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                                    <!-- 5. CORREAS -->
+                                    <li class="mb-2">
+                                        <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
+                                           data-bs-toggle="collapse" href="#subCorreas" role="button">
+                                            <span>Correas</span>
+                                            <i class="bi bi-chevron-down fs-6"></i>
+                                        </a>
+                                        <div class="collapse mt-1" id="subCorreas">
+                                            <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=correas-guitarra-bajo" class="text-decoration-none text-white-50 nav-link-sub">Correas para guitarra y bajos</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=correas-viento" class="text-decoration-none text-white-50 nav-link-sub">Correas para instrumentos de viento</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=correas-murga" class="text-decoration-none text-white-50 nav-link-sub">Correas para murga</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
 
-                            <!-- 6. ENCORDADOS Y CUERDAS -->
-                            <li class="mb-2">
-                                <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
-                                   data-bs-toggle="collapse" href="#subEncordados" role="button">
-                                    <span>Encordados y Cuerdas</span>
-                                    <i class="bi bi-chevron-down fs-6"></i>
-                                </a>
-                                <div class="collapse mt-1" id="subEncordados">
-                                    <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
-                                        <li class="mb-1"><a href="catalogo.html?categoria=cuerdas-bajo" class="text-decoration-none text-white-50 nav-link-sub">Cuerdas para bajo</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=cuerdas-contrabajo" class="text-decoration-none text-white-50 nav-link-sub">Cuerdas para contrabajo</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=cuerdas-guitarra-acustica" class="text-decoration-none text-white-50 nav-link-sub">Cuerdas para guitarra acústica</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=cuerdas-guitarra-clasica" class="text-decoration-none text-white-50 nav-link-sub">Cuerdas para guitarra clásica</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=cuerdas-guitarra-electrica" class="text-decoration-none text-white-50 nav-link-sub">Cuerdas para guitarra eléctrica</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=cuerdas-viola" class="text-decoration-none text-white-50 nav-link-sub">Cuerdas para viola</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=cuerdas-violin" class="text-decoration-none text-white-50 nav-link-sub">Cuerdas para violín</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=cuerdas-violoncelo" class="text-decoration-none text-white-50 nav-link-sub">Cuerdas para violoncelo</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=cuerdas-varias" class="text-decoration-none text-white-50 nav-link-sub">Cuerdas varias</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                                    <!-- 6. ENCORDADOS Y CUERDAS -->
+                                    <li class="mb-2">
+                                        <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
+                                           data-bs-toggle="collapse" href="#subEncordados" role="button">
+                                            <span>Encordados y Cuerdas</span>
+                                            <i class="bi bi-chevron-down fs-6"></i>
+                                        </a>
+                                        <div class="collapse mt-1" id="subEncordados">
+                                            <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=cuerdas-bajo" class="text-decoration-none text-white-50 nav-link-sub">Cuerdas para bajo</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=cuerdas-contrabajo" class="text-decoration-none text-white-50 nav-link-sub">Cuerdas para contrabajo</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=cuerdas-guitarra-acustica" class="text-decoration-none text-white-50 nav-link-sub">Cuerdas para guitarra acústica</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=cuerdas-guitarra-clasica" class="text-decoration-none text-white-50 nav-link-sub">Cuerdas para guitarra clásica</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=cuerdas-guitarra-electrica" class="text-decoration-none text-white-50 nav-link-sub">Cuerdas para guitarra eléctrica</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=cuerdas-viola" class="text-decoration-none text-white-50 nav-link-sub">Cuerdas para viola</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=cuerdas-violin" class="text-decoration-none text-white-50 nav-link-sub">Cuerdas para violín</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=cuerdas-violoncelo" class="text-decoration-none text-white-50 nav-link-sub">Cuerdas para violoncelo</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=cuerdas-varias" class="text-decoration-none text-white-50 nav-link-sub">Cuerdas varias</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
 
-                            <!-- 7. ESTUCHES Y FUNDAS -->
-                            <li class="mb-2">
-                                <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
-                                   data-bs-toggle="collapse" href="#subEstuches" role="button">
-                                    <span>Estuches y Fundas</span>
-                                    <i class="bi bi-chevron-down fs-6"></i>
-                                </a>
-                                <div class="collapse mt-1" id="subEstuches">
-                                    <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
-                                        <li class="mb-1"><a href="catalogo.html?categoria=estuches-bajo" class="text-decoration-none text-white-50 nav-link-sub">Estuches para bajo</a></li>
-                                        <li class="mb-1">
-                                            <a class="text-decoration-none text-white-50 d-flex align-items-center justify-content-between nav-link-sub" 
-                                               data-bs-toggle="collapse" href="#subEstGuitAcustica" role="button">
-                                                <span>Estuches para guitarra acústica</span>
-                                                <i class="bi bi-chevron-down fs-6"></i>
-                                            </a>
-                                            <div class="collapse mt-1" id="subEstGuitAcustica">
-                                                <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
-                                                    <li class="mb-1"><a href="catalogo.html?categoria=estuches-acustica-44" class="text-decoration-none text-white-50 nav-link-sub">4/4</a></li>
-                                                    <li class="mb-1"><a href="catalogo.html?categoria=estuches-acustica-34" class="text-decoration-none text-white-50 nav-link-sub">3/4</a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=estuches-guitarra-electrica" class="text-decoration-none text-white-50 nav-link-sub">Estuches para guitarra eléctrica</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=estuches-instrumentos-cuerda" class="text-decoration-none text-white-50 nav-link-sub">Estuches para instrumentos de cuerda</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=estuches-platillos" class="text-decoration-none text-white-50 nav-link-sub">Estuches para platillos</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=fundas-bajo" class="text-decoration-none text-white-50 nav-link-sub">Fundas para bajo</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=fundas-ukelele" class="text-decoration-none text-white-50 nav-link-sub">Fundas de ukelele</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=estuche-violin" class="text-decoration-none text-white-50 nav-link-sub">Estuche de violín</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                                    <!-- 7. ESTUCHES Y FUNDAS -->
+                                    <li class="mb-2">
+                                        <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
+                                           data-bs-toggle="collapse" href="#subEstuches" role="button">
+                                            <span>Estuches y Fundas</span>
+                                            <i class="bi bi-chevron-down fs-6"></i>
+                                        </a>
+                                        <div class="collapse mt-1" id="subEstuches">
+                                            <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=estuches-bajo" class="text-decoration-none text-white-50 nav-link-sub">Estuches para bajo</a></li>
+                                                <li class="mb-1">
+                                                    <a class="text-decoration-none text-white-50 d-flex align-items-center justify-content-between nav-link-sub" 
+                                                       data-bs-toggle="collapse" href="#subEstGuitAcustica" role="button">
+                                                        <span>Estuches para guitarra acústica</span>
+                                                        <i class="bi bi-chevron-down fs-6"></i>
+                                                    </a>
+                                                    <div class="collapse mt-1" id="subEstGuitAcustica">
+                                                        <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
+                                                            <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=estuches-acustica-44" class="text-decoration-none text-white-50 nav-link-sub">4/4</a></li>
+                                                            <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=estuches-acustica-34" class="text-decoration-none text-white-50 nav-link-sub">3/4</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=estuches-guitarra-electrica" class="text-decoration-none text-white-50 nav-link-sub">Estuches para guitarra eléctrica</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=estuches-instrumentos-cuerda" class="text-decoration-none text-white-50 nav-link-sub">Estuches para instrumentos de cuerda</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=estuches-platillos" class="text-decoration-none text-white-50 nav-link-sub">Estuches para platillos</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=fundas-bajo" class="text-decoration-none text-white-50 nav-link-sub">Fundas para bajo</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=fundas-ukelele" class="text-decoration-none text-white-50 nav-link-sub">Fundas de ukelele</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=estuche-violin" class="text-decoration-none text-white-50 nav-link-sub">Estuche de violín</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
 
-                            <!-- 8. GUITARRAS, BAJOS Y UKELELE -->
-                            <li class="mb-2">
-                                <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
-                                   data-bs-toggle="collapse" href="#subGuitarras" role="button">
-                                    <span>Guitarras y Bajos</span>
-                                    <i class="bi bi-chevron-down fs-6"></i>
-                                </a>
-                                <div class="collapse mt-1" id="subGuitarras">
-                                    <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
-                                        <li class="mb-1"><a href="catalogo.html?categoria=bajos-electricos" class="text-decoration-none text-white-50 nav-link-sub">Bajos eléctricos</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=guitarras-acusticas" class="text-decoration-none text-white-50 nav-link-sub">Guitarras acústicas</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=guitarras-clasicas" class="text-decoration-none text-white-50 nav-link-sub">Guitarras clásicas</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=guitarras-electricas" class="text-decoration-none text-white-50 nav-link-sub">Guitarras eléctricas</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=guitarras-electroacusticas" class="text-decoration-none text-white-50 nav-link-sub">Guitarras electroacústicas</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=ukeleles" class="text-decoration-none text-white-50 nav-link-sub">Ukeleles</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=pedales-efecto" class="text-decoration-none text-white-50 nav-link-sub">Pedales de efecto</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                                    <!-- 8. GUITARRAS, BAJOS Y UKELELE -->
+                                    <li class="mb-2">
+                                        <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
+                                           data-bs-toggle="collapse" href="#subGuitarras" role="button">
+                                            <span>Guitarras y Bajos</span>
+                                            <i class="bi bi-chevron-down fs-6"></i>
+                                        </a>
+                                        <div class="collapse mt-1" id="subGuitarras">
+                                            <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=bajos-electricos" class="text-decoration-none text-white-50 nav-link-sub">Bajos eléctricos</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=guitarras-acusticas" class="text-decoration-none text-white-50 nav-link-sub">Guitarras acústicas</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=guitarras-clasicas" class="text-decoration-none text-white-50 nav-link-sub">Guitarras clásicas</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=guitarras-electricas" class="text-decoration-none text-white-50 nav-link-sub">Guitarras eléctricas</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=guitarras-electroacusticas" class="text-decoration-none text-white-50 nav-link-sub">Guitarras electroacústicas</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=ukeleles" class="text-decoration-none text-white-50 nav-link-sub">Ukeleles</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=pedales-efecto" class="text-decoration-none text-white-50 nav-link-sub">Pedales de efecto</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
 
-                            <!-- 9. INSTRUMENTOS DE ARCO -->
-                            <li class="mb-2">
-                                <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
-                                   data-bs-toggle="collapse" href="#subArco" role="button">
-                                    <span>Instrumentos de arco</span>
-                                    <i class="bi bi-chevron-down fs-6"></i>
-                                </a>
-                                <div class="collapse mt-1" id="subArco">
-                                    <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
-                                        <li class="mb-1"><a href="catalogo.html?categoria=contrabajos" class="text-decoration-none text-white-50 nav-link-sub">Contrabajos</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=violas" class="text-decoration-none text-white-50 nav-link-sub">Violas</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=violines" class="text-decoration-none text-white-50 nav-link-sub">Violines</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=violoncellos" class="text-decoration-none text-white-50 nav-link-sub">Violoncellos</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                                    <!-- 9. INSTRUMENTOS DE ARCO -->
+                                    <li class="mb-2">
+                                        <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
+                                           data-bs-toggle="collapse" href="#subArco" role="button">
+                                            <span>Instrumentos de arco</span>
+                                            <i class="bi bi-chevron-down fs-6"></i>
+                                        </a>
+                                        <div class="collapse mt-1" id="subArco">
+                                            <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=contrabajos" class="text-decoration-none text-white-50 nav-link-sub">Contrabajos</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=violas" class="text-decoration-none text-white-50 nav-link-sub">Violas</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=violines" class="text-decoration-none text-white-50 nav-link-sub">Violines</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=violoncellos" class="text-decoration-none text-white-50 nav-link-sub">Violoncellos</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
 
-                            <!-- 10. INSTRUMENTOS DE VIENTO -->
-                            <li class="mb-2">
-                                <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
-                                   data-bs-toggle="collapse" href="#subViento" role="button">
-                                    <span>Instrumentos de Viento</span>
-                                    <i class="bi bi-chevron-down fs-6"></i>
-                                </a>
-                                <div class="collapse mt-1" id="subViento">
-                                    <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
-                                        <li class="mb-1"><a href="catalogo.html?categoria=abrazaderas" class="text-decoration-none text-white-50 nav-link-sub">Abrazaderas</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=armonicas" class="text-decoration-none text-white-50 nav-link-sub">Armónicas</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=canas" class="text-decoration-none text-white-50 nav-link-sub">Cañas</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=clarinetes" class="text-decoration-none text-white-50 nav-link-sub">Clarinetes</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=flautas-dulces" class="text-decoration-none text-white-50 nav-link-sub">Flautas dulces</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=flautas-traversas" class="text-decoration-none text-white-50 nav-link-sub">Flautas traversas</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=melodicas-pianicas" class="text-decoration-none text-white-50 nav-link-sub">Melódicas y pianicas</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=saxofones" class="text-decoration-none text-white-50 nav-link-sub">Saxofones</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=trombones" class="text-decoration-none text-white-50 nav-link-sub">Trombones</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=trompetas" class="text-decoration-none text-white-50 nav-link-sub">Trompetas</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=boquillas" class="text-decoration-none text-white-50 nav-link-sub">Boquillas</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                                    <!-- 10. INSTRUMENTOS DE VIENTO -->
+                                    <li class="mb-2">
+                                        <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
+                                           data-bs-toggle="collapse" href="#subViento" role="button">
+                                            <span>Instrumentos de Viento</span>
+                                            <i class="bi bi-chevron-down fs-6"></i>
+                                        </a>
+                                        <div class="collapse mt-1" id="subViento">
+                                            <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=abrazaderas" class="text-decoration-none text-white-50 nav-link-sub">Abrazaderas</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=armonicas" class="text-decoration-none text-white-50 nav-link-sub">Armónicas</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=canas" class="text-decoration-none text-white-50 nav-link-sub">Cañas</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=clarinetes" class="text-decoration-none text-white-50 nav-link-sub">Clarinetes</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=flautas-dulces" class="text-decoration-none text-white-50 nav-link-sub">Flautas dulces</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=flautas-traversas" class="text-decoration-none text-white-50 nav-link-sub">Flautas traversas</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=melodicas-pianicas" class="text-decoration-none text-white-50 nav-link-sub">Melódicas y pianicas</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=saxofones" class="text-decoration-none text-white-50 nav-link-sub">Saxofones</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=trombones" class="text-decoration-none text-white-50 nav-link-sub">Trombones</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=trompetas" class="text-decoration-none text-white-50 nav-link-sub">Trompetas</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=boquillas" class="text-decoration-none text-white-50 nav-link-sub">Boquillas</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
 
-                            <!-- 11. MICRÓFONOS -->
-                            <li class="mb-2">
-                                <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
-                                   data-bs-toggle="collapse" href="#subMicrofonos" role="button">
-                                    <span>Micrófonos</span>
-                                    <i class="bi bi-chevron-down fs-6"></i>
-                                </a>
-                                <div class="collapse mt-1" id="subMicrofonos">
-                                    <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
-                                        <li class="mb-1"><a href="catalogo.html?categoria=microfono-condenser" class="text-decoration-none text-white-50 nav-link-sub">Microfono condenser</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=microfonos-inalambricos" class="text-decoration-none text-white-50 nav-link-sub">Microfonos inalambricos</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=microfonos-guitarra" class="text-decoration-none text-white-50 nav-link-sub">Microfonos para guitarra</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=microfonos-vocales" class="text-decoration-none text-white-50 nav-link-sub">Microfonos vocales</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=microfonos-contacto" class="text-decoration-none text-white-50 nav-link-sub">Microfonos de contacto</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=microfonos-violin" class="text-decoration-none text-white-50 nav-link-sub">Microfonos de violín</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                                    <!-- 11. MICRÓFONOS -->
+                                    <li class="mb-2">
+                                        <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
+                                           data-bs-toggle="collapse" href="#subMicrofonos" role="button">
+                                            <span>Micrófonos</span>
+                                            <i class="bi bi-chevron-down fs-6"></i>
+                                        </a>
+                                        <div class="collapse mt-1" id="subMicrofonos">
+                                            <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=microfono-condenser" class="text-decoration-none text-white-50 nav-link-sub">Microfono condenser</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=microfonos-inalambricos" class="text-decoration-none text-white-50 nav-link-sub">Microfonos inalambricos</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=microfonos-guitarra" class="text-decoration-none text-white-50 nav-link-sub">Microfonos para guitarra</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=microfonos-vocales" class="text-decoration-none text-white-50 nav-link-sub">Microfonos vocales</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=microfonos-contacto" class="text-decoration-none text-white-50 nav-link-sub">Microfonos de contacto</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=microfonos-violin" class="text-decoration-none text-white-50 nav-link-sub">Microfonos de violín</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
 
-                            <!-- 12. PLATILLOS Y BAQUETAS -->
-                            <li class="mb-2">
-                                <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
-                                   data-bs-toggle="collapse" href="#subBaquetas" role="button">
-                                    <span>Palillos y Baquetas</span>
-                                    <i class="bi bi-chevron-down fs-6"></i>
-                                </a>
-                                <div class="collapse mt-1" id="subBaquetas">
-                                    <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
-                                        <li class="mb-1"><a href="catalogo.html?categoria=escobillas" class="text-decoration-none text-white-50 nav-link-sub">Escobillas</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=hot-rods" class="text-decoration-none text-white-50 nav-link-sub">Hot Rods</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=mazos" class="text-decoration-none text-white-50 nav-link-sub">Mazos</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=platillos-punta-madera" class="text-decoration-none text-white-50 nav-link-sub">Platillos punta madera</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=platillos-punta-nylon" class="text-decoration-none text-white-50 nav-link-sub">Platillos punta Nylon</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=timbaletas-baquetas" class="text-decoration-none text-white-50 nav-link-sub">Timbaletas</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                                    <!-- 12. PLATILLOS Y BAQUETAS -->
+                                    <li class="mb-2">
+                                        <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
+                                           data-bs-toggle="collapse" href="#subBaquetas" role="button">
+                                            <span>Palillos y Baquetas</span>
+                                            <i class="bi bi-chevron-down fs-6"></i>
+                                        </a>
+                                        <div class="collapse mt-1" id="subBaquetas">
+                                            <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=escobillas" class="text-decoration-none text-white-50 nav-link-sub">Escobillas</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=hot-rods" class="text-decoration-none text-white-50 nav-link-sub">Hot Rods</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=mazos" class="text-decoration-none text-white-50 nav-link-sub">Mazos</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=platillos-punta-madera" class="text-decoration-none text-white-50 nav-link-sub">Platillos punta madera</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=platillos-punta-nylon" class="text-decoration-none text-white-50 nav-link-sub">Platillos punta Nylon</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=timbaletas-baquetas" class="text-decoration-none text-white-50 nav-link-sub">Timbaletas</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
 
-                            <!-- 13. PARCHES -->
-                            <li class="mb-2">
-                                <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
-                                   data-bs-toggle="collapse" href="#subParches" role="button">
-                                    <span>Parches</span>
-                                    <i class="bi bi-chevron-down fs-6"></i>
-                                </a>
-                                <div class="collapse mt-1" id="subParches">
-                                    <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
-                                        <li class="mb-1"><a href="catalogo.html?categoria=parche-redoblante" class="text-decoration-none text-white-50 nav-link-sub">Parche de Redoblante</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=parches-tom-arenado" class="text-decoration-none text-white-50 nav-link-sub">Parches de tom arenado</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=parches-tom-transparente" class="text-decoration-none text-white-50 nav-link-sub">Parches de tom transparente</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=parche-murga" class="text-decoration-none text-white-50 nav-link-sub">Parche de murga</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                                    <!-- 13. PARCHES -->
+                                    <li class="mb-2">
+                                        <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
+                                           data-bs-toggle="collapse" href="#subParches" role="button">
+                                            <span>Parches</span>
+                                            <i class="bi bi-chevron-down fs-6"></i>
+                                        </a>
+                                        <div class="collapse mt-1" id="subParches">
+                                            <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=parche-redoblante" class="text-decoration-none text-white-50 nav-link-sub">Parche de Redoblante</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=parches-tom-arenado" class="text-decoration-none text-white-50 nav-link-sub">Parches de tom arenado</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=parches-tom-transparente" class="text-decoration-none text-white-50 nav-link-sub">Parches de tom transparente</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=parche-murga" class="text-decoration-none text-white-50 nav-link-sub">Parche de murga</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
 
-                            <!-- 14. PERCUSIÓN -->
-                            <li class="mb-2">
-                                <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
-                                   data-bs-toggle="collapse" href="#subPercusion" role="button">
-                                    <span>Percusión</span>
-                                    <i class="bi bi-chevron-down fs-6"></i>
-                                </a>
-                                <div class="collapse mt-1" id="subPercusion">
-                                    <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
-                                        <li class="mb-1"><a href="catalogo.html?categoria=banda-ritmica" class="text-decoration-none text-white-50 nav-link-sub">Banda rítmica</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=bombos-legueros" class="text-decoration-none text-white-50 nav-link-sub">Bombos legueros</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=bongoes" class="text-decoration-none text-white-50 nav-link-sub">Bongoes</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=cajones" class="text-decoration-none text-white-50 nav-link-sub">Cajones</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=castanuelas" class="text-decoration-none text-white-50 nav-link-sub">Castañuelas</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=cencerros" class="text-decoration-none text-white-50 nav-link-sub">Cencerros</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=congas-tumbadoras" class="text-decoration-none text-white-50 nav-link-sub">Congas tumbadoras</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=marcha" class="text-decoration-none text-white-50 nav-link-sub">Marcha</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=shakers" class="text-decoration-none text-white-50 nav-link-sub">Shakers</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=soportes-percusion" class="text-decoration-none text-white-50 nav-link-sub">Soportes de percusión</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=timbaletas" class="text-decoration-none text-white-50 nav-link-sub">Timbaletas</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=barchimes" class="text-decoration-none text-white-50 nav-link-sub">Barchimes</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=claves" class="text-decoration-none text-white-50 nav-link-sub">Claves</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=guiro" class="text-decoration-none text-white-50 nav-link-sub">Guiro</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=kalimbas" class="text-decoration-none text-white-50 nav-link-sub">Kalimbas</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=maracas" class="text-decoration-none text-white-50 nav-link-sub">Maracas</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=panderetas" class="text-decoration-none text-white-50 nav-link-sub">Panderetas / Panderos / Aros</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=triangulos" class="text-decoration-none text-white-50 nav-link-sub">Triángulos</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=llaves-afinar" class="text-decoration-none text-white-50 nav-link-sub">Llaves para afinar</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                                    <!-- 14. PERCUSIÓN -->
+                                    <li class="mb-2">
+                                        <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
+                                           data-bs-toggle="collapse" href="#subPercusion" role="button">
+                                            <span>Percusión</span>
+                                            <i class="bi bi-chevron-down fs-6"></i>
+                                        </a>
+                                        <div class="collapse mt-1" id="subPercusion">
+                                            <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=banda-ritmica" class="text-decoration-none text-white-50 nav-link-sub">Banda rítmica</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=bombos-legueros" class="text-decoration-none text-white-50 nav-link-sub">Bombos legueros</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=bongoes" class="text-decoration-none text-white-50 nav-link-sub">Bongoes</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=cajones" class="text-decoration-none text-white-50 nav-link-sub">Cajones</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=castanuelas" class="text-decoration-none text-white-50 nav-link-sub">Castañuelas</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=cencerros" class="text-decoration-none text-white-50 nav-link-sub">Cencerros</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=congas-tumbadoras" class="text-decoration-none text-white-50 nav-link-sub">Congas tumbadoras</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=marcha" class="text-decoration-none text-white-50 nav-link-sub">Marcha</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=shakers" class="text-decoration-none text-white-50 nav-link-sub">Shakers</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=soportes-percusion" class="text-decoration-none text-white-50 nav-link-sub">Soportes de percusión</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=timbaletas" class="text-decoration-none text-white-50 nav-link-sub">Timbaletas</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=barchimes" class="text-decoration-none text-white-50 nav-link-sub">Barchimes</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=claves" class="text-decoration-none text-white-50 nav-link-sub">Claves</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=guiro" class="text-decoration-none text-white-50 nav-link-sub">Guiro</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=kalimbas" class="text-decoration-none text-white-50 nav-link-sub">Kalimbas</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=maracas" class="text-decoration-none text-white-50 nav-link-sub">Maracas</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=panderetas" class="text-decoration-none text-white-50 nav-link-sub">Panderetas / Panderos / Aros</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=triangulos" class="text-decoration-none text-white-50 nav-link-sub">Triángulos</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=llaves-afinar" class="text-decoration-none text-white-50 nav-link-sub">Llaves para afinar</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
 
-                            <!-- 15. PIANOS, TECLADOS Y SINTETIZADORES -->
-                            <li class="mb-2">
-                                <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
-                                   data-bs-toggle="collapse" href="#subTeclados" role="button">
-                                    <span>Teclados</span>
-                                    <i class="bi bi-chevron-down fs-6"></i>
-                                </a>
-                                <div class="collapse mt-1" id="subTeclados">
-                                    <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
-                                        <li class="mb-1"><a href="catalogo.html?categoria=controladores-midi" class="text-decoration-none text-white-50 nav-link-sub">Controladores MIDI</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=pianos-digitales" class="text-decoration-none text-white-50 nav-link-sub">Pianos digitales</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=sintetizadores" class="text-decoration-none text-white-50 nav-link-sub">Sintetizadores</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=teclados" class="text-decoration-none text-white-50 nav-link-sub">Teclados</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                                    <!-- 15. PIANOS, TECLADOS Y SINTETIZADORES -->
+                                    <li class="mb-2">
+                                        <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
+                                           data-bs-toggle="collapse" href="#subTeclados" role="button">
+                                            <span>Teclados</span>
+                                            <i class="bi bi-chevron-down fs-6"></i>
+                                        </a>
+                                        <div class="collapse mt-1" id="subTeclados">
+                                            <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=controladores-midi" class="text-decoration-none text-white-50 nav-link-sub">Controladores MIDI</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=pianos-digitales" class="text-decoration-none text-white-50 nav-link-sub">Pianos digitales</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=sintetizadores" class="text-decoration-none text-white-50 nav-link-sub">Sintetizadores</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=teclados" class="text-decoration-none text-white-50 nav-link-sub">Teclados</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
 
-                            <!-- 16. PLATILLOS -->
-                            <li class="mb-2">
-                                <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
-                                   data-bs-toggle="collapse" href="#subPlatillos" role="button">
-                                    <span>Platillos</span>
-                                    <i class="bi bi-chevron-down fs-6"></i>
-                                </a>
-                                <div class="collapse mt-1" id="subPlatillos">
-                                    <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
-                                        <li class="mb-1"><a href="catalogo.html?categoria=chinas" class="text-decoration-none text-white-50 nav-link-sub">Chinas</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=crashes" class="text-decoration-none text-white-50 nav-link-sub">Crashes</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=efectos" class="text-decoration-none text-white-50 nav-link-sub">Efectos</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=hi-hats" class="text-decoration-none text-white-50 nav-link-sub">Hi Hats</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=platillos-marcha" class="text-decoration-none text-white-50 nav-link-sub">Platillos de marcha</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=rides" class="text-decoration-none text-white-50 nav-link-sub">Rides</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=splashes" class="text-decoration-none text-white-50 nav-link-sub">Splashes</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                                    <!-- 16. PLATILLOS -->
+                                    <li class="mb-2">
+                                        <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
+                                           data-bs-toggle="collapse" href="#subPlatillos" role="button">
+                                            <span>Platillos</span>
+                                            <i class="bi bi-chevron-down fs-6"></i>
+                                        </a>
+                                        <div class="collapse mt-1" id="subPlatillos">
+                                            <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=chinas" class="text-decoration-none text-white-50 nav-link-sub">Chinas</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=crashes" class="text-decoration-none text-white-50 nav-link-sub">Crashes</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=efectos" class="text-decoration-none text-white-50 nav-link-sub">Efectos</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=hi-hats" class="text-decoration-none text-white-50 nav-link-sub">Hi Hats</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=platillos-marcha" class="text-decoration-none text-white-50 nav-link-sub">Platillos de marcha</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=rides" class="text-decoration-none text-white-50 nav-link-sub">Rides</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=splashes" class="text-decoration-none text-white-50 nav-link-sub">Splashes</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
 
-                            <!-- 17. SOPORTES -->
-                            <li class="mb-2">
-                                <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
-                                   data-bs-toggle="collapse" href="#subSoportes" role="button">
-                                    <span>Soportes</span>
-                                    <i class="bi bi-chevron-down fs-6"></i>
-                                </a>
-                                <div class="collapse mt-1" id="subSoportes">
-                                    <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
-                                        <li class="mb-1"><a href="catalogo.html?categoria=atriles" class="text-decoration-none text-white-50 nav-link-sub">Atriles</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=otros-soportes" class="text-decoration-none text-white-50 nav-link-sub">Otros soportes</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=soportes-bafles-monitores" class="text-decoration-none text-white-50 nav-link-sub">Soportes para bafles y monitores</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=soportes-exhibicion" class="text-decoration-none text-white-50 nav-link-sub">Soportes para exhibición</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=soportes-guitarra-bajo" class="text-decoration-none text-white-50 nav-link-sub">Soportes para guitarra y bajo</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=soportes-instrumentos-arco" class="text-decoration-none text-white-50 nav-link-sub">Soportes para instrumentos de arco</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=soportes-instrumentos-viento" class="text-decoration-none text-white-50 nav-link-sub">Soportes para instrumentos de viento</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=soportes-microfono" class="text-decoration-none text-white-50 nav-link-sub">Soportes para micrófono</a></li>
-                                        <li class="mb-1"><a href="catalogo.html?categoria=soportes-teclado-piano" class="text-decoration-none text-white-50 nav-link-sub">Soportes para teclado y piano</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                                    <!-- 17. SOPORTES -->
+                                    <li class="mb-2">
+                                        <a class="text-decoration-none text-white d-flex align-items-center justify-content-between nav-link-sub" 
+                                           data-bs-toggle="collapse" href="#subSoportes" role="button">
+                                            <span>Soportes</span>
+                                            <i class="bi bi-chevron-down fs-6"></i>
+                                        </a>
+                                        <div class="collapse mt-1" id="subSoportes">
+                                            <ul class="list-unstyled mb-0 ps-3 border-start border-secondary">
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=atriles" class="text-decoration-none text-white-50 nav-link-sub">Atriles</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=otros-soportes" class="text-decoration-none text-white-50 nav-link-sub">Otros soportes</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=soportes-bafles-monitores" class="text-decoration-none text-white-50 nav-link-sub">Soportes para bafles y monitores</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=soportes-exhibicion" class="text-decoration-none text-white-50 nav-link-sub">Soportes para exhibición</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=soportes-guitarra-bajo" class="text-decoration-none text-white-50 nav-link-sub">Soportes para guitarra y bajo</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=soportes-instrumentos-arco" class="text-decoration-none text-white-50 nav-link-sub">Soportes para instrumentos de arco</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=soportes-instrumentos-viento" class="text-decoration-none text-white-50 nav-link-sub">Soportes para instrumentos de viento</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=soportes-microfono" class="text-decoration-none text-white-50 nav-link-sub">Soportes para micrófono</a></li>
+                                                <li class="mb-1"><a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=soportes-teclado-piano" class="text-decoration-none text-white-50 nav-link-sub">Soportes para teclado y piano</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
 
-                        </ul>
-                    </div>
-                </div>
-            </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
 
-                <!-- Ítem 2: SOBRE NOSOTROS -->
-                <li class="mt-2">
-                    <a href="frontend-musicshow/sobreNosotros.html" class="text-decoration-none text-white d-block nav-link-custom">
-                        SOBRE NOSOTROS
-                    </a>
-                </li>
-
-                <!-- Ítem 4: PREGUNTAS FRECUENTES -->
-                <li class="mt-2">
-                    <a href="frontend-musicshow/preguntas.html" class="text-decoration-none text-white d-block nav-link-custom">
-                        PREGUNTAS FRECUENTES
-                    </a>
-                </li>
-            </ul>
-
+                    <!-- Ítem 2: SOBRE NOSOTROS -->
+                    <li class="mt-2">
+                        <a href="frontend-musicshow/vistas-publicas/sobreNosotros.html" class="text-decoration-none text-white d-block nav-link-custom">
+                            SOBRE NOSOTROS
+                        </a>
+                    </li>
+                    
+                    <!-- Ítem 4: PREGUNTAS FRECUENTES -->
+                    <li class="mt-2">
+                        <a href="frontend-musicshow/vistas-publicas/preguntas.html" class="text-decoration-none text-white d-block nav-link-custom">
+                            PREGUNTAS FRECUENTES
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-
-
-</header>
+    </header>
 
     <!-- Contenido Principal -->
     <main>
-    <!-- ==========================================
-        HERO BANNER: 3 IMÁGENES INTERACTIVAS
-    =========================================== -->
-    <section class="hero-showroom-seccion overflow-hidden position-relative mb-5">
-        <div class="container-fluid p-0">
-            <div class="row g-0">
-                
-                <!-- Tarjeta 1: Guitarras y Bajos (Mundo de Cuerdas) -->
-                <div class="col-md-4 position-relative overflow-hidden hero-card-wrapper">
-                    <!-- Imagen de fondo con filtro morado -->
-                    <div class="hero-imagen bg-guitarra"></div>
-                    <!-- Capa de oscurecimiento interactiva -->
-                    <div class="hero-capa d-flex flex-column justify-content-end p-4 p-lg-5 text-white">
-                        <span class="badge bg-morado align-self-start mb-2 px-3 py-2 text-uppercase fw-bold text-white small">Instrumentos</span>
-                        <h2 class="display-6 fw-extrabold mb-2 lh-1 text-uppercase text-shadow-sm">GUITARRAS & BAJOS</h2>
-                        <p class="small text-white-50 mb-3 fw-medium">🎸 Encontrá tu sonido.</p>
-                        <a href="#" class="btn btn-explorar-hero align-self-start">
-                            <span>Ver Colección</span> <i class="bi bi-arrow-right-short fs-4"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Tarjeta 2: Baterías y Percusión (Sección Central) -->
-                <div class="col-md-4 position-relative overflow-hidden hero-card-wrapper border-start-md border-end-md">
-                    <!-- Imagen de fondo con filtro morado -->
-                    <div class="hero-imagen bg-percusion"></div>
-                    <!-- Capa de oscurecimiento interactiva -->
-                    <div class="hero-capa d-flex flex-column justify-content-end p-4 p-lg-5 text-white">
-                        <span class="badge bg-naranja align-self-start mb-2 px-3 py-2 text-uppercase fw-bold text-white small">Percusión</span>
-                        <h2 class="display-6 fw-extrabold mb-2 lh-1 text-uppercase text-shadow-sm">BATERIAS </h2>
-                        <p class="small text-white-50 mb-3 fw-medium">🥁 Sets completos, platillos y parches. Para todos los estilos.</p>
-                        <a href="#percusion" class="btn btn-explorar-hero align-self-start">
-                            <span>Ver Colección</span> <i class="bi bi-arrow-right-short fs-4"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Tarjeta 3: Teclados, Sintetizadores y Accesorios -->
-                <div class="col-md-4 position-relative overflow-hidden hero-card-wrapper">
-                    <!-- Imagen de fondo con filtro morado -->
-                    <div class="hero-imagen bg-teclados"></div>
-                    <!-- Capa de oscurecimiento interactiva -->
-                    <div class="hero-capa d-flex flex-column justify-content-end p-4 p-lg-5 text-white">
-                        <span class="badge bg-morado align-self-start mb-2 px-3 py-2 text-uppercase fw-bold text-white small">Sintetizadores</span>
-                        <h2 class="display-6 fw-extrabold mb-2 lh-1 text-uppercase text-shadow-sm">Teclas</h2>
-                        <p class="small text-white-50 mb-3 fw-medium">🎹 Sintetizadores, pianos eléctricos y controladores MIDI.</p>
-                        <a href="#teclas" class="btn btn-explorar-hero align-self-start">
-                            <span>Ver Colección</span> <i class="bi bi-arrow-right-short fs-4"></i>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- ==========================================
-         SECCIÓN DESTACADOS (Animación Scroll)
-    =========================================== -->
-    <section id="seccionDestacados" class="container py-5 mt-4">
-        
-        <!-- Título y Botones Agrupados Arriba (Animación 1) -->
-        <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom border-secondary animacion-scroll">
-            <h3 class="fw-bold mb-0 text-uppercase" style="letter-spacing: 2px;">Destacados</h3>
-            
-            <!-- Aquí están las dos flechas juntas -->
-            <div class="d-flex gap-2">
-                <button class="btn btn-flecha d-none d-md-flex shadow-sm" onclick="moverCarrusel(-1)">
-                    <i class="bi bi-chevron-left"></i>
-                </button>
-                <button class="btn btn-flecha d-none d-md-flex shadow-sm" onclick="moverCarrusel(1)">
-                    <i class="bi bi-chevron-right"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Contenedor de Productos (Animación 2 con retraso) -->
-        <div class="animacion-scroll animacion-retraso position-relative">
-            <!-- Grilla de Productos con Scroll Horizontal -->
-            <div class="carrusel-productos d-flex gap-4 overflow-x-auto py-3 px-2" id="carruselDestacados">
-                
-<!-- Producto 1: Pedalera / Amplificador -->
-<a href="producto.html?id=1" class="card card-producto flex-shrink-0 border-0 bg-transparent text-decoration-none text-body">
-    <div class="position-relative mb-3 overflow-hidden rounded-2">
-        <img src="https://images.pexels.com/photos/33813494/pexels-photo-33813494.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Amplificador">
-        <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
-            <span class="etiqueta-descuento fw-bold text-white px-2 py-1 small">-10% OFF</span>
-            <span class="etiqueta-envio fw-bold text-white px-2 py-1 small">ENVÍO GRATIS</span>
-        </div>
-    </div>
-    <div class="card-body p-0 text-start">
-        <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Amplificador Sonicake Ampcube QAM-20 Portátil Bluetooth</h5>
-        <p class="text-muted text-decoration-line-through small mb-1">$ 329.989,00</p>
-        <p class="fw-extrabold mb-1">Transferencia/cash: $ 269.991,00</p>
-        <p class="text-muted small mb-0">Lista: $ 299.990,00</p>
-    </div>
-</a>
-
-<!-- Producto 2: Guitarra Eléctrica -->
-<a href="producto.html?id=2" class="card card-producto flex-shrink-0 border-0 bg-transparent text-decoration-none text-body">
-    <div class="position-relative mb-3 overflow-hidden rounded-2">
-        <img src="https://images.pexels.com/photos/31158956/pexels-photo-31158956.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Guitarra Fender">
-        <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
-            <span class="etiqueta-descuento fw-bold text-white px-2 py-1 small">-15% OFF</span>
-            <span class="etiqueta-envio fw-bold text-white px-2 py-1 small">ENVÍO GRATIS</span>
-        </div>
-    </div>
-    <div class="card-body p-0 text-start">
-        <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Guitarra Eléctrica Fender Stratocaster Americana</h5>
-        <p class="text-muted text-decoration-line-through small mb-1">$ 1.150.000,00</p>
-        <p class="fw-extrabold mb-1">Transferencia/cash: $ 977.500,00</p>
-        <p class="text-muted small mb-0">Lista: $ 1.150.000,00</p>
-    </div>
-</a>
-
-<!-- Producto 3: Batería Acústica -->
-<a href="producto.html?id=3" class="card card-producto flex-shrink-0 border-0 bg-transparent text-decoration-none text-body">
-    <div class="position-relative mb-3 overflow-hidden rounded-2">
-        <img src="https://images.pexels.com/photos/5650534/pexels-photo-5650534.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Batería">
-        <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
-            <span class="etiqueta-envio fw-bold text-white px-2 py-1 small">ENVÍO GRATIS</span>
-        </div>
-    </div>
-    <div class="card-body p-0 text-start">
-        <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Batería Acústica Mapex Prodigy 5 Cuerpos Con Fierros</h5>
-        <p class="text-muted text-decoration-line-through small mb-1 opacity-0">-</p>
-        <p class="fw-extrabold mb-1">Transferencia/cash: $ 1.150.000,00</p>
-        <p class="text-muted small mb-0">Lista: $ 1.350.000,00</p>
-    </div>
-</a>
-
-<!-- Producto 4: Teclado MIDI -->
-<a href="producto.html?id=4" class="card card-producto flex-shrink-0 border-0 bg-transparent text-decoration-none text-body">
-    <div class="position-relative mb-3 overflow-hidden rounded-2">
-        <img src="https://images.pexels.com/photos/37005815/pexels-photo-37005815.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Teclado MIDI">
-        <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
-            <span class="etiqueta-descuento fw-bold text-white px-2 py-1 small">-5% OFF</span>
-        </div>
-    </div>
-    <div class="card-body p-0 text-start">
-        <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Teclado Controlador Midi Arturia Keylab 61 Teclas</h5>
-        <p class="text-muted text-decoration-line-through small mb-1">$ 568.421,00</p>
-        <p class="fw-extrabold mb-1">Transferencia/cash: $ 540.000,00</p>
-        <p class="text-muted small mb-0">Lista: $ 610.000,00</p>
-    </div>
-</a>
-
-<!-- Producto 5: Pedalera de Bajo -->
-<a href="producto.html?id=5" class="card card-producto flex-shrink-0 border-0 bg-transparent text-decoration-none text-body">
-    <div class="position-relative mb-3 overflow-hidden rounded-2">
-        <img src="https://images.pexels.com/photos/17896555/pexels-photo-17896555.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Pedalera Darkglass">
-        <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
-            <span class="etiqueta-descuento fw-bold text-white px-2 py-1 small">-9% OFF</span>
-            <span class="etiqueta-envio fw-bold text-white px-2 py-1 small">ENVÍO GRATIS</span>
-        </div>
-    </div>
-    <div class="card-body p-0 text-start">
-        <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Pedalera Para Bajo Darkglass AGM Anagram Pantalla Táctil</h5>
-        <p class="text-muted text-decoration-line-through small mb-1">$ 2.796.359,04</p>
-        <p class="fw-extrabold mb-1">Transferencia/cash: $ 2.287.930,62</p>
-        <p class="text-muted small mb-0">Lista: $ 2.542.145,13</p>
-    </div>
-</a>
-
-<!-- Producto 6: Interfaz de Audio -->
-<a href="producto.html?id=6" class="card card-producto flex-shrink-0 border-0 bg-transparent text-decoration-none text-body">
-    <div class="position-relative mb-3 overflow-hidden rounded-2">
-        <img src="https://images.pexels.com/photos/9870700/pexels-photo-9870700.png" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Interfaz M-Audio">
-        <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
-            <span class="etiqueta-envio fw-bold text-white px-2 py-1 small">ENVÍO GRATIS</span>
-        </div>
-    </div>
-    <div class="card-body p-0 text-start">
-        <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Interfaz De Audio M-Audio M-Track Solo USB</h5>
-        <p class="text-muted text-decoration-line-through small mb-1 opacity-0">-</p>
-        <p class="fw-extrabold mb-1">Transferencia/cash: $ 85.000,00</p>
-        <p class="text-muted small mb-0">Lista: $ 95.000,00</p>
-    </div>
-</a>
-
-<!-- Producto 7: Micrófono Dinámico -->
-<a href="producto.html?id=7" class="card card-producto flex-shrink-0 border-0 bg-transparent text-decoration-none text-body">
-    <div class="position-relative mb-3 overflow-hidden rounded-2">
-        <img src="https://images.pexels.com/photos/8132521/pexels-photo-8132521.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Micrófono Shure">
-        <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
-            <span class="etiqueta-descuento fw-bold text-white px-2 py-1 small">-12% OFF</span>
-        </div>
-    </div>
-    <div class="card-body p-0 text-start">
-        <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Micrófono Dinámico Shure SM58 Vocal Original</h5>
-        <p class="text-muted text-decoration-line-through small mb-1">$ 195.000,00</p>
-        <p class="fw-extrabold mb-1">Transferencia/cash: $ 171.600,00</p>
-        <p class="text-muted small mb-0">Lista: $ 195.000,00</p>
-    </div>
-</a>
-            </div>
-        </div>
-    </section>
-
-
-<!-- ==========================================
-     CINTA DINÁMICA DE CATEGORÍAS (TICKER)
-=========================================== -->   
-<div class="cinta-categorias-wrapper mt-2 mb-4">
-    <div class="cinta-track">
-        <!-- Primera vuelta (Rutas alineadas al Menú Lateral) -->
-        <a href="catalogo.html?categoria=guitarras-electricas">GUITARRAS</a>
-        <a href="catalogo.html?categoria=baterias-acusticas">BATERÍAS</a>
-        <a href="catalogo.html?categoria=accesorios">ACCESORIOS</a>
-        <a href="catalogo.html?categoria=violines">VIOLINES</a>
-        <a href="catalogo.html?categoria=amplificadores-guitarra">AMPLIFICADORES</a>
-        <a href="catalogo.html?categoria=teclados">TECLADOS</a>
-        <a href="catalogo.html?categoria=pedales-efecto">PEDALES DE EFECTOS</a>
-        <a href="catalogo.html?categoria=interfaces-audio">INTERFACES DE AUDIO</a>
-        
-        <!-- Segunda vuelta (para el loop infinito) -->
-        <a href="catalogo.html?categoria=guitarras-electricas">GUITARRAS</a>
-        <a href="catalogo.html?categoria=baterias-acusticas">BATERÍAS</a>
-        <a href="catalogo.html?categoria=accesorios">ACCESORIOS</a>
-        <a href="catalogo.html?categoria=violines">VIOLINES</a>
-        <a href="catalogo.html?categoria=amplificadores-guitarra">AMPLIFICADORES</a>
-        <a href="catalogo.html?categoria=teclados">TECLADOS</a>
-        <a href="catalogo.html?categoria=pedales-efecto">PEDALES DE EFECTOS</a>
-        <a href="catalogo.html?categoria=interfaces-audio">INTERFACES DE AUDIO</a>
-    </div>
-</div>
-
-<!-- ==========================================
-         SECCIÓN: NOVEDADES
-    =========================================== -->
-    <section id="seccionNovedades" class="container py-4">
-        <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom border-secondary animacion-scroll">
-            <h3 class="fw-bold mb-0 text-uppercase" style="letter-spacing: 2px;">Novedades</h3>
-            
-            <div class="d-flex gap-2">
-                <button class="btn btn-flecha d-none d-md-flex shadow-sm" onclick="moverCarruselUniversal('carruselNovedades', -1)">
-                    <i class="bi bi-chevron-left"></i>
-                </button>
-                <button class="btn btn-flecha d-none d-md-flex shadow-sm" onclick="moverCarruselUniversal('carruselNovedades', 1)">
-                    <i class="bi bi-chevron-right"></i>
-                </button>
-            </div>
-        </div>
-
-        <div class="animacion-scroll animacion-retraso position-relative">
-            <div class="carrusel-productos d-flex gap-4 overflow-x-auto py-3 px-2" id="carruselNovedades">
-                
-                <!-- Novedad 1 (ID 8) -->
-                <div class="card card-producto flex-shrink-0 border-0 bg-transparent tarjeta-cliqueable" data-id="8" style="cursor: pointer;">
-                    <div class="position-relative mb-3 overflow-hidden rounded-2">
-                        <img src="https://images.pexels.com/photos/10618242/pexels-photo-10618242.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Sintetizador Nord">
-                        <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
-                            <span class="etiqueta-envio fw-bold text-white px-2 py-1 small">NUEVO INGRESO</span>
-                        </div>
-                    </div>
-                    <div class="card-body p-0 text-start">
-                        <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Sintetizador Nord Stage 3 88 Teclas</h5>
-                        <p class="text-muted text-decoration-line-through small mb-1 opacity-0">-</p>
-                        <p class="fw-extrabold mb-1">Transferencia/cash: $ 4.250.000,00</p>
-                    </div>
-                </div>
-
-                <!-- Novedad 2 (ID 9) -->
-                <div class="card card-producto flex-shrink-0 border-0 bg-transparent tarjeta-cliqueable" data-id="9" style="cursor: pointer;">
-                    <div class="position-relative mb-3 overflow-hidden rounded-2">
-                        <img src="https://images.pexels.com/photos/13575087/pexels-photo-13575087.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Violín">
-                        <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
-                            <span class="etiqueta-envio fw-bold text-white px-2 py-1 small">NUEVO INGRESO</span>
-                        </div>
-                    </div>
-                    <div class="card-body p-0 text-start">
-                        <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Violín Acústico Stradella 4/4 Con Estuche</h5>
-                        <p class="text-muted text-decoration-line-through small mb-1 opacity-0">-</p>
-                        <p class="fw-extrabold mb-1">Transferencia/cash: $ 120.000,00</p>
-                    </div>
-                </div>
-
-                <!-- Novedad 3 (ID 10) -->
-                <div class="card card-producto flex-shrink-0 border-0 bg-transparent tarjeta-cliqueable" data-id="10" style="cursor: pointer;">
-                    <div class="position-relative mb-3 overflow-hidden rounded-2">
-                        <img src="https://images.pexels.com/photos/5367985/pexels-photo-5367985.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Bajo">
-                        <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
-                            <span class="etiqueta-descuento fw-bold text-white px-2 py-1 small">-5% OFF</span>
-                        </div>
-                    </div>
-                    <div class="card-body p-0 text-start">
-                        <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Bajo Eléctrico Squier Jazz Bass V (5 Cuerpos)</h5>
-                        <p class="text-muted text-decoration-line-through small mb-1">$ 750.000,00</p>
-                        <p class="fw-extrabold mb-1">Transferencia/cash: $ 712.500,00</p>
-                    </div>
-                </div>
-
-                <!-- Novedad 4 (ID 11) -->
-                <div class="card card-producto flex-shrink-0 border-0 bg-transparent tarjeta-cliqueable" data-id="11" style="cursor: pointer;">
-                    <div class="position-relative mb-3 overflow-hidden rounded-2">
-                        <img src="https://images.pexels.com/photos/13978776/pexels-photo-13978776.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Monitores de Estudio">
-                        <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
-                            <span class="etiqueta-envio fw-bold text-white px-2 py-1 small">ENVÍO GRATIS</span>
-                        </div>
-                    </div>
-                    <div class="card-body p-0 text-start">
-                        <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Monitores De Estudio KRK Rokit 5 G4 (Par)</h5>
-                        <p class="text-muted text-decoration-line-through small mb-1 opacity-0">-</p>
-                        <p class="fw-extrabold mb-1">Transferencia/cash: $ 650.000,00</p>
-                        <p class="text-muted small mb-0">Lista: $ 720.000,00</p>
-                    </div>
-                </div>
-
-                <!-- Novedad 5 (ID 12) -->
-                <div class="card card-producto flex-shrink-0 border-0 bg-transparent tarjeta-cliqueable" data-id="12" style="cursor: pointer;">
-                    <div class="position-relative mb-3 overflow-hidden rounded-2">
-                        <img src="https://images.pexels.com/photos/9057762/pexels-photo-9057762.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Guitarra Acústica">
-                        <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
-                            <span class="etiqueta-descuento fw-bold text-white px-2 py-1 small">-10% OFF</span>
-                        </div>
-                    </div>
-                    <div class="card-body p-0 text-start">
-                        <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Guitarra Electroacústica Yamaha APX600</h5>
-                        <p class="text-muted text-decoration-line-through small mb-1">$ 820.000,00</p>
-                        <p class="fw-extrabold mb-1">Transferencia/cash: $ 738.000,00</p>
-                        <p class="text-muted small mb-0">Lista: $ 820.000,00</p>
-                    </div>
-                </div>
-
-                <!-- Novedad 6 (ID 13) -->
-                <div class="card card-producto flex-shrink-0 border-0 bg-transparent tarjeta-cliqueable" data-id="13" style="cursor: pointer;">
-                    <div class="position-relative mb-3 overflow-hidden rounded-2">
-                        <img src="https://images.pexels.com/photos/5050610/pexels-photo-5050610.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Pedal Boss">
-                        <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
-                            <span class="etiqueta-envio fw-bold text-white px-2 py-1 small">NUEVO INGRESO</span>
-                        </div>
-                    </div>
-                    <div class="card-body p-0 text-start">
-                        <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Pedal De Efecto Boss DS-1 Distortion Clásico</h5>
-                        <p class="text-muted text-decoration-line-through small mb-1 opacity-0">-</p>
-                        <p class="fw-extrabold mb-1">Transferencia/cash: $ 145.000,00</p>
-                        <p class="text-muted small mb-0">Lista: $ 160.000,00</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-    <!-- ==========================================
-         SECCIÓN UBICACIÓN Y CONTACTO
-    =========================================== -->
-    <section id="seccionContacto" class="container py-5 mt-4 animacion-scroll">
-        <div class="row g-4">
-            
-            <!-- Columna Izquierda: Título y Mapa -->
-            <div class="col-md-6 d-flex flex-column">
-                <h4 class="text-uppercase text-center mb-4 fw-bold fs-5" style="letter-spacing: 2px;">Nuestra Ubicación</h4>
-                
-                <!-- Tarjeta con borde para el Mapa -->
-                <div class="contacto-card rounded-4 p-2 h-100 d-flex flex-column">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.147250462719!2d-65.2078652!3d-26.8351549!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94225d3df13632cf%3A0x87a55b1115b090!2sBatalla%20de%20Ayacucho%20247%2C%20T4000%20San%20Miguel%20de%20Tucum%C3%A1n%2C%20Tucum%C3%A1n!5e0!3m2!1ses-419!2sar!4v1700000000000!5m2!1ses-419!2sar" 
-                        width="100%" 
-                        height="100%" 
-                        style="border:0; border-radius: 12px; min-height: 350px;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
-            </div>
-
-            <!-- Columna Derecha: Título y Datos -->
-            <div class="col-md-6 d-flex flex-column">
-                <h4 class="text-uppercase text-center mb-4 fw-bold fs-5" style="letter-spacing: 2px;">Contáctenos</h4>
-                
-                <!-- Tarjeta con borde para los Datos -->
-                <div class="contacto-card rounded-4 p-4 p-lg-5 d-flex flex-column justify-content-center h-100">
+        <!-- HERO BANNER -->
+        <section class="hero-showroom-seccion overflow-hidden position-relative mb-5 mt-5">
+            <div class="container-fluid p-0">
+                <div class="row g-0">
                     
-                    <ul class="list-unstyled fs-6 mb-0 d-flex flex-column gap-4">
-                        
-                        <!-- Dirección -->
-                        <li class="d-flex align-items-start gap-3">
-                            <i class="bi bi-geo-alt fs-4 text-naranja"></i>
-                            <div>
-                                <strong class="d-block mb-1 text-uppercase">Dirección:</strong>
-                                <span class="text-white-50">Batalla de Ayacucho 247<br>T4000 San Miguel de Tucumán, Tucumán</span>
-                            </div>
-                        </li>
-                        
-                        <!-- Teléfono -->
-                        <li class="d-flex align-items-start gap-3">
-                            <i class="bi bi-telephone fs-4 text-naranja"></i>
-                            <div>
-                                <strong class="d-block mb-1 text-uppercase">Teléfono:</strong>
-                                <span class="text-white-50">3815136085</span>
-                            </div>
-                        </li>
+                    <div class="col-md-4 position-relative overflow-hidden hero-card-wrapper">
+                        <div class="hero-imagen bg-guitarra"></div>
+                        <div class="hero-capa d-flex flex-column justify-content-end p-4 p-lg-5 text-white">
+                            <span class="badge bg-morado align-self-start mb-2 px-3 py-2 text-uppercase fw-bold text-white small">Instrumentos</span>
+                            <h2 class="display-6 fw-extrabold mb-2 lh-1 text-uppercase text-shadow-sm d-flex align-items-end" style="min-height: 68px;">GUITARRAS & BAJOS</h2>
+                            <p class="small text-white-50 mb-3 fw-medium" style="min-height: 42px;">🎸 Encontrá tu sonido.</p>
+                            <a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=guitarras-electricas" class="btn btn-explorar-hero align-self-start">
+                                <span>Ver Colección</span> <i class="bi bi-arrow-right-short fs-4"></i>
+                            </a>
+                        </div>
+                    </div>
 
-                        <!-- Email -->
-                        <li class="d-flex align-items-start gap-3">
-                            <i class="bi bi-envelope fs-4 text-naranja"></i>
-                            <div>
-                                <strong class="d-block mb-1 text-uppercase">Gmail:</strong>
-                                <span class="text-white-50">musicshowtucuman@gmail.com</span>
-                            </div>
-                        </li>
+                    <div class="col-md-4 position-relative overflow-hidden hero-card-wrapper border-start-md border-end-md">
+                        <div class="hero-imagen bg-percusion"></div>
+                        <div class="hero-capa d-flex flex-column justify-content-end p-4 p-lg-5 text-white">
+                            <span class="badge bg-naranja align-self-start mb-2 px-3 py-2 text-uppercase fw-bold text-white small">Percusión</span>
+                            <h2 class="display-6 fw-extrabold mb-2 lh-1 text-uppercase text-shadow-sm d-flex align-items-end" style="min-height: 68px;">BATERIAS</h2>
+                            <p class="small text-white-50 mb-3 fw-medium" style="min-height: 42px;">🥁 Sets completos, platillos y parches. Para todos los estilos.</p>
+                            <a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=baterias-acusticas" class="btn btn-explorar-hero align-self-start">
+                                <span>Ver Colección</span> <i class="bi bi-arrow-right-short fs-4"></i>
+                            </a>
+                        </div>
+                    </div>
 
-                        <!-- Horarios (Sintetizados) -->
-                        <li class="d-flex align-items-start gap-3">
-                            <i class="bi bi-clock fs-4 text-naranja"></i>
-                            <div>
-                                <strong class="d-block mb-1 text-uppercase">Horarios:</strong>
-                                <span class="text-white-50">
-                                    Lunes a Viernes: 9:30 a.m. – 1:00 p.m. y 5:30 p.m. – 9:00 p.m.<br>
-                                    Sábados: 9:30 a.m. – 1:00 p.m.<br>
-                                    Domingos: Cerrado
-                                </span>
-                            </div>
-                        </li>
+                    <div class="col-md-4 position-relative overflow-hidden hero-card-wrapper">
+                        <div class="hero-imagen bg-teclados"></div>
+                        <div class="hero-capa d-flex flex-column justify-content-end p-4 p-lg-5 text-white">
+                            <span class="badge bg-morado align-self-start mb-2 px-3 py-2 text-uppercase fw-bold text-white small">Sintetizadores</span>
+                            <h2 class="display-6 fw-extrabold mb-2 lh-1 text-uppercase text-shadow-sm d-flex align-items-end" style="min-height: 68px;">Teclas</h2>
+                            <p class="small text-white-50 mb-3 fw-medium" style="min-height: 42px;">🎹 Sintetizadores, pianos eléctricos y controladores MIDI.</p>
+                            <a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=teclados" class="btn btn-explorar-hero align-self-start">
+                                <span>Ver Colección</span> <i class="bi bi-arrow-right-short fs-4"></i>
+                            </a>
+                        </div>
+                    </div>
 
-                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DESTACADOS -->
+        <section id="seccionDestacados" class="container py-5 mt-4">
+            <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom border-secondary animacion-scroll">
+                <h3 class="fw-bold mb-0 text-uppercase" style="letter-spacing: 2px;">Destacados</h3>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-flecha d-none d-md-flex shadow-sm" onclick="moverCarrusel(-1)">
+                        <i class="bi bi-chevron-left"></i>
+                    </button>
+                    <button class="btn btn-flecha d-none d-md-flex shadow-sm" onclick="moverCarrusel(1)">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
                 </div>
             </div>
 
-        </div>
-    </section>
+            <div class="animacion-scroll animacion-retraso position-relative">
+                <div class="carrusel-productos d-flex gap-4 overflow-x-auto py-3 px-2" id="carruselDestacados">
+                    
+                    <a href="frontend-musicshow/vistas-publicas/producto.html?id=1" class="card card-producto flex-shrink-0 border-0 bg-transparent text-decoration-none text-body">
+                        <div class="position-relative mb-3 overflow-hidden rounded-2">
+                            <img src="https://images.pexels.com/photos/33813494/pexels-photo-33813494.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Amplificador">
+                            <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
+                                <span class="etiqueta-descuento fw-bold text-white px-2 py-1 small">-10% OFF</span>
+                                <span class="etiqueta-envio fw-bold text-white px-2 py-1 small">ENVÍO GRATIS</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-0 text-start">
+                            <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Amplificador Sonicake Ampcube QAM-20 Portátil Bluetooth</h5>
+                            <p class="text-muted text-decoration-line-through small mb-1">$ 329.989,00</p>
+                            <p class="fw-extrabold mb-1">Transferencia/cash: $ 269.991,00</p>
+                            <p class="text-muted small mb-0">Lista: $ 299.990,00</p>
+                        </div>
+                    </a>
 
+                    <a href="frontend-musicshow/vistas-publicas/producto.html?id=2" class="card card-producto flex-shrink-0 border-0 bg-transparent text-decoration-none text-body">
+                        <div class="position-relative mb-3 overflow-hidden rounded-2">
+                            <img src="https://images.pexels.com/photos/31158956/pexels-photo-31158956.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Guitarra Fender">
+                            <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
+                                <span class="etiqueta-descuento fw-bold text-white px-2 py-1 small">-15% OFF</span>
+                                <span class="etiqueta-envio fw-bold text-white px-2 py-1 small">ENVÍO GRATIS</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-0 text-start">
+                            <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Guitarra Eléctrica Fender Stratocaster Americana</h5>
+                            <p class="text-muted text-decoration-line-through small mb-1">$ 1.150.000,00</p>
+                            <p class="fw-extrabold mb-1">Transferencia/cash: $ 977.500,00</p>
+                            <p class="text-muted small mb-0">Lista: $ 1.150.000,00</p>
+                        </div>
+                    </a>
+
+                    <a href="frontend-musicshow/vistas-publicas/producto.html?id=3" class="card card-producto flex-shrink-0 border-0 bg-transparent text-decoration-none text-body">
+                        <div class="position-relative mb-3 overflow-hidden rounded-2">
+                            <img src="https://images.pexels.com/photos/5650534/pexels-photo-5650534.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Batería">
+                            <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
+                                <span class="etiqueta-envio fw-bold text-white px-2 py-1 small">ENVÍO GRATIS</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-0 text-start">
+                            <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Batería Acústica Mapex Prodigy 5 Cuerpos Con Fierros</h5>
+                            <p class="text-muted text-decoration-line-through small mb-1 opacity-0">-</p>
+                            <p class="fw-extrabold mb-1">Transferencia/cash: $ 1.150.000,00</p>
+                            <p class="text-muted small mb-0">Lista: $ 1.350.000,00</p>
+                        </div>
+                    </a>
+
+                    <a href="frontend-musicshow/vistas-publicas/producto.html?id=4" class="card card-producto flex-shrink-0 border-0 bg-transparent text-decoration-none text-body">
+                        <div class="position-relative mb-3 overflow-hidden rounded-2">
+                            <img src="https://images.pexels.com/photos/37005815/pexels-photo-37005815.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Teclado MIDI">
+                            <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
+                                <span class="etiqueta-descuento fw-bold text-white px-2 py-1 small">-5% OFF</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-0 text-start">
+                            <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Teclado Controlador Midi Arturia Keylab 61 Teclas</h5>
+                            <p class="text-muted text-decoration-line-through small mb-1">$ 568.421,00</p>
+                            <p class="fw-extrabold mb-1">Transferencia/cash: $ 540.000,00</p>
+                            <p class="text-muted small mb-0">Lista: $ 610.000,00</p>
+                        </div>
+                    </a>
+
+                    <a href="frontend-musicshow/vistas-publicas/producto.html?id=5" class="card card-producto flex-shrink-0 border-0 bg-transparent text-decoration-none text-body">
+                        <div class="position-relative mb-3 overflow-hidden rounded-2">
+                            <img src="https://images.pexels.com/photos/17896555/pexels-photo-17896555.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Pedalera Darkglass">
+                            <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
+                                <span class="etiqueta-descuento fw-bold text-white px-2 py-1 small">-9% OFF</span>
+                                <span class="etiqueta-envio fw-bold text-white px-2 py-1 small">ENVÍO GRATIS</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-0 text-start">
+                            <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Pedalera Para Bajo Darkglass AGM Anagram Pantalla Táctil</h5>
+                            <p class="text-muted text-decoration-line-through small mb-1">$ 2.796.359,04</p>
+                            <p class="fw-extrabold mb-1">Transferencia/cash: $ 2.287.930,62</p>
+                            <p class="text-muted small mb-0">Lista: $ 2.542.145,13</p>
+                        </div>
+                    </a>
+
+                    <a href="frontend-musicshow/vistas-publicas/producto.html?id=6" class="card card-producto flex-shrink-0 border-0 bg-transparent text-decoration-none text-body">
+                        <div class="position-relative mb-3 overflow-hidden rounded-2">
+                            <img src="https://images.pexels.com/photos/9870700/pexels-photo-9870700.png" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Interfaz M-Audio">
+                            <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
+                                <span class="etiqueta-envio fw-bold text-white px-2 py-1 small">ENVÍO GRATIS</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-0 text-start">
+                            <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Interfaz De Audio M-Audio M-Track Solo USB</h5>
+                            <p class="text-muted text-decoration-line-through small mb-1 opacity-0">-</p>
+                            <p class="fw-extrabold mb-1">Transferencia/cash: $ 85.000,00</p>
+                            <p class="text-muted small mb-0">Lista: $ 95.000,00</p>
+                        </div>
+                    </a>
+
+                    <a href="frontend-musicshow/vistas-publicas/producto.html?id=7" class="card card-producto flex-shrink-0 border-0 bg-transparent text-decoration-none text-body">
+                        <div class="position-relative mb-3 overflow-hidden rounded-2">
+                            <img src="https://images.pexels.com/photos/8132521/pexels-photo-8132521.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Micrófono Shure">
+                            <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
+                                <span class="etiqueta-descuento fw-bold text-white px-2 py-1 small">-12% OFF</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-0 text-start">
+                            <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Micrófono Dinámico Shure SM58 Vocal Original</h5>
+                            <p class="text-muted text-decoration-line-through small mb-1">$ 195.000,00</p>
+                            <p class="fw-extrabold mb-1">Transferencia/cash: $ 171.600,00</p>
+                            <p class="text-muted small mb-0">Lista: $ 195.000,00</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CINTA DINÁMICA DE CATEGORÍAS (TICKER) -->
+        <div class="cinta-categorias-wrapper mt-2 mb-4">
+            <div class="cinta-track">
+                <a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=guitarras-electricas">GUITARRAS</a>
+                <a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=baterias-acusticas">BATERÍAS</a>
+                <a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=accesorios">ACCESORIOS</a>
+                <a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=violines">VIOLINES</a>
+                <a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=amplificadores-guitarra">AMPLIFICADORES</a>
+                <a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=teclados">TECLADOS</a>
+                <a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=pedales-efecto">PEDALES DE EFECTOS</a>
+                <a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=interfaces-audio">INTERFACES DE AUDIO</a>
+                
+                <a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=guitarras-electricas">GUITARRAS</a>
+                <a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=baterias-acusticas">BATERÍAS</a>
+                <a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=accesorios">ACCESORIOS</a>
+                <a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=violines">VIOLINES</a>
+                <a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=amplificadores-guitarra">AMPLIFICADORES</a>
+                <a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=teclados">TECLADOS</a>
+                <a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=pedales-efecto">PEDALES DE EFECTOS</a>
+                <a href="frontend-musicshow/vistas-publicas/catalogo.html?categoria=interfaces-audio">INTERFACES DE AUDIO</a>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: NOVEDADES -->
+        <section id="seccionNovedades" class="container py-4">
+            <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom border-secondary animacion-scroll">
+                <h3 class="fw-bold mb-0 text-uppercase" style="letter-spacing: 2px;">Novedades</h3>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-flecha d-none d-md-flex shadow-sm" onclick="moverCarruselUniversal('carruselNovedades', -1)">
+                        <i class="bi bi-chevron-left"></i>
+                    </button>
+                    <button class="btn btn-flecha d-none d-md-flex shadow-sm" onclick="moverCarruselUniversal('carruselNovedades', 1)">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="animacion-scroll animacion-retraso position-relative">
+                <div class="carrusel-productos d-flex gap-4 overflow-x-auto py-3 px-2" id="carruselNovedades">
+                    
+                    <a href="frontend-musicshow/vistas-publicas/producto.html?id=8" class="card card-producto flex-shrink-0 border-0 bg-transparent text-decoration-none text-body">
+                        <div class="position-relative mb-3 overflow-hidden rounded-2">
+                            <img src="https://images.pexels.com/photos/10618242/pexels-photo-10618242.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Sintetizador Nord">
+                            <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
+                                <span class="etiqueta-envio fw-bold text-white px-2 py-1 small">NUEVO INGRESO</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-0 text-start">
+                            <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Sintetizador Nord Stage 3 88 Teclas</h5>
+                            <p class="text-muted text-decoration-line-through small mb-1 opacity-0">-</p>
+                            <p class="fw-extrabold mb-1">Transferencia/cash: $ 4.250.000,00</p>
+                        </div>
+                    </a>
+
+                    <a href="frontend-musicshow/vistas-publicas/producto.html?id=9" class="card card-producto flex-shrink-0 border-0 bg-transparent text-decoration-none text-body">
+                        <div class="position-relative mb-3 overflow-hidden rounded-2">
+                            <img src="https://images.pexels.com/photos/13575087/pexels-photo-13575087.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Violín">
+                            <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
+                                <span class="etiqueta-envio fw-bold text-white px-2 py-1 small">NUEVO INGRESO</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-0 text-start">
+                            <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Violín Acústico Stradella 4/4 Con Estuche</h5>
+                            <p class="text-muted text-decoration-line-through small mb-1 opacity-0">-</p>
+                            <p class="fw-extrabold mb-1">Transferencia/cash: $ 120.000,00</p>
+                        </div>
+                    </a>
+
+                    <a href="frontend-musicshow/vistas-publicas/producto.html?id=10" class="card card-producto flex-shrink-0 border-0 bg-transparent text-decoration-none text-body">
+                        <div class="position-relative mb-3 overflow-hidden rounded-2">
+                            <img src="https://images.pexels.com/photos/5367985/pexels-photo-5367985.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Bajo">
+                            <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
+                                <span class="etiqueta-descuento fw-bold text-white px-2 py-1 small">-5% OFF</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-0 text-start">
+                            <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Bajo Eléctrico Squier Jazz Bass V (5 Cuerpos)</h5>
+                            <p class="text-muted text-decoration-line-through small mb-1">$ 750.000,00</p>
+                            <p class="fw-extrabold mb-1">Transferencia/cash: $ 712.500,00</p>
+                        </div>
+                    </a>
+
+                    <a href="frontend-musicshow/vistas-publicas/producto.html?id=11" class="card card-producto flex-shrink-0 border-0 bg-transparent text-decoration-none text-body">
+                        <div class="position-relative mb-3 overflow-hidden rounded-2">
+                            <img src="https://images.pexels.com/photos/13978776/pexels-photo-13978776.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Monitores de Estudio">
+                            <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
+                                <span class="etiqueta-envio fw-bold text-white px-2 py-1 small">ENVÍO GRATIS</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-0 text-start">
+                            <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Monitores De Estudio KRK Rokit 5 G4 (Par)</h5>
+                            <p class="text-muted text-decoration-line-through small mb-1 opacity-0">-</p>
+                            <p class="fw-extrabold mb-1">Transferencia/cash: $ 650.000,00</p>
+                            <p class="text-muted small mb-0">Lista: $ 720.000,00</p>
+                        </div>
+                    </a>
+
+                    <a href="frontend-musicshow/vistas-publicas/producto.html?id=12" class="card card-producto flex-shrink-0 border-0 bg-transparent text-decoration-none text-body">
+                        <div class="position-relative mb-3 overflow-hidden rounded-2">
+                            <img src="https://images.pexels.com/photos/9057762/pexels-photo-9057762.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Guitarra Acústica">
+                            <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
+                                <span class="etiqueta-descuento fw-bold text-white px-2 py-1 small">-10% OFF</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-0 text-start">
+                            <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Guitarra Electroacústica Yamaha APX600</h5>
+                            <p class="text-muted text-decoration-line-through small mb-1">$ 820.000,00</p>
+                            <p class="fw-extrabold mb-1">Transferencia/cash: $ 738.000,00</p>
+                            <p class="text-muted small mb-0">Lista: $ 820.000,00</p>
+                        </div>
+                    </a>
+
+                    <a href="frontend-musicshow/vistas-publicas/producto.html?id=13" class="card card-producto flex-shrink-0 border-0 bg-transparent text-decoration-none text-body">
+                        <div class="position-relative mb-3 overflow-hidden rounded-2">
+                            <img src="https://images.pexels.com/photos/5050610/pexels-photo-5050610.jpeg" class="img-fluid w-100 object-fit-cover img-cuadrada" alt="Pedal Boss">
+                            <div class="position-absolute bottom-0 start-0 d-flex flex-column gap-1 p-0 mb-3 ms-2">
+                                <span class="etiqueta-envio fw-bold text-white px-2 py-1 small">NUEVO INGRESO</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-0 text-start">
+                            <h5 class="fw-bold fs-6 text-uppercase mb-2 titulo-producto">Pedal De Efecto Boss DS-1 Distortion Clásico</h5>
+                            <p class="text-muted text-decoration-line-through small mb-1 opacity-0">-</p>
+                            <p class="fw-extrabold mb-1">Transferencia/cash: $ 145.000,00</p>
+                            <p class="text-muted small mb-0">Lista: $ 160.000,00</p>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN UBICACIÓN Y CONTACTO -->
+        <section id="seccionContacto" class="container py-5 mt-4 animacion-scroll">
+            <div class="row g-4">
+                <div class="col-md-6 d-flex flex-column">
+                    <h4 class="text-uppercase text-center mb-4 fw-bold fs-5" style="letter-spacing: 2px;">Nuestra Ubicación</h4>
+                    <div class="contacto-card rounded-4 p-2 h-100 d-flex flex-column">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.147250462719!2d-65.2078652!3d-26.8351549!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94225d3df13632cf%3A0x87a55b1115b090!2sBatalla%20de%20Ayacucho%20247%2C%20T4000%20San%20Miguel%20de%20Tucum%C3%A1n%2C%20Tucum%C3%A1n!5e0!3m2!1ses-419!2sar!4v1700000000000!5m2!1ses-419!2sar" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0; border-radius: 12px; min-height: 350px;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+
+                <div class="col-md-6 d-flex flex-column">
+                    <h4 class="text-uppercase text-center mb-4 fw-bold fs-5" style="letter-spacing: 2px;">Contáctenos</h4>
+                    <div class="contacto-card rounded-4 p-4 p-lg-5 d-flex flex-column justify-content-center h-100">
+                        <ul class="list-unstyled fs-6 mb-0 d-flex flex-column gap-4">
+                            <li class="d-flex align-items-start gap-3">
+                                <i class="bi bi-geo-alt fs-4 text-naranja"></i>
+                                <div>
+                                    <strong class="d-block mb-1 text-uppercase">Dirección:</strong>
+                                    <span class="text-white-50">Batalla de Ayacucho 247<br>T4000 San Miguel de Tucumán, Tucumán</span>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-start gap-3">
+                                <i class="bi bi-telephone fs-4 text-naranja"></i>
+                                <div>
+                                    <strong class="d-block mb-1 text-uppercase">Teléfono:</strong>
+                                    <span class="text-white-50">3815136085</span>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-start gap-3">
+                                <i class="bi bi-envelope fs-4 text-naranja"></i>
+                                <div>
+                                    <strong class="d-block mb-1 text-uppercase">Gmail:</strong>
+                                    <span class="text-white-50">musicshowtucuman@gmail.com</span>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-start gap-3">
+                                <i class="bi bi-clock fs-4 text-naranja"></i>
+                                <div>
+                                    <strong class="d-block mb-1 text-uppercase">Horarios:</strong>
+                                    <span class="text-white-50">
+                                        Lunes a Viernes: 9:30 a.m. – 1:00 p.m. y 5:30 p.m. – 9:00 p.m.<br>
+                                        Sábados: 9:30 a.m. – 1:00 p.m.<br>
+                                        Domingos: Cerrado
+                                    </span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- ==========================================
-     FOOTER (PIE DE PÁGINA)
-    =========================================== -->
+    <!-- FOOTER -->
     <footer class="footer-custom text-white pt-5 pb-4 mt-5 border-top border-secondary">
         <div class="container">
             <div class="row gy-4 align-items-center">
-                
-                <!-- Columna Izquierda: Enlaces Principales -->
                 <div class="col-md-6">
                     <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
                         <li class="footer-link-item pb-2 border-bottom border-secondary w-75">
-                            <a href="#" class="text-decoration-none text-white fw-bold text-uppercase tracking-wider">Métodos de Pago</a>
+                            <a href="frontend-musicshow/vistas-publicas/sobreNosotros.html" class="text-decoration-none text-white fw-bold text-uppercase tracking-wider">Sobre Nosotros</a>
                         </li>
                         <li class="footer-link-item pb-2 border-bottom border-secondary w-75">
-                            <a href="sobreNosotros.html" class="text-decoration-none text-white fw-bold text-uppercase tracking-wider">Sobre Nosotros</a>
-                        </li>
-                        <li class="footer-link-item pb-2 border-bottom border-secondary w-75">
-                            <a href="#" class="text-decoration-none text-white fw-bold text-uppercase tracking-wider">Preguntas Frecuentes</a>
+                            <a href="frontend-musicshow/vistas-publicas/preguntas.html" class="text-decoration-none text-white fw-bold text-uppercase tracking-wider">Preguntas Frecuentes</a>
                         </li>
                     </ul>
                 </div>
 
-                <!-- Columna Derecha: Redes Sociales y Contacto Directo -->
                 <div class="col-md-6">
-                    <!-- Iconos de Redes Sociales con diseño de tarjetas redondeadas -->
                     <div class="d-flex flex-wrap gap-3 mb-4">
-                        
-                        <!-- Instagram -->
                         <a href="https://www.instagram.com/musicshow1/?hl=es" target="_blank" class="social-icon-box text-decoration-none text-white d-flex flex-column align-items-center justify-content-center p-2 rounded-3">
                             <i class="bi bi-instagram fs-4 mb-1"></i>
                             <span class="small">Instagram</span>
                         </a>
-
-                        <!-- Facebook -->
                         <a href="https://www.facebook.com/MUSICSHOWTUCUMAN" target="_blank" class="social-icon-box text-decoration-none text-white d-flex flex-column align-items-center justify-content-center p-2 rounded-3">
                             <i class="bi bi-facebook fs-4 mb-1"></i>
                             <span class="small">Facebook</span>
                         </a>
-
-                        <!-- Messenger -->
                         <a href="https://m.me/MUSICSHOWTUCUMAN" target="_blank" class="social-icon-box text-decoration-none text-white d-flex flex-column align-items-center justify-content-center p-2 rounded-3">
                             <i class="bi bi-messenger fs-4 mb-1"></i>
                             <span class="small">Messenger</span>
                         </a>
-
-                        <!-- WhatsApp Web -->
                         <a href="https://web.whatsapp.com/send?phone=5493815136085" target="_blank" class="social-icon-box text-decoration-none text-white d-flex flex-column align-items-center justify-content-center p-2 rounded-3">
                             <i class="bi bi-whatsapp fs-4 mb-1"></i>
                             <span class="small">WhatsApp</span>
                         </a>
-
                     </div>
-
-                    <!-- Datos rápidos debajo de los iconos -->
                     <div class="d-flex flex-column gap-2 text-white-50 small">
                         <p class="mb-0"><strong class="text-white">Teléfono:</strong> 3815136085</p>
                         <p class="mb-0"><strong class="text-white">Gmail:</strong> musicshowtucuman@gmail.com</p>
                     </div>
                 </div>
-
             </div>
 
-            <!-- Copyright inferior -->
             <div class="row mt-4 pt-3 border-top border-dark text-center text-white-50 small">
                 <p class="mb-0">&copy; 2026 Music Show - Instrumentos Musicales. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Botón Izquierdo: Cambiar Tema (Modo Claro / Oscuro) -->
+    <!-- Botones Flotantes -->
     <button id="btnCambiarTema" class="btn-flotante btn-flotante-izq shadow-lg" onclick="alternarTema()" title="Cambiar color de la página">
         <i class="bi bi-sun-fill" id="iconoTema"></i>
     </button>
 
-    <!-- Botón Derecho: Contacto WhatsApp -->
     <a href="https://wa.me/5493815136085?text=Hola%20Music%20Show!" class="btn-flotante btn-flotante-der shadow-lg" target="_blank" rel="noopener noreferrer" title="Contactar por WhatsApp">
         <i class="bi bi-whatsapp"></i>
     </a>
 
-
-    <!-- Bootstrap JS Bundle -->
+    <!-- Bootstrap JS Bundle y Scripts de JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/api.js"></script>
-    <script src="js/producto.js"></script>
-    <script src="js/catalogo.js"></script> 
-
-    
+    <script src="frontend-musicshow/js/api.js"></script>
+    <script src="frontend-musicshow/js/producto.js"></script>
+    <script src="frontend-musicshow/js/catalogo.js"></script> 
 </body>
 </html>
