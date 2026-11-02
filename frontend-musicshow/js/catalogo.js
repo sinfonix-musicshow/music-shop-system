@@ -94,23 +94,39 @@ function moverCarruselUniversal(idCarrusel, direccion) {
 
 /* -------------------------------------------------------------------------- */
 
+// ==========================================
+// CARGA Y FILTRADO DE PRODUCTOS (CATÁLOGO)
+// ==========================================
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Obtener la categoría desde la URL
+    // 1. Obtener parámetros desde la URL
     const parametrosURL = new URLSearchParams(window.location.search);
     const categoria = parametrosURL.get('categoria') || 'todos'; 
+    const terminoBusqueda = parametrosURL.get('buscar'); // Capturamos lo que el usuario buscó
 
-    // 2. Actualizar el título de la página
+    // 2. Actualizar el título de la página dinámicamente
     const tituloElemento = document.getElementById('titulo-categoria');
     if (tituloElemento) {
-        tituloElemento.textContent = categoria.replace('-', ' ');
+        if (terminoBusqueda) {
+            tituloElemento.textContent = `Resultados para: "${terminoBusqueda}"`;
+        } else if (categoria !== 'todos') {
+            tituloElemento.textContent = categoria.replace('-', ' ').toUpperCase();
+        } else {
+            tituloElemento.textContent = "TODOS LOS PRODUCTOS";
+        }
     }
 
     // 3. Referencias al DOM
     const contenedorProductos = document.getElementById('contenedor-productos');
 
-    // 4. Consumir la API de C#
-    const apiUrl = `http://localhost:5144/api/instrumentos${categoria !== 'todos' ? `?categoria=${categoria}` : ''}`;
+    // 4. Determinar la URL de la API
+    // Si hay una búsqueda, traemos TODOS los productos para filtrarlos en el JS
+    // Si no hay búsqueda, usamos la URL con categoría como estaba antes
+    let apiUrl = 'http://localhost:5144/api/instrumentos';
+    if (categoria !== 'todos' && !terminoBusqueda) {
+        apiUrl = `http://localhost:5144/api/instrumentos?categoria=${categoria}`;
+    }
 
+    // 5. Consumir la API
     fetch(apiUrl)
         .then(respuesta => {
             if (!respuesta.ok) throw new Error("Error al conectar con el servidor");
@@ -119,13 +135,45 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(productos => {
             contenedorProductos.innerHTML = ""; // Limpiar el spinner de carga
 
-            if (productos.length === 0) {
-                contenedorProductos.innerHTML = `<div class="col-12"><p class="text-secondary text-center py-5">No hay productos disponibles en esta categoría por el momento.</p></div>`;
+// 6. Aplicar el filtro de BÚSQUEDA si el usuario escribió algo
+            let productosAMostrar = productos;
+
+            if (terminoBusqueda) {
+                // Función interna para limpiar tildes y pasar a minúsculas
+                const limpiarTexto = (texto) => {
+                    return texto
+                        .normalize("NFD") // Separa las letras de sus acentos
+                        .replace(/[\u0300-\u036f]/g, "") // Borra los acentos
+                        .toLowerCase(); // Pasa todo a minúsculas
+                };
+
+                const textoBuscado = limpiarTexto(terminoBusqueda);
+                
+                // Filtramos comparando el texto limpio con los datos limpios
+                productosAMostrar = productos.filter(producto => {
+                    const nombreLimpio = producto.nombre ? limpiarTexto(producto.nombre) : "";
+                    const marcaLimpia = producto.marca ? limpiarTexto(producto.marca) : "";
+                    const categoriaLimpia = producto.categoria ? limpiarTexto(producto.categoria) : "";
+
+                    return nombreLimpio.includes(textoBuscado) ||
+                        marcaLimpia.includes(textoBuscado) ||
+                        categoriaLimpia.includes(textoBuscado);
+                });
+            }
+
+            // 7. Validar si hay productos para mostrar
+            if (productosAMostrar.length === 0) {
+                contenedorProductos.innerHTML = `
+                    <div class="col-12">
+                        <p class="text-secondary text-center py-5 fs-5">
+                            No encontramos productos que coincidan con tu búsqueda.
+                        </p>
+                    </div>`;
                 return;
             }
 
-            // 5. Dibujar cada producto con el diseño moderno
-            productos.forEach(producto => {
+            // 8. Dibujar cada producto filtrado con el diseño moderno
+            productosAMostrar.forEach(producto => {
                 const precioBase = producto.precio;
                 const precioLista = precioBase * 1.15; 
                 const descuento = 15; 
