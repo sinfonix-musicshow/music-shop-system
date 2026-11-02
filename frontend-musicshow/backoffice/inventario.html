@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario - Music Show Gestión</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- CSS del Backoffice -->
+    <link rel="stylesheet" href="../CSS/admin-style.css">
+</head>
+<body>
+
+    <!-- NAVBAR BACKOFFICE -->
+    <nav class="navbar navbar-admin fixed-top p-3">
+        <div class="container-fluid px-4 d-flex justify-content-between align-items-center">
+            <a href="index-admin.html" class="text-decoration-none d-flex align-items-center gap-2">
+                <span class="fs-5 fw-bold text-uppercase tracking-wider text-white">MUSIC SHOW</span>
+                <span class="badge text-dark bg-light ms-2 fw-bold" style="font-size: 0.75rem;">Gestión</span>
+            </a>
+            <div>
+                <a href="../vistas-publicas/index.html" class="btn btn-outline-custom rounded-pill px-4 py-2 fw-semibold" target="_blank">
+                    <i class="bi bi-box-arrow-up-right me-2"></i> Ver catálogo
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- NAVEGACIÓN SECUNDARIA MINIMALISTA -->
+    <div class="container-fluid px-4 sub-navbar">
+        <div class="d-flex flex-wrap gap-4">
+            <a href="inventario.html" class="text-decoration-none btn-subnav active">Gestión de Inventario</a>
+            <a href="punto-venta.html" class="text-decoration-none btn-subnav">Registrar Venta</a>
+            <a href="historial.html" class="text-decoration-none btn-subnav">Historial de Facturas</a>
+            <a href="gestor-web.html" class="text-decoration-none btn-subnav">Administrar Web</a>
+        </div>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="container-fluid px-4">
+        
+        <div class="panel-tabla">
+            
+            <!-- Encabezado Espacioso -->
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-5 gap-4">
+                <div class="d-flex align-items-center gap-3">
+                    <i class="bi bi-box-seam fs-3" style="color: var(--color-naranja);"></i>
+                    <h2 class="fw-normal m-0 fs-3">Catálogo e inventario</h2>
+                </div>
+                
+                <div class="d-flex align-items-center gap-4">
+                    <!-- En la sección del buscador (línea aprox. 100) -->
+                    <div class="search-wrapper">
+                        <i class="bi bi-search search-icon"></i>
+                        <input type="text" id="buscador-inventario" class="form-control search-minimalist" placeholder="Buscar por código, marca o nombre...">
+                    </div>
+
+                    <button id="btn-nuevo-producto" class="btn text-white fw-semibold rounded-pill px-4 py-2 d-flex align-items-center gap-2" style="background-color: var(--color-naranja); border: none;">
+                        <i class="bi bi-plus-lg"></i> Nuevo Producto
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tabla Minimalista -->
+            <div class="table-responsive">
+                <table class="table table-custom align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 15%;">Código</th>
+                            <th scope="col" style="width: 35%;">Producto</th>
+                            <th scope="col" style="width: 15%;">Precio Unitario</th>
+                            <th scope="col" class="text-center" style="width: 20%;">Ajuste de Stock</th>
+                            <th scope="col" class="text-center" style="width: 15%;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpo-tabla-inventario">
+                        <!-- Fila 1 -->
+                        <tr>
+                            <td><span class="text-secondary font-monospace">00212345</span></td>
+                            <td>Guitarra Acústica Yamaha</td>
+                            <td>$ 150.000,00</td>
+                            <td class="text-center">
+                                <div class="control-stock">
+                                    <button class="btn-stock"><i class="bi bi-dash"></i></button>
+                                    <input type="number" class="input-stock" value="8">
+                                    <button class="btn-stock"><i class="bi bi-plus"></i></button>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <button class="btn-accion me-2" title="Editar"><i class="bi bi-pencil"></i></button>
+                                <button class="btn-accion delete" title="Eliminar"><i class="bi bi-trash"></i></button>
+                            </td>
+                        </tr>
+
+                        <!-- Fila 2 -->
+                        <tr>
+                            <td><span class="text-secondary font-monospace">45896723</span></td>
+                            <td>Batería Acústica Mapex</td>
+                            <td>$ 2.500.000,00</td>
+                            <td class="text-center">
+                                <div class="control-stock">
+                                    <button class="btn-stock"><i class="bi bi-dash"></i></button>
+                                    <input type="number" class="input-stock" value="0">
+                                    <button class="btn-stock"><i class="bi bi-plus"></i></button>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <button class="btn-accion me-2" title="Editar"><i class="bi bi-pencil"></i></button>
+                                <button class="btn-accion delete" title="Eliminar"><i class="bi bi-trash"></i></button>
+                            </td>
+                        </tr>
+
+                        <!-- Fila 3 -->
+                        <tr>
+                            <td><span class="text-secondary font-monospace">45673489</span></td>
+                            <td>Guitarra Criolla Fonseca</td>
+                            <td>$ 280.000,00</td>
+                            <td class="text-center">
+                                <div class="control-stock">
+                                    <button class="btn-stock"><i class="bi bi-dash"></i></button>
+                                    <input type="number" class="input-stock" value="2">
+                                    <button class="btn-stock"><i class="bi bi-plus"></i></button>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <button class="btn-accion me-2" title="Editar"><i class="bi bi-pencil"></i></button>
+                                <button class="btn-accion delete" title="Eliminar"><i class="bi bi-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Paginación Sutil -->
+            <div class="d-flex justify-content-between align-items-center mt-4 pt-4 border-top border-secondary">
+                <span class="text-secondary small"></span>
+                <ul class="pagination pagination-sm m-0">
+                    <li class="page-item disabled"><a class="page-link bg-transparent border-0 text-secondary" href="#">Anterior</a></li>
+                    <li class="page-item active"><a class="page-link rounded-circle text-white fw-bold mx-1" href="#" style="background-color: var(--color-naranja); border: none; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;">1</a></li>
+                    <li class="page-item"><a class="page-link bg-transparent border-0 text-secondary mx-1" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link bg-transparent border-0 text-secondary mx-1" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link bg-transparent border-0 text-light" href="#">Siguiente </a></li>
+                </ul> 
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Modal para Nuevo/Editar Producto -->
+<div class="modal fade" id="modalProducto" tabindex="-1" aria-hidden="true" data-bs-theme="dark">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark text-white" style="border: 1px solid #333; border-radius: 12px;">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title" id="modalProductoTitulo">Nuevo Producto</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formProducto">
+                    <input type="hidden" id="productoId">
+                    <div class="mb-3">
+                        <label class="form-label text-secondary small text-uppercase">Marca / Nombre</label>
+                        <input type="text" class="form-control bg-transparent text-white border-secondary" id="productoNombre" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 mb-3">
+                            <label class="form-label text-secondary small text-uppercase">Categoría</label>
+                            <input type="text" class="form-control bg-transparent text-white border-secondary" id="productoCategoria" required>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label class="form-label text-secondary small text-uppercase">Stock Inicial</label>
+                            <input type="number" class="form-control bg-transparent text-white border-secondary" id="productoStock" value="1" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-secondary small text-uppercase">Precio Unitario ($)</label>
+                        <input type="number" class="form-control bg-transparent text-white border-secondary" id="productoPrecio" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-secondary">
+                <button type="button" class="btn btn-outline-light rounded-pill" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn text-white rounded-pill" id="btn-guardar-producto" style="background-color: var(--color-naranja);">Guardar Producto</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Enlace a tu script (justo antes del </body>) -->
+<script src="../js/inventario.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
