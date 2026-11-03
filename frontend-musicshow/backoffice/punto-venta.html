@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Venta - Music Show Gestión</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- CSS del Backoffice -->
+    <link rel="stylesheet" href="../CSS/admin-style.css">
+</head>
+<body>
+
+    <!-- NAVBAR BACKOFFICE -->
+    <nav class="navbar navbar-admin fixed-top p-3">
+        <div class="container-fluid px-4 d-flex justify-content-between align-items-center">
+            <a href="index-admin.html" class="text-decoration-none d-flex align-items-center gap-2">
+                <span class="fs-5 fw-bold text-uppercase tracking-wider text-white">MUSIC SHOW</span>
+                <span class="badge text-dark bg-light ms-2 fw-bold" style="font-size: 0.75rem;">Gestión</span>
+            </a>
+            <div>
+                <a href="../vistas-publicas/index.html" class="btn btn-outline-custom rounded-pill px-4 py-2 fw-semibold" target="_blank">
+                    <i class="bi bi-box-arrow-up-right me-2"></i> Ver catálogo
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- NAVEGACIÓN SECUNDARIA -->
+    <div class="container-fluid px-4 sub-navbar">
+        <div class="d-flex flex-wrap gap-4">
+            <a href="inventario.html" class="text-decoration-none btn-subnav">Gestión de Inventario</a>
+            <a href="punto-venta.html" class="text-decoration-none btn-subnav active">Registrar Venta</a>
+            <a href="historial.html" class="text-decoration-none btn-subnav">Historial de Facturas</a>
+            <a href="gestor-web.html" class="text-decoration-none btn-subnav">Administrar Web</a>
+        </div>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="container-fluid px-4 pt-2 pb-5">
+        
+        <div class="d-flex align-items-center gap-3 mb-5">
+            <i class="bi bi-receipt fs-3" style="color: var(--color-naranja);"></i>
+            <h2 class="fw-normal m-0 fs-3">Registro de Factura</h2>
+        </div>
+
+        <div class="row g-5">
+            
+            <!-- COLUMNA IZQUIERDA: FORMULARIO -->
+            <div class="col-lg-7 d-flex flex-column gap-5">
+                
+                <!-- SECCIÓN 1: CARGA DE DATOS -->
+                <div class="panel-venta">
+                    <h5 class="text-secondary mb-4 fs-6 text-uppercase tracking-wider">1. Datos del Cliente</h5>
+                    
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label text-secondary small">DNI / CUIT</label>
+                            <input type="text" class="form-control input-venta" placeholder="Ej: 47353590" id="inputDni">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-secondary small">Tipo de Factura</label>
+                            <select class="form-select input-venta" id="selectFactura">
+                                <option value="C">Factura C (Consumidor Final)</option>
+                                <option value="A">Factura A (Responsable Inscripto)</option>
+                                <option value="B">Factura B (Exento)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Caja con jerarquía visual para el resultado del DNI -->
+                    <div class="caja-cliente mt-4 d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="d-block text-secondary small text-uppercase mb-1">Nombre / Razón Social</span>
+                            <span class="fw-semibold fs-5 text-light" id="nombreCliente">CONSUMIDOR FINAL</span>
+                        </div>
+                        <div class="text-end">
+                            <span class="d-block text-secondary small text-uppercase mb-1">Condición IVA</span>
+                            <span class="fw-semibold text-light" id="ivaCliente">Consumidor Final</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 2: DETALLE DE VENTA -->
+                <div class="panel-venta border-top border-secondary pt-5">
+                    <h5 class="text-secondary mb-4 fs-6 text-uppercase tracking-wider">2. Detalle de Venta</h5>
+                    
+                    <!-- Fila de Inputs con Buscador Autocompletable -->
+                    <div class="row g-3 align-items-end mb-4">
+                        <div class="col-md-2">
+                            <label class="form-label text-secondary small">Cant.</label>
+                            <input type="number" class="form-control input-venta text-center" value="1" min="1" id="inputCant">
+                        </div>
+                        <div class="col-md-5 position-relative">
+                            <label class="form-label text-secondary small">Producto (Buscar)</label>
+                            <input type="text" class="form-control input-venta" placeholder="Escribí para buscar..." id="inputBuscarProd" autocomplete="off">
+                            
+                            <!-- Lista de sugerencias (oculta por defecto) -->
+                            <ul class="list-group position-absolute w-100 mt-1 d-none lista-sugerencias shadow-lg" id="sugerenciasProd">
+                                <!-- El JS inyecta las sugerencias aquí -->
+                            </ul>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label text-secondary small">Precio Unit.</label>
+                            <!-- Le quitamos el readonly y el background oscuro -->
+                            <input type="number" class="form-control input-venta" placeholder="$ 0,00" id="inputPrecioProd">
+                            </div>
+                        <div class="col-md-2">
+                            <button id="btnAgregarProd" class="btn w-100 text-white fw-semibold" style="background-color: var(--color-naranja); border-radius: 8px; padding: 0.6rem;">
+                                Agregar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tabla de Items -->
+                    <div class="table-responsive">
+                        <table class="table table-custom align-middle m-0">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10%;">CANT</th>
+                                    <th style="width: 55%;">DESCRIPCIÓN</th>
+                                    <th style="width: 25%;">PRECIO</th>
+                                    <th class="text-center" style="width: 10%;"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="cuerpoTablaVenta">
+                                <!-- El JS inyecta los items agregados aquí -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+<!-- SECCIÓN 3: PAGO Y EMISIÓN -->
+<div class="panel-venta border-top border-secondary pt-4 mb-5 pb-4 d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-4">
+    <div class="flex-grow-1" style="max-width: 300px;">
+        <label class="form-label text-secondary small text-uppercase">Medio de Pago</label>
+        <select class="form-select input-venta">
+            <option>Efectivo</option>
+            <option>Transferencia</option>
+            <option>Tarjeta de Débito</option>
+            <option>Tarjeta de Crédito</option>
+        </select>
+    </div>
+    
+    <div class="text-end">
+        <div class="text-secondary small text-uppercase mb-1">Total a Cobrar</div>
+        <div class="total-cobrar mb-3" id="totalCobrarFinal">$ 0,00</div>
+        <button id="btnEmitirFactura" class="btn text-white fw-bold px-4 py-3 w-100" style="background-color: var(--color-naranja); border-radius: 12px; transition: all 0.3s; font-size: 1.1rem;">
+            <i class="bi bi-cloud-arrow-up me-2"></i> Autorizar en ARCA y Emitir
+        </button>
+    </div>
+</div>
+
+            </div>
+
+<!-- COLUMNA DERECHA: VISTA PREVIA FACTURA -->
+<div class="col-lg-5">
+    
+    <!-- ESTADO 1: Esperando Emisión (Visible por defecto) -->
+    <div id="estadoEsperaTicket" class="ticket-preview d-flex flex-column align-items-center justify-content-center text-center position-sticky" style="top: 100px; border: 1px solid #333;">
+        <div class="text-secondary opacity-75">
+            <i class="bi bi-receipt display-1 mb-3 d-block"></i>
+            <h5 class="fw-normal">Esperando facturación</h5>
+            <p class="small mb-0">El comprobante se generará aquí<br>al autorizar la venta en ARCA.</p>
+        </div>
+    </div>
+
+    <!-- ESTADO 2: Ticket Generado (Oculto por defecto con d-none) -->
+    <div id="ticketGenerado" class="ticket-preview position-sticky d-none" style="top: 100px;">
+        
+        <div class="ticket-header">
+            <h4 class="text-white fw-bold mb-1">MUSIC SHOW</h4>
+            <p class="text-secondary small mb-0">Ayacucho 247, Tucumán</p>
+            <p class="text-secondary small mb-0">CUIT: 30-XXXXXXXX-X</p>
+            <p class="text-light small mt-3 mb-0 fw-bold fs-6">FACTURA C - N° 0001-00004582</p>
+        </div>
+
+        <div class="ticket-body">
+            <div class="d-flex justify-content-between mb-2">
+                <span id="ticketFecha">FECHA: --/--/----</span>
+                <span id="ticketHora">HORA: --:--</span>
+            </div>
+            <div class="mb-4 mt-3 text-uppercase">
+                CLIENTE: <span id="ticketNombreCli">CONSUMIDOR FINAL</span><br>
+                DNI/CUIT: <span id="ticketDniCli">00000000</span><br>
+                CONDICIÓN: <span id="ticketIvaCli">Consumidor Final</span>
+            </div>
+
+            <!-- Detalle de Productos -->
+            <div class="d-flex justify-content-between border-bottom border-secondary pb-1 mb-2 fw-bold text-white mt-4">
+                <span>DESCRIPCIÓN</span>
+                <span>IMPORTE</span>
+            </div>
+            
+            <div id="ticketItemsContainer">
+                <!-- El JS inyecta los items aquí -->
+            </div>
+            
+            <div class="d-flex justify-content-between mt-5 pt-3 border-top border-secondary fw-bold text-white fs-5">
+                <span>TOTAL</span>
+                <span id="ticketTotalContainer">$ 0,00</span>
+            </div>
+        </div>
+
+        <div class="ticket-qr">
+            <i class="bi bi-qr-code display-4 d-block mb-2"></i>
+            <span class="small" style="font-size: 0.75rem;">Código de Autorización ARCA (CAE): <br><strong class="text-light">73489274928374</strong></span>
+        </div>
+        
+        <!-- Botón para nueva venta -->
+        <button id="btnNuevaVenta" class="btn btn-outline-secondary w-100 mt-4 rounded-pill">
+            <i class="bi bi-arrow-clockwise me-2"></i>Iniciar Nueva Venta
+        </button>
+
+    </div>
+</div>
+
+        </div>
+    </main>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Script de Lógica del Punto de Venta -->
+    <script src="../js/punto-venta.js"></script>
+</body>
+</html>
