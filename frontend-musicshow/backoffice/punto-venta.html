@@ -104,9 +104,8 @@
                         </div>
                         <div class="col-md-3">
                             <label class="form-label text-secondary small">Precio Unit.</label>
-                            <!-- Le quitamos el readonly y el background oscuro -->
                             <input type="number" class="form-control input-venta" placeholder="$ 0,00" id="inputPrecioProd">
-                            </div>
+                        </div>
                         <div class="col-md-2">
                             <button id="btnAgregarProd" class="btn w-100 text-white fw-semibold" style="background-color: var(--color-naranja); border-radius: 8px; padding: 0.6rem;">
                                 Agregar
@@ -132,90 +131,100 @@
                     </div>
                 </div>
 
-<!-- SECCIÓN 3: PAGO Y EMISIÓN -->
-<div class="panel-venta border-top border-secondary pt-4 mb-5 pb-4 d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-4">
-    <div class="flex-grow-1" style="max-width: 300px;">
-        <label class="form-label text-secondary small text-uppercase">Medio de Pago</label>
-        <select class="form-select input-venta">
-            <option>Efectivo</option>
-            <option>Transferencia</option>
-            <option>Tarjeta de Débito</option>
-            <option>Tarjeta de Crédito</option>
-        </select>
-    </div>
-    
-    <div class="text-end">
-        <div class="text-secondary small text-uppercase mb-1">Total a Cobrar</div>
-        <div class="total-cobrar mb-3" id="totalCobrarFinal">$ 0,00</div>
-        <button id="btnEmitirFactura" class="btn text-white fw-bold px-4 py-3 w-100" style="background-color: var(--color-naranja); border-radius: 12px; transition: all 0.3s; font-size: 1.1rem;">
-            <i class="bi bi-cloud-arrow-up me-2"></i> Autorizar en ARCA y Emitir
-        </button>
-    </div>
-</div>
+                <!-- SECCIÓN 3: PAGO Y EMISIÓN -->
+                <div class="panel-venta border-top border-secondary pt-4 mb-5 pb-4 d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-4">
+                    <div class="flex-grow-1" style="max-width: 300px;">
+                        <label class="form-label text-secondary small text-uppercase">Medio de Pago</label>
+                        <select class="form-select input-venta">
+                            <option>Efectivo</option>
+                            <option>Transferencia</option>
+                            <option>Tarjeta de Débito</option>
+                            <option>Tarjeta de Crédito</option>
+                        </select>
+                    </div>
+                    
+                    <div class="text-end">
+                        <div class="text-secondary small text-uppercase mb-1">Total a Cobrar</div>
+                        <div class="total-cobrar mb-3" id="totalCobrarFinal">$ 0,00</div>
+                        <button id="btnEmitirFactura" class="btn text-white fw-bold px-4 py-3 w-100" style="background-color: var(--color-naranja); border-radius: 12px; transition: all 0.3s; font-size: 1.1rem;">
+                            <i class="bi bi-cloud-arrow-up me-2"></i> Autorizar en ARCA y Emitir
+                        </button>
+                    </div>
+                </div>
 
             </div>
 
-<!-- COLUMNA DERECHA: VISTA PREVIA FACTURA -->
-<div class="col-lg-5">
-    
-    <!-- ESTADO 1: Esperando Emisión (Visible por defecto) -->
-    <div id="estadoEsperaTicket" class="ticket-preview d-flex flex-column align-items-center justify-content-center text-center position-sticky" style="top: 100px; border: 1px solid #333;">
-        <div class="text-secondary opacity-75">
-            <i class="bi bi-receipt display-1 mb-3 d-block"></i>
-            <h5 class="fw-normal">Esperando facturación</h5>
-            <p class="small mb-0">El comprobante se generará aquí<br>al autorizar la venta en ARCA.</p>
-        </div>
-    </div>
+            <!-- COLUMNA DERECHA: VISTA PREVIA FACTURA -->
+            <div class="col-lg-5">
+                
+                <!-- ESTADO 1: Esperando Emisión (Visible por defecto) -->
+                <div id="estadoEsperaTicket" class="ticket-preview d-flex flex-column align-items-center justify-content-center text-center position-sticky" style="top: 100px; border: 1px solid #333;">
+                    <div class="text-secondary opacity-75">
+                        <i class="bi bi-receipt display-1 mb-3 d-block"></i>
+                        <h5 class="fw-normal">Esperando facturación</h5>
+                        <p class="small mb-0">El comprobante se generará aquí<br>al autorizar la venta en ARCA.</p>
+                    </div>
+                </div>
 
-    <!-- ESTADO 2: Ticket Generado (Oculto por defecto con d-none) -->
-    <div id="ticketGenerado" class="ticket-preview position-sticky d-none" style="top: 100px;">
-        
-        <div class="ticket-header">
-            <h4 class="text-white fw-bold mb-1">MUSIC SHOW</h4>
-            <p class="text-secondary small mb-0">Ayacucho 247, Tucumán</p>
-            <p class="text-secondary small mb-0">CUIT: 30-XXXXXXXX-X</p>
-            <p class="text-light small mt-3 mb-0 fw-bold fs-6">FACTURA C - N° 0001-00004582</p>
-        </div>
+                <!-- ESTADO 2: Ticket Generado (Oculto por defecto con d-none) -->
+                <div id="ticketGenerado" class="ticket-preview position-sticky d-none" style="top: 100px;">
+                    
+                    <div class="ticket-header">
+                        <h4 class="text-white fw-bold mb-1">MUSIC SHOW</h4>
+                        <p class="text-secondary small mb-0">Ayacucho 247, Tucumán</p>
+                        <p class="text-secondary small mb-0">CUIT: 30-XXXXXXXX-X</p>
+                        <p class="text-light small mt-3 mb-0 fw-bold fs-6">FACTURA C - N° 0001-00004582</p>
+                    </div>
 
-        <div class="ticket-body">
-            <div class="d-flex justify-content-between mb-2">
-                <span id="ticketFecha">FECHA: --/--/----</span>
-                <span id="ticketHora">HORA: --:--</span>
-            </div>
-            <div class="mb-4 mt-3 text-uppercase">
-                CLIENTE: <span id="ticketNombreCli">CONSUMIDOR FINAL</span><br>
-                DNI/CUIT: <span id="ticketDniCli">00000000</span><br>
-                CONDICIÓN: <span id="ticketIvaCli">Consumidor Final</span>
-            </div>
+                    <div class="ticket-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span id="ticketFecha">FECHA: --/--/----</span>
+                            <span id="ticketHora">HORA: --:--</span>
+                        </div>
+                        <div class="mb-4 mt-3 text-uppercase">
+                            CLIENTE: <span id="ticketNombreCli">CONSUMIDOR FINAL</span><br>
+                            DNI/CUIT: <span id="ticketDniCli">00000000</span><br>
+                            CONDICIÓN: <span id="ticketIvaCli">Consumidor Final</span>
+                        </div>
 
-            <!-- Detalle de Productos -->
-            <div class="d-flex justify-content-between border-bottom border-secondary pb-1 mb-2 fw-bold text-white mt-4">
-                <span>DESCRIPCIÓN</span>
-                <span>IMPORTE</span>
-            </div>
-            
-            <div id="ticketItemsContainer">
-                <!-- El JS inyecta los items aquí -->
-            </div>
-            
-            <div class="d-flex justify-content-between mt-5 pt-3 border-top border-secondary fw-bold text-white fs-5">
-                <span>TOTAL</span>
-                <span id="ticketTotalContainer">$ 0,00</span>
-            </div>
-        </div>
+                        <!-- Detalle de Productos -->
+                        <div class="d-flex justify-content-between border-bottom border-secondary pb-1 mb-2 fw-bold text-white mt-4">
+                            <span>DESCRIPCIÓN</span>
+                            <span>IMPORTE</span>
+                        </div>
+                        
+                        <div id="ticketItemsContainer">
+                            <!-- El JS inyecta los items aquí -->
+                        </div>
+                        
+                        <div class="d-flex justify-content-between mt-5 pt-3 border-top border-secondary fw-bold text-white fs-5">
+                            <span>TOTAL</span>
+                            <span id="ticketTotalContainer">$ 0,00</span>
+                        </div>
+                    </div>
 
-        <div class="ticket-qr">
-            <i class="bi bi-qr-code display-4 d-block mb-2"></i>
-            <span class="small" style="font-size: 0.75rem;">Código de Autorización ARCA (CAE): <br><strong class="text-light">73489274928374</strong></span>
-        </div>
-        
-        <!-- Botón para nueva venta -->
-        <button id="btnNuevaVenta" class="btn btn-outline-secondary w-100 mt-4 rounded-pill">
-            <i class="bi bi-arrow-clockwise me-2"></i>Iniciar Nueva Venta
-        </button>
+                    <div class="ticket-qr">
+                        <i class="bi bi-qr-code display-4 d-block mb-2"></i>
+                        <span class="small" style="font-size: 0.75rem;">Código de Autorización ARCA (CAE): <br><strong class="text-light">73489274928374</strong></span>
+                    </div>
 
-    </div>
-</div>
+                    <!-- BOTONES DE ACCIÓN TRAS LA EMISIÓN -->
+                    <div class="d-flex gap-2 mt-4">
+                        <button id="btnImprimirTicket" class="btn text-white w-50 rounded-pill fw-semibold" style="background-color: var(--color-naranja);">
+                            <i class="bi bi-printer me-2"></i>Imprimir Ticket
+                        </button>
+                        <button id="btnDescargarPdfVenta" class="btn btn-outline-light w-50 rounded-pill fw-semibold">
+                            <i class="bi bi-file-earmark-pdf me-2"></i>Descargar PDF
+                        </button>
+                    </div>
+
+                    <!-- Botón para iniciar nueva venta -->
+                    <button id="btnNuevaVenta" class="btn btn-outline-secondary w-100 mt-2 rounded-pill">
+                        <i class="bi bi-arrow-clockwise me-2"></i>Iniciar Nueva Venta
+                    </button>
+
+                </div>
+            </div>
 
         </div>
     </main>

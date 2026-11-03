@@ -1,29 +1,38 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. VARIABLES GLOBALES Y REFERENCIAS
+    // =========================================
+    // 1. VARIABLES GLOBALES Y REFERENCIAS DOM
+    // =========================================
     const apiUrl = 'http://localhost:5144/api/instrumentos';
-    let productosBD = [];       // Todos los productos de la base de datos
-    let carritoVenta = [];      // Ítems agregados a la factura actual
-    let productoSeleccionado = null; // Producto temporalmente seleccionado en el buscador
+    let productosBD = [];           // Productos traídos desde la API
+    let carritoVenta = [];          // Ítems agregados a la venta actual
+    let productoSeleccionado = null; // Producto temporal del buscador
 
-    // Referencias DOM - Buscador y Carga
+    // Inputs de Venta y Carga
     const inputBuscar = document.getElementById('inputBuscarProd');
     const listaSugerencias = document.getElementById('sugerenciasProd');
     const inputPrecio = document.getElementById('inputPrecioProd');
     const inputCant = document.getElementById('inputCant');
     const btnAgregar = document.getElementById('btnAgregarProd');
     
-    // Referencias DOM - Tablas y Totales
+    // Tablas y Totales
     const cuerpoTabla = document.getElementById('cuerpoTablaVenta');
     const totalCobrarFinal = document.getElementById('totalCobrarFinal');
     const btnEmitir = document.getElementById('btnEmitirFactura');
 
-    // REFERENCIAS PARA DATOS DEL CLIENTE
+    // Datos del Cliente
     const inputDni = document.getElementById('inputDni');
     const nombreCliente = document.getElementById('nombreCliente');
     const ivaCliente = document.getElementById('ivaCliente');
     const selectFactura = document.getElementById('selectFactura');
 
-    // 2. CARGAR PRODUCTOS DESDE LA API
+    // Botones de Acción del Ticket
+    const btnImprimirTicket = document.getElementById('btnImprimirTicket');
+    const btnDescargarPdfVenta = document.getElementById('btnDescargarPdfVenta');
+    const btnNuevaVenta = document.getElementById('btnNuevaVenta');
+
+    // =========================================
+    // 2. CARGAR PRODUCTOS DESDE LA API (.NET)
+    // =========================================
     function cargarProductos() {
         fetch(apiUrl)
             .then(res => res.json())
@@ -33,46 +42,86 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(err => console.error("Error al cargar productos para la venta:", err));
     }
 
-    // 3. LÓGICA DEL BUSCADOR PREDICTIVO (AUTOCOMPLETADO)
-    inputBuscar.addEventListener('input', (e) => {
-        const termino = e.target.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        listaSugerencias.innerHTML = ''; // Limpiar sugerencias anteriores
-        productoSeleccionado = null;
-        inputPrecio.value = '';
+    // =========================================
+    // 3. DETECCIÓN AUTOMÁTICA DE DNI / CUIT
+    // =========================================
+    if (inputDni) {
+        inputDni.addEventListener('input', (e) => {
+            // Limpiar todo lo que no sea número
+            let numeroDocumento = e.target.value.replace(/\D/g, ''); 
+            e.target.value = numeroDocumento;
 
-        if (termino.length < 2) {
-            listaSugerencias.classList.add('d-none');
-            return;
-        }
+            if (numeroDocumento.length === 0) {
+                nombreCliente.textContent = 'CONSUMIDOR FINAL';
+                ivaCliente.textContent = 'Consumidor Final';
+                selectFactura.value = 'C';
+                return;
+            }
 
-        // Filtrar productos
-        const filtrados = productosBD.filter(prod => {
-            const nombreCompleto = `${prod.marca || ''} ${prod.nombre || ''}`.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            return nombreCompleto.includes(termino) && prod.stock > 0; // Solo mostrar si hay stock
+            if (numeroDocumento.length > 0 && numeroDocumento.length < 8) {
+                nombreCliente.textContent = 'Buscando datos...';
+                ivaCliente.textContent = '...';
+                return;
+            }
+
+            if (numeroDocumento.length === 8) {
+                nombreCliente.textContent = 'CLIENTE REGISTRADO (SIMULACIÓN)';
+                ivaCliente.textContent = 'Consumidor Final';
+                selectFactura.value = 'C';
+                return;
+            }
+
+            if (numeroDocumento.length === 11) {
+                nombreCliente.textContent = 'EMPRESA DE EJEMPLO S.R.L.';
+                ivaCliente.textContent = 'Responsable Inscripto';
+                selectFactura.value = 'A'; // Cambia automáticamente a Factura A
+                return;
+            }
         });
+    }
 
-        if (filtrados.length > 0) {
-            listaSugerencias.classList.remove('d-none');
-            filtrados.forEach(prod => {
-                const li = document.createElement('li');
-                li.className = 'list-group-item list-group-item-action bg-transparent text-light border-secondary';
-                li.textContent = `${prod.marca || ''} ${prod.nombre} - Stock: ${prod.stock}`;
-                
-                // Al hacer clic en una sugerencia
-                li.addEventListener('click', () => {
-                    seleccionarProducto(prod);
-                });
-                
-                listaSugerencias.appendChild(li);
+    // =========================================
+    // 4. BUSCADOR PREDICTIVO DE PRODUCTOS
+    // =========================================
+    if (inputBuscar) {
+        inputBuscar.addEventListener('input', (e) => {
+            const termino = e.target.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            listaSugerencias.innerHTML = ''; 
+            productoSeleccionado = null;
+            inputPrecio.value = '';
+
+            if (termino.length < 2) {
+                listaSugerencias.classList.add('d-none');
+                return;
+            }
+
+            const filtrados = productosBD.filter(prod => {
+                const nombreCompleto = `${prod.marca || ''} ${prod.nombre || ''}`.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                return nombreCompleto.includes(termino) && prod.stock > 0;
             });
-        } else {
-            listaSugerencias.classList.add('d-none');
-        }
-    });
 
-    // Ocultar sugerencias si se hace clic fuera del buscador
+            if (filtrados.length > 0) {
+                listaSugerencias.classList.remove('d-none');
+                filtrados.forEach(prod => {
+                    const li = document.createElement('li');
+                    li.className = 'list-group-item list-group-item-action bg-transparent text-light border-secondary';
+                    li.textContent = `${prod.marca || ''} ${prod.nombre} - Stock: ${prod.stock}`;
+                    
+                    li.addEventListener('click', () => {
+                        seleccionarProducto(prod);
+                    });
+                    
+                    listaSugerencias.appendChild(li);
+                });
+            } else {
+                listaSugerencias.classList.add('d-none');
+            }
+        });
+    }
+
+    // Ocultar sugerencias al hacer clic afuera
     document.addEventListener('click', (e) => {
-        if (!inputBuscar.contains(e.target) && !listaSugerencias.contains(e.target)) {
+        if (inputBuscar && listaSugerencias && !inputBuscar.contains(e.target) && !listaSugerencias.contains(e.target)) {
             listaSugerencias.classList.add('d-none');
         }
     });
@@ -80,83 +129,86 @@ document.addEventListener('DOMContentLoaded', () => {
     function seleccionarProducto(prod) {
         productoSeleccionado = prod;
         inputBuscar.value = `${prod.marca || ''} ${prod.nombre}`.trim();
-        inputPrecio.value = `$ ${prod.precio.toLocaleString('es-AR', {minimumFractionDigits: 2})}`;
+        inputPrecio.value = prod.precio;
         listaSugerencias.classList.add('d-none');
         inputCant.focus();
     }
 
-// 4. AGREGAR AL CARRITO (FLEXIBLE: DE INVENTARIO O MANUAL)
-    btnAgregar.addEventListener('click', () => {
-        const cantidad = parseInt(inputCant.value);
-        let precioManual = parseFloat(inputPrecio.value);
-        let descripcionItem = inputBuscar.value.trim();
+    // =========================================
+    // 5. AGREGAR AL CARRITO (FLEXIBLE: INVENTARIO O MANUAL)
+    // =========================================
+    if (btnAgregar) {
+        btnAgregar.addEventListener('click', () => {
+            const cantidad = parseInt(inputCant.value);
+            let precioManual = parseFloat(inputPrecio.value);
+            let descripcionItem = inputBuscar.value.trim();
 
-        if (isNaN(cantidad) || cantidad <= 0) {
-            alert("Ingrese una cantidad válida.");
-            return;
-        }
-
-        // Si NO seleccionaron nada de la lista, pero pusieron un precio, es una VENTA MANUAL
-        if (!productoSeleccionado) {
-            if (isNaN(precioManual) || precioManual <= 0) {
-                alert("Para un ítem manual, escribí una descripción y un precio válido.");
-                return;
-            }
-            
-            if (descripcionItem === "") {
-                descripcionItem = "Varios / Consumidor Final";
-            }
-
-            // Agregamos el ítem manual al carrito
-            carritoVenta.push({
-                id: 'manual-' + Date.now(), // ID temporal para ítems sueltos
-                descripcion: descripcionItem,
-                precioUnitario: precioManual,
-                cantidad: cantidad,
-                esManual: true // Marca para saber que no descuenta stock
-            });
-
-        } else {
-            // Es un producto DEL INVENTARIO
-            if (cantidad > productoSeleccionado.stock) {
-                alert(`Stock insuficiente. Solo quedan ${productoSeleccionado.stock} unidades.`);
+            if (isNaN(cantidad) || cantidad <= 0) {
+                alert("Ingrese una cantidad válida.");
                 return;
             }
 
-            // Si cambiaron el precio a mano, respetamos el nuevo precio
-            const precioFinal = (!isNaN(precioManual) && precioManual > 0) ? precioManual : productoSeleccionado.precio;
-
-            const itemExistente = carritoVenta.find(item => item.id === productoSeleccionado.id);
-            
-            if (itemExistente) {
-                if (itemExistente.cantidad + cantidad > productoSeleccionado.stock) {
-                    alert(`Stock insuficiente para agregar más de este producto.`);
+            // VENTA MANUAL (sin seleccionar de la lista)
+            if (!productoSeleccionado) {
+                if (isNaN(precioManual) || precioManual <= 0) {
+                    alert("Para un ítem manual, escribí una descripción y un precio válido.");
                     return;
                 }
-                itemExistente.cantidad += cantidad;
-                itemExistente.precioUnitario = precioFinal; // Actualiza precio por si hubo descuento
-            } else {
+                
+                if (descripcionItem === "") {
+                    descripcionItem = "Varios / Consumidor Final";
+                }
+
                 carritoVenta.push({
-                    id: productoSeleccionado.id,
-                    descripcion: `${productoSeleccionado.marca || ''} ${productoSeleccionado.nombre}`.trim(),
-                    precioUnitario: precioFinal,
+                    id: 'manual-' + Date.now(),
+                    descripcion: descripcionItem,
+                    precioUnitario: precioManual,
                     cantidad: cantidad,
-                    esManual: false
+                    esManual: true
                 });
+
+            } else {
+                // PRODUCTO DEL INVENTARIO
+                if (cantidad > productoSeleccionado.stock) {
+                    alert(`Stock insuficiente. Solo quedan ${productoSeleccionado.stock} unidades.`);
+                    return;
+                }
+
+                const precioFinal = (!isNaN(precioManual) && precioManual > 0) ? precioManual : productoSeleccionado.precio;
+                const itemExistente = carritoVenta.find(item => item.id === productoSeleccionado.id);
+                
+                if (itemExistente) {
+                    if (itemExistente.cantidad + cantidad > productoSeleccionado.stock) {
+                        alert(`Stock insuficiente para agregar más de este producto.`);
+                        return;
+                    }
+                    itemExistente.cantidad += cantidad;
+                    itemExistente.precioUnitario = precioFinal;
+                } else {
+                    carritoVenta.push({
+                        id: productoSeleccionado.id,
+                        descripcion: `${productoSeleccionado.marca || ''} ${productoSeleccionado.nombre}`.trim(),
+                        precioUnitario: precioFinal,
+                        cantidad: cantidad,
+                        esManual: false
+                    });
+                }
             }
-        }
 
-        // Limpiar inputs después de agregar
-        productoSeleccionado = null;
-        inputBuscar.value = '';
-        inputPrecio.value = '';
-        inputCant.value = 1;
-        inputBuscar.focus();
+            // Limpiar inputs
+            productoSeleccionado = null;
+            inputBuscar.value = '';
+            inputPrecio.value = '';
+            inputCant.value = 1;
+            inputBuscar.focus();
 
-        actualizarInterfazVenta();
-    });
-    
-    // 5. RENDERIZAR TABLA Y TICKET
+            actualizarInterfazVenta();
+        });
+    }
+
+    // =========================================
+    // 6. RENDERIZAR TABLA Y TICKET DERECHO
+    // =========================================
     function actualizarInterfazVenta() {
         cuerpoTabla.innerHTML = '';
         let total = 0;
@@ -164,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (carritoVenta.length === 0) {
             cuerpoTabla.innerHTML = `<tr><td colspan="4" class="text-center text-secondary py-3">No hay productos agregados.</td></tr>`;
             totalCobrarFinal.textContent = '$ 0,00';
-            actualizarTicketPreview([]); // Limpia el ticket
+            actualizarTicketPreview([]);
             return;
         }
 
@@ -187,28 +239,23 @@ document.addEventListener('DOMContentLoaded', () => {
             cuerpoTabla.innerHTML += fila;
         });
 
-        // Actualizar total gigante
         totalCobrarFinal.textContent = `$ ${total.toLocaleString('es-AR', {minimumFractionDigits: 2})}`;
-        
-        // Actualizar ticket
         actualizarTicketPreview(carritoVenta, total);
     }
 
-    // 6. QUITAR DEL CARRITO
+    // Quitar ítem del carrito
     window.quitarDelCarrito = function(index) {
         carritoVenta.splice(index, 1);
         actualizarInterfazVenta();
     }
 
-    // 7. ACTUALIZAR VISTA PREVIA DEL TICKET DERECHO
     function actualizarTicketPreview(carrito, total = 0) {
-        // Buscamos los contenedores dentro del ticket donde se inyectan los items y el total
         const contenedorItemsTicket = document.getElementById('ticketItemsContainer');
         const contenedorTotalTicket = document.getElementById('ticketTotalContainer');
 
-        if (!contenedorItemsTicket || !contenedorTotalTicket) return; // Si no les pusiste ID, ignoramos esto por ahora
+        if (!contenedorItemsTicket || !contenedorTotalTicket) return;
 
-        contenedorItemsTicket.innerHTML = ''; // Limpiamos ítems anteriores
+        contenedorItemsTicket.innerHTML = '';
 
         carrito.forEach(item => {
             const subtotal = item.precioUnitario * item.cantidad;
@@ -223,7 +270,9 @@ document.addEventListener('DOMContentLoaded', () => {
         contenedorTotalTicket.textContent = `$ ${total.toLocaleString('es-AR', {minimumFractionDigits: 2})}`;
     }
 
-// 8. SIMULAR EMISIÓN DE FACTURA (ARCA PENDIENTE)
+    // =========================================
+    // 7. SIMULAR EMISIÓN EN ARCA
+    // =========================================
     if (btnEmitir) {
         btnEmitir.addEventListener('click', () => {
             if (carritoVenta.length === 0) {
@@ -231,94 +280,95 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Cambiar botón a estado de carga
             btnEmitir.innerHTML = `<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Conectando con ARCA...`;
             btnEmitir.disabled = true;
 
             setTimeout(() => {
-                // 1. Mostrar el ticket real y ocultar el placeholder
                 document.getElementById('estadoEsperaTicket').classList.add('d-none');
                 document.getElementById('ticketGenerado').classList.remove('d-none');
                 
-                // 2. Llenar los datos del cliente en el ticket
                 const dniInput = document.getElementById('inputDni').value || "00000000";
+                const nomCli = document.getElementById('nombreCliente').textContent || "CONSUMIDOR FINAL";
+                const condIva = document.getElementById('ivaCliente').textContent || "Consumidor Final";
+
                 document.getElementById('ticketDniCli').textContent = dniInput;
+                document.getElementById('ticketNombreCli').textContent = nomCli;
+                document.getElementById('ticketIvaCli').textContent = condIva;
                 
-                // Setear fecha y hora actual
                 const ahora = new Date();
                 document.getElementById('ticketFecha').textContent = `FECHA: ${ahora.toLocaleDateString()}`;
                 document.getElementById('ticketHora').textContent = `HORA: ${ahora.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`;
 
-                // 3. Restaurar botón de emitir (aunque ya se emitió)
                 btnEmitir.innerHTML = `<i class="bi bi-check-circle me-2"></i> Factura Emitida`;
-                btnEmitir.classList.replace('btn-naranja', 'btn-success'); // Opcional si tienes clase success
                 btnEmitir.style.backgroundColor = '#198754'; 
-                
-            }, 2000); // Simula 2 segundos de conexión con la AFIP
+            }, 2000);
         });
     }
 
-    // 9. REINICIAR PARA NUEVA VENTA
-    const btnNuevaVenta = document.getElementById('btnNuevaVenta');
+    // =========================================
+    // 8. REINICIAR PARA NUEVA VENTA
+    // =========================================
     if (btnNuevaVenta) {
         btnNuevaVenta.addEventListener('click', () => {
-            // Limpiar carrito
             carritoVenta = [];
             actualizarInterfazVenta();
             
-            // Limpiar inputs
             document.getElementById('inputDni').value = '';
+            nombreCliente.textContent = 'CONSUMIDOR FINAL';
+            ivaCliente.textContent = 'Consumidor Final';
+            selectFactura.value = 'C';
             
-            // Volver a estado inicial visual
             document.getElementById('estadoEsperaTicket').classList.remove('d-none');
             document.getElementById('ticketGenerado').classList.add('d-none');
             
-            // Restaurar botón de emitir
             btnEmitir.innerHTML = `<i class="bi bi-cloud-arrow-up me-2"></i> Autorizar en ARCA y Emitir`;
             btnEmitir.style.backgroundColor = 'var(--color-naranja)';
             btnEmitir.disabled = false;
         });
     }
+
+// =========================================
+    // 9. FUNCIONALIDAD DE IMPRIMIR Y DESCARGAR
+    // =========================================
+    if (btnImprimirTicket) {
+        btnImprimirTicket.addEventListener('click', () => {
+            window.print();
+        });
+    }
+
+    if (btnDescargarPdfVenta) {
+        btnDescargarPdfVenta.addEventListener('click', () => {
+            const nroFactura = "0001-00004582";
+            const cliente = (document.getElementById('ticketNombreCli')?.textContent || "CONSUMIDOR_FINAL").trim().replace(/\s+/g, '_');
+            const total = document.getElementById('ticketTotalContainer')?.textContent || "$ 0,00";
+            const fecha = document.getElementById('ticketFecha')?.textContent || "";
+            const hora = document.getElementById('ticketHora')?.textContent || "";
+
+            // Contenido simulado del archivo
+            const datosComprobante = `========================================
+MUSIC SHOW - COMPROBANTE DE VENTA
+========================================
+Factura C N°: ${nroFactura}
+${fecha} | ${hora}
+Cliente: ${cliente}
+Total: ${total}
+CAE ARCA: 73489274928374
+========================================`;
+
+            // 1. Crear el archivo en memoria (Blob)
+            const blob = new Blob([datosComprobante], { type: 'application/pdf' });
+            const url = URL.createObjectURL(blob);
+            
+            // 2. Crear un enlace invisible y forzar el clic de descarga nativo
+            const enlace = document.createElement('a');
+            enlace.href = url;
+            enlace.download = `Factura_${nroFactura}_${cliente}.pdf`;
+            document.body.appendChild(enlace);
+            enlace.click();
+            
+            // 3. Limpieza de memoria
+            document.body.removeChild(enlace);
+            URL.revokeObjectURL(url);
+        });
+    }
 });
-
-/* ================================================================================ */
-
-// EVENTO: ESCUCHAR CUANDO SE ESCRIBE UN DNI/CUIT
-    inputDni.addEventListener('input', (e) => {
-        // Limpiamos espacios y caracteres no numéricos
-        let numeroDocumento = e.target.value.replace(/\D/g, ''); 
-        e.target.value = numeroDocumento; // Fuerza a que solo se escriban números
-
-        // 1. Si borran todo, vuelve a Consumidor Final
-        if (numeroDocumento.length === 0) {
-            nombreCliente.textContent = 'CONSUMIDOR FINAL';
-            ivaCliente.textContent = 'Consumidor Final';
-            selectFactura.value = 'C';
-            return;
-        }
-
-        // 2. Estado de "Buscando..."
-        if (numeroDocumento.length > 0 && numeroDocumento.length < 8) {
-            nombreCliente.textContent = 'Buscando datos...';
-            ivaCliente.textContent = '...';
-            return;
-        }
-
-        // 3. Simulación: Si escriben 8 números (DNI)
-        if (numeroDocumento.length === 8) {
-            // Aquí en el futuro tu backend buscará en tu base de datos local de clientes
-            nombreCliente.textContent = 'CLIENTE REGISTRADO (SIMULACIÓN)';
-            ivaCliente.textContent = 'Consumidor Final';
-            selectFactura.value = 'C';
-            return;
-        }
-
-        // 4. Simulación: Si escriben 11 números (CUIT)
-        if (numeroDocumento.length === 11) {
-            // Aquí en el futuro tu backend le preguntará al Padrón de ARCA
-            nombreCliente.textContent = 'EMPRESA DE EJEMPLO S.R.L.';
-            ivaCliente.textContent = 'Responsable Inscripto';
-            selectFactura.value = 'A'; // Cambia automáticamente a Factura A
-            return;
-        }
-    });

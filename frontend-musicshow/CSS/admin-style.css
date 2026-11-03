@@ -335,6 +335,36 @@ select.input-venta option {
     color: #ffffff;            /* Texto blanco */
 }
 
+/* Configuración para que la impresora solo tome el ticket emitido */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #ticketGenerado, #ticketGenerado * {
+        visibility: visible;
+    }
+    #ticketGenerado {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+    }
+    #ticketGenerado button,
+    #ticketGenerado .btn {
+        display: none !important; /* Oculta los botones en la hoja impresa */
+    }
+    #ticketGenerado .text-white,
+    #ticketGenerado .text-light,
+    #ticketGenerado .text-secondary {
+        color: #000000 !important;
+    }
+}
+
 /* =========================================
    ESTILOS ESPECÍFICOS - HISTORIAL DE FACTURAS
 ========================================= */
