@@ -49,6 +49,9 @@ public class InstrumentoService : IInstrumentoService
             request.Precio,
             request.EmojiIcon);
 
+        // PASO 3A: Guardamos la URL de la imagen cuando se crea un producto
+        instrumento.UrlImagen = request.UrlImagen;
+
         await _repo.AgregarAsync(instrumento);
         await _repo.GuardarCambiosAsync();
 
@@ -65,6 +68,9 @@ public class InstrumentoService : IInstrumentoService
             request.Categoria,
             request.Precio,
             request.EmojiIcon);
+
+        // PASO 3B: Actualizamos la URL de la imagen si se edita el producto
+        instrumento.UrlImagen = request.UrlImagen;
 
         await _repo.GuardarCambiosAsync();
 
@@ -113,7 +119,7 @@ public class InstrumentoService : IInstrumentoService
         Precio    = i.Precio,
         EmojiIcon = i.EmojiIcon,
         Activo    = i.Activo,
-        EnCatalogo = i.EnCatalogo
-    };
+        EnCatalogo = i.EnCatalogo,
+        UrlImagen = i.UrlImagen, // PASO 3C: Enviamos la imagen mapeada al frontend
+     };
 }
-

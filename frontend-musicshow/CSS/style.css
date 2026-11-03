@@ -1,0 +1,886 @@
+/* Configuración general y transición suave para el cambio de tema */
+body {
+
+    font-family: 'Montserrat', sans-serif;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    padding-top: 90px; /* Compensa la altura del navbar fijo */
+}
+
+html{
+    scroll-behavior: smooth;
+    /* Evita que el navbar fijo tape los títulos al hacer clic en los enlaces ancla */
+    scroll-padding-top: 100px;
+}
+
+/* Estilo de botón flotante whatssApp */
+.btn-flotante {
+    position: fixed;
+    bottom: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    z-index: 1050; /* Se asegura de estar por encima de todo */
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.btn-flotante:hover {
+    transform: scale(1.1);
+    filter: brightness(1.1);
+}
+
+/* Posición y color específico WhatsApp (Derecha) */
+.btn-flotante-der {
+    right: 25px;
+    background-color: #25D366;
+    color: white;
+}
+
+/* Posición y color específico Tema (Izquierda) */
+.btn-flotante-izq {
+    left: 25px;
+    background-color: var(--bs-body-color); /* Se adapta automáticamente: negro en modo claro, blanco en modo oscuro */
+    color: var(--bs-body-bg);
+}
+
+
+
+/* ------------------------------------------------------------------------- */
+
+:root {
+    --color-morado: #a83bb5; /* Morado */
+    --color-naranja: #ff7a00; /* Naranja para resaltar (Complementario) */
+
+    --color-negro-fondo: #0a0a0a;
+    --color-blanco-fondo: #ffffff;
+}
+
+/* Forzamos el color del body según el tema elegido por el usuario */
+[data-bs-theme="dark"] {
+    --bs-body-bg: var(--color-negro-fondo);
+    --bs-body-color: #ffffff;
+    --border-color: #333333;
+}
+
+[data-bs-theme="light"] {
+    --bs-body-bg: var(--color-blanco-fondo);
+    --bs-body-color: #121212;
+    --border-color: #e0e0e0;
+}
+
+.texto-morado {
+    color: var(--color-morado);
+}
+
+.navbar-custom {
+    /* Degradado de morado oscuro a violeta profundo */
+    background: linear-gradient(90deg, #2a1040 0%, #3e1b59 50%, #201136 100%);
+    padding: 10px 0; 
+    border: none;
+    min-height: 80px;
+}
+
+/* Estilo del Logo (Más grande y Circular) */
+.logo-navbar {
+    width: 140px;  /* Mucho más grande */
+    height: 140px;
+    object-fit: cover;
+    background-color: #050505; 
+    border: 3px solid rgba(255, 255, 255, 0.2); /* Borde blanquecino para separar */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5); /* Sombra fuerte para darle profundidad */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo-navbar:hover {
+transform: scale(1.05); /* Efecto de acercamiento sin perder el centrado */
+    box-shadow: 0 12px 30px rgba(0,0,0,0.7);
+}
+
+/* ==========================================
+   BUSCADOR MINIMALISTA (Solo línea inferior)
+============================================= */
+.buscador-minimalista {
+border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    padding-bottom: 3px;
+    max-width: 380px; /* Ahora puede expandirse mucho más a lo ancho */
+    width: 100%;
+    transition: border-color 0.3s ease;
+}
+
+.buscador-minimalista:focus-within {
+    border-bottom-color: #ffffff; /* Se ilumina al hacer clic */
+}
+
+.input-buscador {
+background-color: transparent !important;
+    border: none;
+    color: #ffffff;
+    padding: 0;
+    font-size: 1.05rem;
+    box-shadow: none !important;
+}
+
+/* Evitar que se ponga negro al hacer clic */
+.input-buscador:focus {
+    background-color: transparent !important;
+    color: #ffffff;
+    outline: none;
+    box-shadow: none !important;
+}
+
+.input-buscador::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 300;
+}
+
+/* ==========================================
+   LOGO SOBRESALIENTE (Estilo Flotante Central)
+============================================= */
+.contenedor-logo {
+    position: absolute;
+    top: 5px; /* Comienza casi desde arriba del navbar... */
+    left: 50%;
+    transform: translateX(-50%); /* Centrado perfecto */
+    z-index: 1060; /* Asegura que el logo caiga por encima de cualquier carrusel o imagen de abajo */
+}
+
+.buscador-minimalista:focus-within {
+    border-bottom-color: #ffffff; /* Se ilumina al 100% de blanco al hacer clic */
+}
+
+/* El campo de texto invisible */
+.input-buscador {
+    background-color: transparent;
+    border: none;
+    color: #ffffff;
+    padding: 0;
+    box-shadow: none !important; /* Evita que Bootstrap le ponga borde azul */
+}
+
+.input-buscador::placeholder {
+    color: rgba(255, 255, 255, 0.6); /* Texto "¿Qué estás buscando?" un poco translúcido */
+    font-weight: 300;
+}
+
+/* Botón de "Buscar" en texto */
+.btn-buscar-texto {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-weight: 500;
+    padding: 0 0 0 10px;
+    transition: color 0.2s ease;
+}
+
+.btn-buscar-texto:hover {
+    color: var(--color-naranja); /* Se pinta de naranja al pasar el cursor */
+}
+
+/* ==========================================
+   BOTONES DE MENÚ Y CONTACTO (BLANCOS)
+============================================= */
+.btn-menu, .btn-contacto {
+    background: none;
+    border: none;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-menu:hover, .btn-contacto:hover {
+    color: var(--color-naranja) !important; /* Interacción naranja */
+    transform: translateY(-2px); /* Pequeño salto visual */
+}
+
+/* ==========================================
+   MENÚ LATERAL (OFFCANVAS)
+============================================= */
+.offcanvas {
+    background-color: #121212; 
+    border-right: 2px solid var(--color-morado); 
+}
+
+/* Ocultamos la barra de desplazamiento vertical en el cuerpo del offcanvas */
+.offcanvas-body {
+    overflow-y: auto;
+    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important; /* IE y Edge antiguo */
+}
+
+/* Chrome, Safari y Edge moderno */
+.offcanvas-body::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    -webkit-appearance: none;
+}
+
+/* Enlaces principales (Mayúsculas - p.ej. PRODUCTOS) */
+.nav-link-custom {
+    transition: color 0.3s ease, transform 0.3s ease;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.nav-link-custom:hover, 
+.nav-link-custom[aria-expanded="true"] {
+    color: var(--color-naranja) !important;
+    transform: translateX(8px); /* Pequeño desliz a la derecha */
+}
+
+/* Sub-enlaces de categorías y sub-categorías */
+.nav-link-sub {
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: inline-block;
+    padding: 4px 0;
+    opacity: 0.85; /* Jerarquía visual sutil */
+    cursor: pointer;
+}
+
+.nav-link-sub:hover,
+.nav-link-sub[aria-expanded="true"] {
+    color: var(--color-naranja) !important;
+    opacity: 1;
+    transform: translateX(5px);
+}
+
+/* Animación de la flecha al desplegar (Principal y Subcategorías) */
+.nav-link-custom .bi-chevron-down,
+.nav-link-sub .bi-chevron-down {
+    transition: transform 0.3s ease;
+}
+
+.nav-link-custom[aria-expanded="true"] .bi-chevron-down,
+.nav-link-sub[aria-expanded="true"] .bi-chevron-down {
+    transform: rotate(180deg); /* La flecha gira hacia arriba al abrir */
+}
+
+
+/* --------------------------------------------------------------- */
+
+/* ==========================================
+   HERO BANNER: 3 IMÁGENES INTERACTIVAS
+============================================= */
+
+/* Contenedor del Hero - Altura ideal */
+.hero-showroom-seccion {
+    min-height: 550px;
+    height: 75vh; /* Ajuste automático según la pantalla */
+    z-index: 1;
+}
+
+.hero-showroom-seccion .row, 
+.hero-showroom-seccion .container-fluid,
+.hero-card-wrapper {
+    height: 100%; /* Las tres imágenes cubren el alto total del banner */
+}
+
+/* Envoltura para el desborde en el zoom */
+.hero-card-wrapper {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* Capa de degrade (Ahora adaptada para finalizar en bordes redondos) */
+.hero-capa {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Degradado oscuro para facilitar la lectura sobre la imagen */
+    background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(18, 9, 30, 0.4) 40%, rgba(10, 5, 20, 0.92) 100%);
+    z-index: 2;
+    border-radius: 20px !important;
+    transition: background 0.4s ease;
+}
+
+
+/* Las imágenes con zoom - Usamos fotos reales y gratuitas de alta resolución de Unsplash */
+.hero-imagen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); /* Zoom cinematográfico suave */
+}
+
+/* URLs de las imágenes temáticas de alta definición - Corregido */
+.bg-guitarra {
+    background-image: linear-gradient(rgba(42, 16, 64, 0.45), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1550985616-10810253b84d?auto=format&fit=crop&q=80&w=1200');
+}
+
+.bg-percusion {
+    background-image: linear-gradient(rgba(42, 16, 64, 0.45), rgba(0, 0, 0, 0.7)), url('https://images.pexels.com/photos/30169605/pexels-photo-30169605.jpeg')
+}
+
+.bg-teclados {
+    background-image: linear-gradient(rgba(42, 16, 64, 0.45), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1552422535-c45813c61732?auto=format&fit=crop&q=80&w=1200');
+}
+
+/* EFECTOS AL PASAR EL CURSOR (HOVER) */
+
+/* Zoom suave sobre la imagen de fondo */
+.hero-card-wrapper:hover .hero-imagen {
+    transform: scale(1.08); /* Crece un 8% */
+}
+
+/* Modificación de la iluminación de la capa */
+.hero-card-wrapper:hover .hero-capa {
+    background: linear-gradient(180deg, rgba(0,0,0,0.02) 0%, rgba(18, 9, 30, 0.45) 30%, rgba(10, 5, 20, 0.92) 100%);
+}
+
+/* Ajustes de bordes para pantallas medianas/grandes */
+@media (min-width: 768px) {
+    .border-start-md { border-left: 2px solid rgba(255, 255, 255, 0.08); }
+    .border-end-md { border-right: 2px solid rgba(255, 255, 255, 0.08); }
+}
+
+/* Insignias internas */
+.badge.bg-morado {
+    background-color: var(--color-morado);
+}
+
+.badge.bg-naranja {
+    background-color: var(--color-naranja);
+}
+
+/* Botón explorador dentro de las tarjetas */
+.btn-explorar-hero {
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-radius: 50px;
+    padding: 10px 22px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-explorar-hero i {
+    transition: transform 0.3s ease;
+}
+
+/* Interacción con el botón en hover */
+.hero-card-wrapper:hover .btn-explorar-hero {
+    background-color: var(--color-naranja); /* Cambia al naranja en foco */
+    border-color: var(--color-naranja);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(255, 122, 0, 0.4);
+}
+
+/* Flechita del botón que se desliza al apuntar */
+.hero-card-wrapper:hover .btn-explorar-hero i {
+    transform: translateX(5px);
+}
+
+/* Sombras y tipografía de títulos */
+.text-shadow-sm {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Iguala las alturas internas para alinear badges y botones */
+.hero-capa h2 {
+    min-height: 68px; /* Reserva el espacio equivalente a 2 líneas de título */
+    display: flex;
+    align-items: flex-end; /* Alinea los títulos de 1 sola línea hacia abajo */
+}
+
+.hero-capa p {
+    min-height: 42px; /* Reserva espacio para 2 líneas de descripción */
+}
+
+/* ----------------------------------------------------------------------- */
+
+/* ==========================================
+   DISEÑO DE TARJETAS DE PRODUCTO (Estilo E-commerce)
+============================================= */
+
+/* Ajustamos el ancho para que la imagen se vea grande y atractiva */
+.card-producto {
+    width: 310px;
+    scroll-snap-align: start;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.card-producto:hover {
+    transform: translateY(-5px); /* Pequeño salto al pasar el cursor */
+}
+
+/* Forzamos que la imagen siempre sea un cuadrado perfecto (1:1) */
+.img-cuadrada {
+    aspect-ratio: 1 / 1;
+    background-color: #222; /* Color de fondo mientras carga */
+}
+
+/* Efecto de zoom suave en la imagen al hacer hover en la tarjeta */
+.card-producto img {
+    transition: transform 0.5s ease;
+}
+.card-producto:hover img {
+    transform: scale(1.05);
+}
+
+/* Tipografía de títulos limitada a 2 líneas */
+.titulo-producto {
+display: -webkit-box;
+    line-clamp: 2;                  /* Propiedad estándar recomendada */
+    -webkit-line-clamp: 2;          /* Corta el texto si tiene más de 2 líneas */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+}
+
+/* ==========================================
+   ETIQUETAS DE DESCUENTO Y ENVÍO
+============================================= */
+.etiqueta-descuento {
+    background-color: #ff2a85; /* Rosa vibrante de tu referencia */
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+.etiqueta-envio {
+    background-color: #00d1b2; /* Cian / Turquesa de tu referencia */
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+/* ==========================================
+   ANIMACIÓN AL HACER SCROLL
+============================================= */
+.animacion-scroll {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.animacion-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.animacion-retraso {
+    transition-delay: 0.2s; /* El carrusel aparece un instante después del título */
+}
+
+/* ==========================================
+   CARRUSEL HORIZONTAL (OCULTAR BARRA GRIS)
+============================================= */
+
+.carrusel-productos {
+    scroll-behavior: smooth;
+    /* Cambiamos el scroll-snap a 'proximity' para que no frene de golpe y sea más suave */
+    scroll-snap-type: x proximity; 
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    
+    /* Propiedades de aceleración por hardware (clave para eliminar el lag) */
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.carrusel-productos::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    -webkit-appearance: none;
+}
+/* ==========================================
+   FLECHAS SUPERIORES JUNTAS
+============================================= */
+.btn-flecha {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+[data-bs-theme="light"] .btn-flecha {
+    border-color: rgba(0, 0, 0, 0.2);
+    color: #121212;
+}
+
+.btn-flecha:hover {
+    background-color: var(--color-morado);
+    border-color: var(--color-morado);
+    color: #ffffff !important;
+    transform: scale(1.1);
+}
+
+/* ==========================================
+   CINTA DINÁMICA DE CATEGORÍAS (TICKER)
+============================================= */
+.cinta-categorias-wrapper {
+    background-color: var(--color-morado); 
+    width: 100%;
+    overflow: hidden;
+    padding: 22px 0; /* Aumentamos el grosor de la barra */
+    position: relative;
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.cinta-track {
+    display: flex;
+    width: max-content;
+    animation: scroll-cinta 30s linear infinite;
+}
+
+.cinta-track:hover {
+    animation-play-state: paused;
+}
+
+.cinta-track a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.4rem; /* Letra considerablemente más grande */
+    letter-spacing: 1.5px;
+    padding: 0 50px; /* Aumentamos la distancia entre palabras para que respire mejor */
+    white-space: nowrap;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.cinta-track a:hover {
+    color: var(--color-naranja); 
+    transform: scale(1.1); 
+}
+
+@keyframes scroll-cinta {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } 
+}
+
+/* ------------------------------------------------------------------------------------------ */
+
+/* ==========================================
+   SECCIÓN UBICACIÓN Y CONTACTO
+============================================= */
+.contacto-card {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde fino y sutil estilo boceto */
+    transition: border-color 0.3s ease;
+}
+
+.contacto-card:hover {
+    border-color: rgba(255, 255, 255, 0.5); /* Se ilumina un poco el borde al pasar el cursor */
+}
+
+/* Color naranja para los íconos (Ubicación, Teléfono, Reloj) */
+.text-naranja {
+    color: var(--color-naranja) !important;
+}
+
+/* Adaptación automática para el Modo Claro */
+[data-bs-theme="light"] .contacto-card {
+    border-color: rgba(0, 0, 0, 0.2);
+}
+[data-bs-theme="light"] .contacto-card:hover {
+    border-color: rgba(0, 0, 0, 0.4);
+}
+[data-bs-theme="light"] .text-white-50 {
+    color: #4a4a4a !important; /* Oscurece el texto gris en fondo claro */
+}
+
+/* -------------------------------------------------------------------------------------------- */
+
+/* ==========================================
+FOOTER
+============================================= */
+.footer-custom {
+    background-color: #0b0710; /* Un tono ligeramente más oscuro que el fondo general */
+}
+
+/* Enlaces del footer con la línea inferior sutil */
+.footer-link-item {
+    transition: transform 0.3s ease;
+}
+
+.footer-link-item a:hover {
+    color: var(--color-naranja) !important;
+}
+
+.footer-link-item:hover {
+    transform: translateX(5px);
+}
+
+/* Cajas de iconos de redes sociales */
+.social-icon-box {
+    width: 85px;
+    height: 75px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.social-icon-box:hover {
+    background-color: var(--color-morado);
+    border-color: var(--color-morado);
+    color: #ffffff !important;
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+.social-icon-box:hover i {
+    color: var(--color-naranja);
+}
+
+/* ------------------------------ */
+
+/* ==========================================
+   CORRECCIÓN RESPONSIVE DEL MENÚ LATERAL (OFFCANVAS)
+============================================= */
+
+/* Forzamos que el offcanvas flote por ENCIMA del header y del logo */
+.offcanvas {
+    z-index: 2000 !important; /* Supera al header fijo que tiene 1040 */
+}
+
+/* En pantallas chicas (celulares), hacemos que el menú cubra toda la pantalla o tenga un ancho cómodo */
+@media (max-width: 768px) {
+    .offcanvas.offcanvas-start {
+        width: 85% !important; /* Ocupa el 85% de la pantalla del celular, dejando espacio para cerrar */
+        max-width: 320px;
+    }
+}
+
+/* Fondo oscuro detrás del offcanvas (backdrop) con mayor opacidad para destacar el menú */
+.offcanvas-backdrop {
+    z-index: 1999 !important;
+    background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Solo se activa en pantallas de computadora (a partir de 992px) */
+@media (min-width: 992px) {
+    .nav-desplegable-neon {
+        display: inline-block;
+    }
+}
+
+/* En celulares se oculta el hover multinivel */
+@media (max-width: 991px) {
+    .nav-desplegable-neon {
+        display: none;
+    }
+}
+
+/* -------------------------------------------------------------------------------------------- */
+
+/* ========================================= 
+DISEÑO DE BOTONES DE CONTACTO
+ ========================================= */
+
+/* Botón de Consultar por WhatsApp */
+.btn-whatsapp-custom {
+    background-color: transparent; 
+    border: 1px solid var(--bs-border-color); 
+    color: var(--bs-body-color); 
+    border-radius: 15px; /* Agrega esta línea para redondear más los bordes */
+    transition: all 0.3s ease;
+}
+
+.btn-whatsapp-custom:hover {
+    background-color: #25d366; /* Verde WhatsApp */
+    border-color: #25d366;
+    color: #ffffff !important; 
+    transform: translateY(-2px);
+}
+
+/* Botón de Consultar por Facebook */
+.btn-facebook-custom {
+    background-color: transparent; 
+    border: 1px solid var(--bs-border-color);
+    color: var(--bs-body-color);
+    border-radius: 15px; /* Agrega esta línea para redondear más los bordes */
+    transition: all 0.3s ease;
+}
+
+.btn-facebook-custom:hover {
+    background-color: #1877f2; /* Azul Facebook */
+    border-color: #1877f2;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+}
+
+/* Botón de Consultar por Instagram */
+.btn-instagram-custom {
+    background-color: transparent; 
+    border: 1px solid var(--bs-border-color);
+    color: var(--bs-body-color);
+    border-radius: 15px; /* Agrega esta línea para redondear más los bordes */
+    transition: all 0.3s ease;
+}
+
+.btn-instagram-custom:hover {
+    background-color: #c13584; /* Rosita Instagram */
+    border-color: #c13584;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+}
+
+/* Efecto hover interactivo para la ruta de navegación (Breadcrumb) */
+.breadcrumb-link {
+    display: inline-block; /* Obligatorio para que el texto pueda hacer zoom */
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.breadcrumb-link:hover {
+    transform: scale(1.08); /* Zoom sutil del texto */
+    color: var(--bs-body-color) !important; /* Quita el grisáceo y lo hace más sólido/negro */
+}
+
+/* ==============================================
+SOBRE NOSOTROS
+ ============================================== */
+
+ /* Estilo para las tarjetas de pilares en Sobre Nosotros */
+.pillar-card {
+    border: 1px solid var(--bs-border-color); /* Usa el borde sutil que ya tienes configurado */
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.pillar-card:hover {
+    border-color: #f37a1f; /* El borde se ilumina con el naranja del sitio */
+    transform: translateY(-5px); /* Se eleva un poco más para destacar */
+    background-color: rgba(243, 122, 31, 0.05) !important; /* Un fondo hiper sutil naranja al pasar el mouse */
+}
+
+/* =========================================
+   DISEÑO MODERNO DE PRODUCTOS (GRILLA)
+========================================= */
+.card-producto-moderna {
+    background-color: transparent !important;
+    border: none !important;
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Transición fluida para que toda la tarjeta se mueva junta */
+}
+
+/* Al poner el mouse encima, TODA la tarjeta se eleva al unísono */
+.card-producto-moderna:hover {
+    transform: translateY(-6px);
+}
+
+/* Contenedor de la imagen (cuadrado) */
+.img-container {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    background-color: #1a1a1a;
+}
+
+/* Un zoom muy sutil opcional solo para la imagen interna */
+.card-producto-moderna:hover .img-container img,
+.card-producto-moderna:hover .img-container .emoji-placeholder {
+    transform: scale(1.03);
+    transition: transform 0.4s ease;
+}
+.img-container .emoji-placeholder {
+    transition: transform 0.4s ease;
+}
+
+/* Etiquetas (Badges) superpuestas */
+.badges-container {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.badge-descuento {
+    background-color: #ff007f; /* Rosa neón */
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    letter-spacing: 0.5px;
+}
+
+.badge-envio {
+    background-color: #00e5ff; /* Cyan neón */
+    color: #000000;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    letter-spacing: 0.5px;
+}
+
+/* Textos debajo de la imagen */
+.producto-titulo {
+    font-size: 0.85rem;
+    line-height: 1.3;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    color: #ffffff;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.precio-tachado {
+    color: #6c757d;
+    text-decoration: line-through;
+    font-size: 0.75rem;
+    margin-bottom: 2px;
+}
+
+.precio-cash {
+    color: #d1d1d1;
+    font-size: 0.8rem;
+    margin-bottom: 2px;
+}
+
+.precio-cash strong {
+    color: #ffffff;
+}
+
+.precio-lista {
+    color: #6c757d;
+    font-size: 0.75rem;
+}
+
+/* ==================================================== 
+PREGUNTAS FRECUENTES
+/* ==================================================== */
+
+/* Botón Volver al Inicio - Estilo y Efecto Hover */
+.btn-volver-inicio {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.btn-volver-inicio:hover {
+    background-color: var(--color-naranja, #fd7e14);
+    border-color: var(--color-naranja, #fd7e14);
+    transform: translateY(-2px);
+    color: #ffffff !important;
+}

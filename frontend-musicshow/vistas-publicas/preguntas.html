@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas Frecuentes y Métodos de Pago - Music Show</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- CSS Personalizado -->
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+
+<!-- ENCABEZADO / NAVBAR SIMPLIFICADO -->
+<header class="fixed-top shadow-sm" style="z-index: 1040;">
+    <nav class="navbar navbar-custom position-relative">
+        <div class="container-fluid align-items-center">
+            
+            <!-- IZQUIERDA: Volver al Inicio -->
+            <div class="col-5 d-flex align-items-center gap-3 z-1">
+                <a href="../../index.html" class="btn text-white p-2 px-3 rounded-pill d-flex align-items-center gap-2 text-decoration-none btn-volver-inicio">
+                    <i class="bi bi-arrow-left fs-5"></i>
+                    <span class="fw-semibold d-none d-md-inline">Volver al inicio</span>
+                </a>
+            </div>
+
+            <!-- CENTRO ABSOLUTO: Logo -->
+            <div class="contenedor-logo">
+                <a href="../../index.html">
+                    <img src="../img/music show.jpeg" alt="Logo Music Show" class="logo-navbar rounded-circle">
+                </a>
+            </div>
+
+            <!-- DERECHA: Contacto -->
+            <div class="col-5 d-flex justify-content-end align-items-center z-1">
+                <a href="../../index.html#seccionContacto"
+                 class="btn-contacto d-flex align-items-center text-white text-decoration-none gap-2">
+                    <i class="bi bi-person fs-3"></i>
+                    <span class="fw-semibold d-none d-md-block">Contáctanos</span>
+                </a>
+            </div>
+
+        </div>
+    </nav>
+</header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="container py-5 mt-5">
+        
+        <!-- TÍTULO DE LA PÁGINA -->
+        <div class="text-center my-5 pt-4">
+            <h1 class="fw-bold text-uppercase display-5" style="letter-spacing: 2px;">Centro de Ayuda</h1>
+            <p class="text-white-50 fs-5">Resolvé todas tus dudas sobre pagos, envíos y compras en Music Show.</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+
+                <!-- SECCIÓN 1: MÉTODOS DE PAGO (Destacado) -->
+                <div class="mb-5">
+                    <div class="d-flex align-items-center gap-3 mb-4 border-bottom border-secondary pb-3">
+                        <i class="bi bi-wallet2 fs-3 text-naranja"></i>
+                        <h2 class="fw-bold text-uppercase fs-3 mb-0" style="letter-spacing: 1px;">Métodos de Pago</h2>
+                    </div>
+
+                    <div class="accordion accordion-flush custom-accordion" id="acordeonPagos">
+                        
+                        <!-- Item Pago 1 -->
+                        <div class="accordion-item bg-transparent border border-secondary rounded-3 mb-3 overflow-hidden">
+                            <h2 class="accordion-header" id="headingPago1">
+                                <button class="accordion-button collapsed bg-transparent text-white fw-semibold fs-5 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePago1" aria-expanded="false" aria-controls="collapsePago1">
+                                    <i class="bi bi-cash-stack me-3 text-naranja"></i> ¿Qué beneficios tengo pagando en Efectivo o Transferencia?
+                                </button>
+                            </h2>
+                            <div id="collapsePago1" class="accordion-collapse collapse" aria-labelledby="headingPago1" data-bs-parent="#acordeonPagos">
+                                <div class="accordion-body text-white-50 fs-6 pt-0">
+                                    Pagando en efectivo en nuestro local o mediante transferencia bancaria directa obtienes el **precio promocional exclusivo** indicado en cada producto, ahorrando un porcentaje importante frente al precio de lista.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item Pago 2 -->
+                        <div class="accordion-item bg-transparent border border-secondary rounded-3 mb-3 overflow-hidden">
+                            <h2 class="accordion-header" id="headingPago2">
+                                <button class="accordion-button collapsed bg-transparent text-white fw-semibold fs-5 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePago2" aria-expanded="false" aria-controls="collapsePago2">
+                                    <i class="bi bi-credit-card me-3 text-naranja"></i> ¿Puedo pagar con Tarjetas de Crédito o Débito?
+                                </button>
+                            </h2>
+                            <div id="collapsePago2" class="accordion-collapse collapse" aria-labelledby="headingPago2" data-bs-parent="#acordeonPagos">
+                                <div class="accordion-body text-white-50 fs-6 pt-0">
+                                    Sí, aceptamos tarjetas de débito y crédito en nuestro local comercial ubicado en San Miguel de Tucumán. Consultá en el local por las opciones de financiación y planes en cuotas disponibles vigentes.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item Pago 3 -->
+                        <div class="accordion-item bg-transparent border border-secondary rounded-3 mb-3 overflow-hidden">
+                            <h2 class="accordion-header" id="headingPago3">
+                                <button class="accordion-button collapsed bg-transparent text-white fw-semibold fs-5 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePago3" aria-expanded="false" aria-controls="collapsePago3">
+                                    <i class="bi bi-phone me-3 text-naranja"></i> ¿Aceptan billeteras virtuales y QR?
+                                </button>
+                            </h2>
+                            <div id="collapsePago3" class="accordion-collapse collapse" aria-labelledby="headingPago3" data-bs-parent="#acordeonPagos">
+                                <div class="accordion-body text-white-50 fs-6 pt-0">
+                                    Sí, podés operar de forma rápida y segura utilizando plataformas de cobro digital y transferencias inmediatas desde tu celular al momento de retirar o coordinar tu compra.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 2: PREGUNTAS FRECUENTES GENERALES -->
+                <div class="mb-5">
+                    <div class="d-flex align-items-center gap-3 mb-4 border-bottom border-secondary pb-3">
+                        <i class="bi bi-patch-question fs-3 text-morado" style="color: var(--color-morado);"></i>
+                        <h2 class="fw-bold text-uppercase fs-3 mb-0" style="letter-spacing: 1px;">Preguntas Frecuentes</h2>
+                    </div>
+
+                    <div class="accordion accordion-flush custom-accordion" id="acordeonGeneral">
+                        
+                        <!-- Item General 1 -->
+                        <div class="accordion-item bg-transparent border border-secondary rounded-3 mb-3 overflow-hidden">
+                            <h2 class="accordion-header" id="headingGen1">
+                                <button class="accordion-button collapsed bg-transparent text-white fw-semibold fs-5 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGen1" aria-expanded="false" aria-controls="collapseGen1">
+                                    <i class="bi bi-geo-alt me-3 text-morado"></i> ¿Dónde se encuentra el local físico?
+                                </button>
+                            </h2>
+                            <div id="collapseGen1" class="accordion-collapse collapse" aria-labelledby="headingGen1" data-bs-parent="#acordeonGeneral">
+                                <div class="accordion-body text-white-50 fs-6 pt-0">
+                                    Nos encontramos en **Batalla de Ayacucho 247, T4000 San Miguel de Tucumán, Tucumán**. Podes pasar a retirar tus productos o probar los instrumentos en nuestros horarios de atención.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item General 2 -->
+                        <div class="accordion-item bg-transparent border border-secondary rounded-3 mb-3 overflow-hidden">
+                            <h2 class="accordion-header" id="headingGen2">
+                                <button class="accordion-button collapsed bg-transparent text-white fw-semibold fs-5 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGen2" aria-expanded="false" aria-controls="collapseGen2">
+                                    <i class="bi bi-clock me-3 text-morado"></i> ¿Cuáles son los horarios de atención?
+                                </button>
+                            </h2>
+                            <div id="collapseGen2" class="accordion-collapse collapse" aria-labelledby="headingGen2" data-bs-parent="#acordeonGeneral">
+                                <div class="accordion-body text-white-50 fs-6 pt-0">
+                                    Atendemos de **Lunes a Viernes** de 9:30 a.m. a 1:00 p.m. y de 5:30 p.m. a 9:00 p.m., y los **Sábados** de 9:30 a.m. a 1:00 p.m. Los domingos permanencemos cerrados.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item General 3 -->
+                        <div class="accordion-item bg-transparent border border-secondary rounded-3 mb-3 overflow-hidden">
+                            <h2 class="accordion-header" id="headingGen3">
+                                <button class="accordion-button collapsed bg-transparent text-white fw-semibold fs-5 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGen3" aria-expanded="false" aria-controls="collapseGen3">
+                                    <i class="bi bi-truck me-3 text-morado"></i> ¿Realizan envíos a domicilio o al interior?
+                                </button>
+                            </h2>
+                            <div id="collapseGen3" class="accordion-collapse collapse" aria-labelledby="headingGen3" data-bs-parent="#acordeonGeneral">
+                                <div class="accordion-body text-white-50 fs-6 pt-0">
+                                    ¡Sí! Contamos con productos seleccionados que incluyen **Envío Gratis** y realizamos despachos seguros para que tu instrumento o accesorio llegue en perfectas condiciones a tus manos.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item General 4 -->
+                        <div class="accordion-item bg-transparent border border-secondary rounded-3 mb-3 overflow-hidden">
+                            <h2 class="accordion-header" id="headingGen4">
+                                <button class="accordion-button collapsed bg-transparent text-white fw-semibold fs-5 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGen4" aria-expanded="false" aria-controls="collapseGen4">
+                                    <i class="bi bi-whatsapp me-3 text-morado"></i> ¿Cómo me comunico directamente ante cualquier duda?
+                                </button>
+                            </h2>
+                            <div id="collapseGen4" class="accordion-collapse collapse" aria-labelledby="headingGen4" data-bs-parent="#acordeonGeneral">
+                                <div class="accordion-body text-white-50 fs-6 pt-0">
+                                    Podes escribirnos de forma directa a nuestro WhatsApp de contacto **3815136085** o enviarnos un correo a **musicshowtucuman@gmail.com**. ¡Te responderemos a la brevedad!
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer-custom text-white pt-5 pb-4 mt-5 border-top border-secondary">
+        <div class="container text-center text-white-50 small">
+            <p class="mb-0">&copy; 2026 Music Show - Instrumentos Musicales. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

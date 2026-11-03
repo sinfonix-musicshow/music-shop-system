@@ -1,0 +1,197 @@
+[
+    {
+        "id": 1,
+        "categoria": "Amplificadores",
+        "marca": "Sonicake",
+        "modelo": "Amplificador Sonicake Ampcube QAM-20 Portátil Bluetooth",
+        "precio": "$ 269.991,00",
+        "descripcion": "Amplificador portátil Bluetooth ideal para práctica en casa o ensayos acústicos, con excelente conectividad, efectos integrados y máxima versatilidad.",
+        "especificaciones": [
+            "Conectividad Bluetooth integrada",
+            "Potencia óptima para práctica y estudio",
+            "Efectos y simulaciones de amplificador",
+            "Diseño compacto y portátil"
+        ],
+        "imagen": "https://images.pexels.com/photos/33813494/pexels-photo-33813494.jpeg"
+    },
+    {
+        "id": 2,
+        "categoria": "Guitarras",
+        "marca": "Fender",
+        "modelo": "Guitarra Eléctrica Fender Stratocaster Americana",
+        "descripcion": "El estándar de la industria musical. Ofrece el legendario sonido Fender, comodidad inigualable y componentes de máxima calidad profesional.",
+        "precio": "$ 977.500,00",
+        "especificaciones": [
+            "Cuerpo de aliso o fresno seleccionado",
+            "Mástil de arce con perfil en 'C'",
+            "Pastillas de bobina simple de alta fidelidad",
+            "Incluye estuche rígido original"
+        ],
+        "imagen": "https://images.pexels.com/photos/31158956/pexels-photo-31158956.jpeg"
+    },
+    {
+        "id": 3,
+        "categoria": "Percusión",
+        "marca": "Mapex",
+        "modelo": "Batería Acústica Mapex Prodigy 5 Cuerpos Con Fierros",
+        "descripcion": "Set completo de batería acústica diseñado para bateristas que buscan durabilidad, gran proyección sonora y herrajes resistentes incluidos.",
+        "precio": "$ 1.150.000,00",
+        "especificaciones": [
+            "Set completo de 5 cuerpos",
+            "Incluye paquete de herrajes (fierros) reforzados",
+            "Cascos de madera seleccionada",
+            "Excelente resonancia y afinación estable"
+        ],
+        "imagen": "https://images.pexels.com/photos/5650534/pexels-photo-5650534.jpeg"
+    },
+    {
+        "id": 4,
+        "categoria": "Teclados",
+        "marca": "Arturia",
+        "modelo": "Teclado Controlador Midi Arturia Keylab 61 Teclas",
+        "descripcion": "Controlador MIDI avanzado de 61 teclas sensibles al tacto, diseñado para producción musical profesional, integración total con software y control de instrumentos virtuales.",
+        "precio": "$ 540.000,00",
+        "especificaciones": [
+            "61 teclas semi-contrapesadas con aftertouch",
+            "Pads, fencoders y faders asignables",
+            "Incluye paquete de software de producción",
+            "Conectividad USB/MIDI Plug and Play"
+        ],
+        "imagen": "https://images.pexels.com/photos/37005815/pexels-photo-37005815.jpeg"
+    },
+    {
+        "id": 5,
+        "categoria": "Pedales de efectos",
+        "marca": "Darkglass",
+        "modelo": "Pedalera Para Bajo Darkglass AGM Anagram Pantalla Táctil",
+        "descripcion": "Procesador multiefectos y emulador de amplificadores de gama alta para bajo, equipado con pantalla táctil y una respuesta sonora imbatible.",
+        "precio": "$ 2.287.930,62",
+        "especificaciones": [
+            "Pantalla táctil de alta definición",
+            "Modelos de amplificadores y pantallas icónicas",
+            "Conectividad USB para grabación y edición",
+            "Construcción robusta para directo"
+        ],
+        "imagen": "https://images.pexels.com/photos/17896555/pexels-photo-17896555.jpeg"
+    },
+    {
+        "id": 6,
+        "categoria": "Interfaces de audio",
+        "marca": "M-Audio",
+        "modelo": "Interfaz De Audio M-Audio M-Track Solo USB",
+        "descripcion": "Interfaz de audio USB ideal para grabación móvil y home studio, ofreciendo sonido impecable con preamplificador Crystal y alimentación phantom.",
+        "precio": "$ 85.000,00",
+        "especificaciones": [
+            "Resolución de audio de 48 kHz",
+            "Entrada combo con preamplificador Crystal",
+            "Salida de auriculares con control de volumen independiente",
+            "Alimentación por USB (Ultra portátil)"
+        ],
+        "imagen": "https://images.pexels.com/photos/9870700/pexels-photo-9870700.png"
+    },
+    {
+        "id": 7,
+        "categoria": "Accesorios",
+        "marca": "Shure",
+        "modelo": "Micrófono Dinámico Shure SM58 Vocal Original",
+        "descripcion": "El micrófono vocal más famoso del mundo. Diseñado para uso vocal profesional en directo, refuerzo de sonido y grabación de estudio.",
+        "precio": "$ 171.600,00",
+        "especificaciones": [
+            "Respuesta de frecuencia optimizada para voces",
+            "Sistema neumático de montura anti-choque",
+            "Filtro pop esférico y antiviento integrado",
+            "Durabilidad legendaria en escenarios"
+        ],
+        "imagen": "https://images.pexels.com/photos/8132521/pexels-photo-8132521.jpeg"
+    },
+    {
+        "id": 8,
+        "categoria": "Teclados y Sintetizadores",
+        "marca": "Nord",
+        "modelo": "Sintetizador Nord Stage 3 88 Teclas",
+        "precio": "$ 4.250.000,00",
+        "descripcion": "El pináculo de la interpretación musical. El Nord Stage 3 presenta las tecnologías más exitosas de la marca, combinando pianos excepcionales, órganos y sintetizadores en un instrumento de primer nivel.",
+        "especificaciones": [
+            "88 teclas contrapesadas con acción de martillo",
+            "Sección de piano con 2GB de memoria exclusiva",
+            "Sintetizador C2 Organ y motor Lead A1",
+            "Efectos estéreo avanzados por ranura"
+        ],
+        "imagen": "https://images.pexels.com/photos/10618242/pexels-photo-10618242.jpeg"
+    },
+    {
+        "id": 9,
+        "categoria": "Cuerdas frotadas",
+        "marca": "Stradella",
+        "modelo": "Violín Acústico Stradella 4/4 Con Estuche",
+        "descripcion": "Excelente violín acústico tamaño 4/4, diseñado para estudiantes y músicos avanzados que buscan una sonoridad cálida y un acabado tradicional impecable.",
+        "precio": "$ 120.000,00",
+        "especificaciones": [
+            "Tamaño estándar 4/4 (Adultos)",
+            "Tapa de pino abeto seleccionado",
+            "Fondo y aros de arce macizo",
+            "Incluye estuche rígido, arco de madera y brea"
+        ],
+        "imagen": "https://images.pexels.com/photos/13575087/pexels-photo-13575087.jpeg"
+    },
+    {
+        "id": 10,
+        "categoria": "Guitarras y Bajos",
+        "marca": "Squier",
+        "modelo": "Bajo Eléctrico Squier Jazz Bass V (5 Cuerpos)",
+        "descripcion": "Un bajo versátil y potente de 5 cuerdas que ofrece el sonido clásico y la comodidad inconfundible del diseño Jazz Bass para los bajistas modernos.",
+        "precio": "$ 712.500,00",
+        "especificaciones": [
+            "Cuerpo de álamo con acabado brillante",
+            "Mástil de arce con perfil en 'C'",
+            "Dos pastillas de bobina simple estilo Jazz Bass",
+            "Diapasón de arce o laurel indio"
+        ],
+        "imagen": "https://images.pexels.com/photos/5367985/pexels-photo-5367985.jpeg"
+    },
+    {
+        "id": 11,
+        "categoria": "Monitores de estudio",
+        "marca": "KRK",
+        "modelo": "Monitores De Estudio KRK Rokit 5 G4 (Par)",
+        "descripcion": "Monitores de estudio profesionales de 5 pulgadas impulsados por DSP con 25 configuraciones de ecualización visual para adaptarse a cualquier entorno acústico.",
+        "precio": "$ 650.000,00",
+        "especificaciones": [
+            "Woofers y tweeters fabricados con Kevlar",
+            "Amplificador de potencia Clase D eficiente",
+            "Pantalla LCD visual integrada con ecualizador DSP",
+            "Diseño de bafle optimizado para baja resonancia"
+        ],
+        "imagen": "https://images.pexels.com/photos/13978776/pexels-photo-13978776.jpeg"
+    },
+    {
+        "id": 12,
+        "categoria": "Guitarras",
+        "marca": "Yamaha",
+        "modelo": "Guitarra Electroacústica Yamaha APX600",
+        "descripcion": "Diseñada para brindar comodidad al tocar en vivo, la APX600 combina la comodidad de un cuerpo delgado con un tono acústico brillante y claro.",
+        "precio": "$ 738.000,00",
+        "especificaciones": [
+            "Cuerpo delgado de línea APX con cutaway",
+            "Tapa de abeto y aros/fondo de nato",
+            "Sistema de preamplificación SRT con afinador integrado",
+            "Longitud de escala acortada para mayor comodidad"
+        ],
+        "imagen": "https://images.pexels.com/photos/9057762/pexels-photo-9057762.jpeg"
+    },
+    {
+        "id": 13,
+        "categoria": "Pedales de efectos",
+        "marca": "Boss",
+        "modelo": "Pedal De Efecto Boss DS-1 Distortion Clásico",
+        "descripcion": "El pedal de distorsión más emblemático del rock. Ofrece ataques precisos y sostenidos limpios sin perder la definición de las notas individuales.",
+        "precio": "$ 145.000,00",
+        "especificaciones": [
+            "Distorsión clásica para rock y metal",
+            "Controles dedicados de Tono, Distorsión y Nivel",
+            "Construcción metálica ultra resistente de Boss",
+            "Funcionamiento con batería de 9V o adaptador de corriente"
+        ],
+        "imagen": "https://images.pexels.com/photos/5050610/pexels-photo-5050610.jpeg"
+    }
+]
