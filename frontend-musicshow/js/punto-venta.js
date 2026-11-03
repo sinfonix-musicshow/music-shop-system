@@ -17,6 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalCobrarFinal = document.getElementById('totalCobrarFinal');
     const btnEmitir = document.getElementById('btnEmitirFactura');
 
+    // REFERENCIAS PARA DATOS DEL CLIENTE
+    const inputDni = document.getElementById('inputDni');
+    const nombreCliente = document.getElementById('nombreCliente');
+    const ivaCliente = document.getElementById('ivaCliente');
+    const selectFactura = document.getElementById('selectFactura');
+
     // 2. CARGAR PRODUCTOS DESDE LA API
     function cargarProductos() {
         fetch(apiUrl)
@@ -275,3 +281,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+/* ================================================================================ */
+
+// EVENTO: ESCUCHAR CUANDO SE ESCRIBE UN DNI/CUIT
+    inputDni.addEventListener('input', (e) => {
+        // Limpiamos espacios y caracteres no numéricos
+        let numeroDocumento = e.target.value.replace(/\D/g, ''); 
+        e.target.value = numeroDocumento; // Fuerza a que solo se escriban números
+
+        // 1. Si borran todo, vuelve a Consumidor Final
+        if (numeroDocumento.length === 0) {
+            nombreCliente.textContent = 'CONSUMIDOR FINAL';
+            ivaCliente.textContent = 'Consumidor Final';
+            selectFactura.value = 'C';
+            return;
+        }
+
+        // 2. Estado de "Buscando..."
+        if (numeroDocumento.length > 0 && numeroDocumento.length < 8) {
+            nombreCliente.textContent = 'Buscando datos...';
+            ivaCliente.textContent = '...';
+            return;
+        }
+
+        // 3. Simulación: Si escriben 8 números (DNI)
+        if (numeroDocumento.length === 8) {
+            // Aquí en el futuro tu backend buscará en tu base de datos local de clientes
+            nombreCliente.textContent = 'CLIENTE REGISTRADO (SIMULACIÓN)';
+            ivaCliente.textContent = 'Consumidor Final';
+            selectFactura.value = 'C';
+            return;
+        }
+
+        // 4. Simulación: Si escriben 11 números (CUIT)
+        if (numeroDocumento.length === 11) {
+            // Aquí en el futuro tu backend le preguntará al Padrón de ARCA
+            nombreCliente.textContent = 'EMPRESA DE EJEMPLO S.R.L.';
+            ivaCliente.textContent = 'Responsable Inscripto';
+            selectFactura.value = 'A'; // Cambia automáticamente a Factura A
+            return;
+        }
+    });
