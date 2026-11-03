@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Facturas - Music Show Gestión</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- CSS del Backoffice -->
+    <link rel="stylesheet" href="../CSS/admin-style.css">
+</head>
+<body>
+
+    <!-- NAVBAR BACKOFFICE -->
+    <nav class="navbar navbar-admin fixed-top p-3">
+        <div class="container-fluid px-4 d-flex justify-content-between align-items-center">
+            <a href="index-admin.html" class="text-decoration-none d-flex align-items-center gap-2">
+                <span class="fs-5 fw-bold text-uppercase tracking-wider text-white">MUSIC SHOW</span>
+                <span class="badge text-dark bg-light ms-2 fw-bold" style="font-size: 0.75rem;">Gestión</span>
+            </a>
+            <div>
+                <a href="../vistas-publicas/index.html" class="btn btn-outline-custom rounded-pill px-4 py-2 fw-semibold" target="_blank">
+                    <i class="bi bi-box-arrow-up-right me-2"></i> Ver catálogo Público
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- NAVEGACIÓN SECUNDARIA -->
+    <div class="container-fluid px-4 sub-navbar">
+        <div class="d-flex flex-wrap gap-4">
+            <a href="inventario.html" class="text-decoration-none btn-subnav">Gestión de Inventario</a>
+            <a href="punto-venta.html" class="text-decoration-none btn-subnav">Registrar Venta</a>
+            <a href="historial.html" class="text-decoration-none btn-subnav active">Historial de Facturas</a>
+            <a href="gestor-web.html" class="text-decoration-none btn-subnav">Administrar Web</a>
+        </div>
+    </div>
+
+<!-- CONTENIDO PRINCIPAL -->
+    <main class="container-fluid px-4 py-2 pb-5" style="max-width: 1100px;">
+        
+        <!-- Encabezado y Filtros -->
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-5">
+            <div class="d-flex align-items-center gap-3">
+                <i class="bi bi-clock-history fs-3" style="color: var(--color-naranja);"></i>
+                <h2 class="fw-normal m-0 fs-3">Historial de Facturas Emitidas</h2>
+            </div>
+            
+            <!-- Buscador con ID -->
+            <div class="search-wrapper" style="width: 300px;">
+                <i class="bi bi-search search-icon"></i>
+                <input type="text" id="buscadorFacturas" class="form-control search-minimalist" placeholder="Buscar por DNI, Nombre o N°...">
+            </div>
+        </div>
+
+        <!-- CONTENEDOR DE FACTURAS (Vacío para que el JS lo llene) -->
+        <div id="contenedorFacturas" class="facturas-container d-flex flex-column gap-3">
+            <!-- Las tarjetas se inyectarán aquí dinámicamente -->
+        </div>
+        
+        <!-- Botón de Paginación con ID -->
+        <div class="d-flex justify-content-center mt-5 pt-3">
+            <button id="btnCargarMas" class="btn text-secondary border-secondary rounded-pill px-4 d-none" style="background-color: transparent;">
+                Cargar más facturas <i class="bi bi-chevron-down ms-1"></i>
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Script de Lógica del Historial -->
+    <script src="../js/historial.js"></script>
+</body>
+</html>

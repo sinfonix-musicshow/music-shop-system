@@ -335,3 +335,32 @@ select.input-venta option {
     color: #ffffff;            /* Texto blanco */
 }
 
+/* =========================================
+   ESTILOS ESPECÍFICOS - HISTORIAL DE FACTURAS
+========================================= */
+
+.invoice-card {
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.invoice-card:hover {
+    background-color: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateX(5px); /* Pequeño movimiento hacia la derecha al pasar el mouse */
+}
+
+/* Botón de descarga de PDF */
+.btn-pdf {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ccc;
+    background: transparent;
+    transition: all 0.2s ease;
+}
+
+.btn-pdf:hover {
+    background-color: #fff;
+    color: #000;
+    border-color: #fff;
+}
