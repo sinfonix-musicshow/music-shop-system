@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración — Music Show</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- CSS compartido del backoffice -->
+    <link rel="stylesheet" href="../CSS/admin-style.css">
+
+    <style>
+        /* ── Variables heredadas del admin-style.css ──────────────── */
+        /* --color-morado: #2C0F42  --color-naranja: #f37a1f         */
+        /* --bg-oscuro: #121212     --bg-tarjetas: #1e1e1e           */
+
+        /* ── Ajuste de contenido bajo la navbar fija ─────────────── */
+        main { margin-top: 90px; }
+
+        /* ── Saludo de bienvenida ────────────────────────────────── */
+        .bienvenida-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: rgba(44, 15, 66, 0.5);
+            border: 1px solid rgba(44, 15, 66, 0.8);
+            border-radius: 30px;
+            padding: 0.3rem 0.9rem;
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 0.75rem;
+        }
+
+        .bienvenida-badge .dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background-color: #4caf50;
+            animation: pulso 2s infinite;
+        }
+
+        @keyframes pulso {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50%       { opacity: 0.5; transform: scale(0.85); }
+        }
+
+        /* ── Separador de color de marca ─────────────────────────── */
+        .brand-divider {
+            height: 2px;
+            background: linear-gradient(
+                90deg,
+                var(--color-morado, #2C0F42),
+                var(--color-naranja, #f37a1f),
+                transparent
+            );
+            border: none;
+            border-radius: 2px;
+            opacity: 1;
+        }
+
+        /* ── Tarjetas de módulo ───────────────────────────────────── */
+        /* Se reutiliza .admin-card de admin-style.css              */
+        .modulo-card {
+            height: 100%;
+        }
+
+        .modulo-card .modulo-icono {
+            font-size: 2.4rem;
+            color: var(--color-naranja, #f37a1f);
+            display: block;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .modulo-card:hover .modulo-icono {
+            transform: scale(1.15) rotate(-5deg);
+        }
+
+        .modulo-card .modulo-titulo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.4rem;
+        }
+
+        .modulo-card .modulo-desc {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.45);
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        /* Flecha de acceso (aparece al hacer hover) */
+        .modulo-card .modulo-flecha {
+            margin-top: 1.2rem;
+            color: var(--color-naranja, #f37a1f);
+            font-size: 0.85rem;
+            opacity: 0;
+            transform: translateX(-6px);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        .admin-card:hover .modulo-flecha {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ── Botón de cerrar sesión en la navbar ─────────────────── */
+        .btn-cerrar-sesion {
+            background-color: rgba(220, 53, 69, 0.15);
+            border: 1px solid rgba(220, 53, 69, 0.4);
+            color: #ff8a95;
+            border-radius: 30px;
+            padding: 0.4rem 1.1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: background-color 0.25s, border-color 0.25s, transform 0.2s;
+        }
+
+        .btn-cerrar-sesion:hover {
+            background-color: rgba(220, 53, 69, 0.3);
+            border-color: rgba(220, 53, 69, 0.7);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
+        /* ── Sección de estado del sistema ───────────────────────── */
+        .estado-sistema {
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 0.75rem 1.25rem;
+        }
+
+        .estado-item {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.4);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .estado-item .bi { color: var(--color-naranja, #f37a1f); }
+
+        /* ── Pie de página ───────────────────────────────────────── */
+        footer {
+            margin-top: 4rem;
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── NAVBAR BACKOFFICE ───────────────────────────────────────────── -->
+    <nav class="navbar navbar-admin fixed-top p-3" role="navigation" aria-label="Panel de administración">
+        <div class="container-fluid px-4 d-flex justify-content-between align-items-center">
+
+            <!-- Marca izquierda -->
+            <div class="d-flex align-items-center gap-2">
+                <a href="admin-menu.html" class="text-decoration-none d-flex align-items-center gap-2" aria-label="Ir al menú principal">
+                    <span class="fs-5 fw-bold text-uppercase text-white" style="letter-spacing: 0.08em;">MUSIC SHOW</span>
+                </a>
+                <span class="badge text-dark bg-light ms-2 fw-bold" style="font-size: 0.72rem;">Gestión</span>
+            </div>
+
+            <!-- Acciones derecha -->
+            <div class="d-flex align-items-center gap-2">
+                <a href="../../index.html"
+                   class="btn btn-outline-custom rounded-pill px-3 py-2 fw-semibold d-none d-sm-inline-flex align-items-center gap-1"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <i class="bi bi-box-arrow-up-right"></i>
+                    <span class="d-none d-md-inline">Ver catálogo</span>
+                </a>
+                <button
+                    class="btn btn-cerrar-sesion d-flex align-items-center gap-1"
+                    id="btnCerrarSesion"
+                    type="button"
+                    aria-label="Cerrar sesión y volver al login">
+                    <i class="bi bi-power"></i>
+                    <span class="d-none d-sm-inline">Cerrar sesión</span>
+                </button>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- ── CONTENIDO PRINCIPAL ────────────────────────────────────────── -->
+    <main class="container pb-4">
+
+        <!-- Encabezado de bienvenida -->
+        <div class="text-center mb-5">
+            <div class="bienvenida-badge mx-auto">
+                <span class="dot"></span>
+                <span id="saludoUsuario">Sesión activa</span>
+            </div>
+
+            <img src="../img/music show.jpeg"
+                 alt="Logo Music Show"
+                 class="logo-admin rounded-circle mb-4"
+                 onerror="this.style.display='none'">
+
+            <h1 class="fw-normal fs-2 mb-1">¿Qué querés hacer hoy?</h1>
+            <p class="text-white-50 small mb-0">Seleccioná un módulo para comenzar</p>
+        </div>
+
+        <hr class="brand-divider mb-5">
+
+        <!-- ── GRILLA DE MÓDULOS ─────────────────────────────────────── -->
+        <div class="row g-4 justify-content-center mx-auto" style="max-width: 960px;">
+
+            <!-- MÓDULO 1: Gestión de Stock / Inventario -->
+            <div class="col-sm-6 col-lg-4">
+                <a href="stock.html" class="text-decoration-none text-light d-block h-100" aria-label="Ir a Gestión de Stock">
+                    <div class="card admin-card modulo-card p-4">
+                        <div class="card-body d-flex flex-column p-0">
+                            <i class="bi bi-boxes modulo-icono"></i>
+                            <h2 class="modulo-titulo">Gestión de Stock</h2>
+                            <p class="modulo-desc">
+                                Ver todos los instrumentos, ingresar mercadería y ajustar el stock disponible del inventario.
+                            </p>
+                            <div class="modulo-flecha">
+                                <i class="bi bi-arrow-right me-1"></i>Abrir módulo
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- MÓDULO 2: Facturación Rápida en Mostrador -->
+            <div class="col-sm-6 col-lg-4">
+                <a href="facturacion.html" class="text-decoration-none text-light d-block h-100" aria-label="Ir a Facturación">
+                    <div class="card admin-card modulo-card p-4">
+                        <div class="card-body d-flex flex-column p-0">
+                            <i class="bi bi-receipt modulo-icono"></i>
+                            <h2 class="modulo-titulo">Facturación Rápida</h2>
+                            <p class="modulo-desc">
+                                Registrar ventas en mostrador, generar comprobantes electrónicos y descontar stock automáticamente.
+                            </p>
+                            <div class="modulo-flecha">
+                                <i class="bi bi-arrow-right me-1"></i>Abrir módulo
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- MÓDULO 3: Historial de Comprobantes -->
+            <div class="col-sm-6 col-lg-4">
+                <a href="historial.html" class="text-decoration-none text-light d-block h-100" aria-label="Ir al Historial de Comprobantes">
+                    <div class="card admin-card modulo-card p-4">
+                        <div class="card-body d-flex flex-column p-0">
+                            <i class="bi bi-clock-history modulo-icono"></i>
+                            <h2 class="modulo-titulo">Historial de Comprobantes</h2>
+                            <p class="modulo-desc">
+                                Consultar, buscar y reimprimir las facturas de todas las ventas registradas anteriormente.
+                            </p>
+                            <div class="modulo-flecha">
+                                <i class="bi bi-arrow-right me-1"></i>Abrir módulo
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- ── Estado del sistema ────────────────────────────────────── -->
+        <div class="estado-sistema mt-5 mx-auto" style="max-width: 500px;">
+            <div class="d-flex flex-wrap justify-content-center gap-4">
+                <span class="estado-item">
+                    <i class="bi bi-hdd-network"></i>API: <strong id="estadoApi" class="text-success ms-1">Conectada</strong>
+                </span>
+                <span class="estado-item">
+                    <i class="bi bi-calendar3"></i>
+                    <span id="fechaActual">—</span>
+                </span>
+                <span class="estado-item">
+                    <i class="bi bi-person-check"></i>
+                    <span id="usuarioActual">—</span>
+                </span>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ── PIE DE PÁGINA ──────────────────────────────────────────────── -->
+    <footer>
+        <p class="mb-0">Music Show &copy; <span id="anioActual"></span> — Sistema de gestión interno</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // ── Guardia de sesión ─────────────────────────────────────────────────
+        // Si no hay sesión activa, redirigir al login inmediatamente
+        if (localStorage.getItem('usuarioLogueado') !== 'true') {
+            window.location.replace('login.html');
+        }
+
+        // ── Cerrar sesión ─────────────────────────────────────────────────────
+        document.getElementById('btnCerrarSesion').addEventListener('click', () => {
+            // Eliminar todos los datos de sesión del localStorage
+            localStorage.removeItem('usuarioLogueado');
+            localStorage.removeItem('nombreUsuario');
+            // Redirigir al login
+            window.location.href = 'login.html';
+        });
+
+        // ── Datos de la sesión en la UI ───────────────────────────────────────
+        const nombre = localStorage.getItem('nombreUsuario') || 'Administrador';
+
+        document.getElementById('saludoUsuario').textContent = `Hola, ${nombre}`;
+        document.getElementById('usuarioActual').textContent  = nombre;
+
+        // ── Fecha y hora actuales ─────────────────────────────────────────────
+        const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const hoy = new Date().toLocaleDateString('es-AR', opciones);
+        // Capitalizar primera letra
+        document.getElementById('fechaActual').textContent =
+            hoy.charAt(0).toUpperCase() + hoy.slice(1);
+
+        document.getElementById('anioActual').textContent = new Date().getFullYear();
+
+        // ── Verificar conectividad de la API ──────────────────────────────────
+        const BASE_URL = 'http://localhost:5144';
+        const estadoEl = document.getElementById('estadoApi');
+
+        fetch(`${BASE_URL}/api/instrumentos`, { signal: AbortSignal.timeout(3000) })
+            .then(r => {
+                if (r.ok) {
+                    estadoEl.textContent = 'Conectada';
+                    estadoEl.className = 'text-success ms-1';
+                } else {
+                    estadoEl.textContent = 'Error';
+                    estadoEl.className = 'text-warning ms-1';
+                }
+            })
+            .catch(() => {
+                estadoEl.textContent = 'Sin conexión';
+                estadoEl.className = 'text-danger ms-1';
+            });
+    </script>
+
+</body>
+</html>

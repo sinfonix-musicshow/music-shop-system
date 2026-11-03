@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facturación Rápida en Mostrador - Music Show</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- CSS del Backoffice -->
+    <link rel="stylesheet" href="../CSS/admin-style.css">
+    <style>
+        .pos-grid-container {
+            min-height: calc(100vh - 160px);
+        }
+        .panel-pos {
+            background-color: var(--bg-tarjetas, #1e1e1e);
+            border: 1px solid #333;
+            border-radius: 14px;
+        }
+        .producto-card-pos {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .producto-card-pos:hover:not(.sin-stock) {
+            border-color: var(--color-naranja, #f37a1f);
+            background-color: rgba(243, 122, 31, 0.06);
+            transform: translateY(-2px);
+        }
+        .producto-card-pos.sin-stock {
+            opacity: 0.45;
+            cursor: not-allowed;
+            border-color: rgba(220, 53, 69, 0.3);
+        }
+        .categoria-pill {
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: transparent;
+            color: #ccc;
+            font-size: 0.8rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            transition: all 0.2s;
+        }
+        .categoria-pill.active, .categoria-pill:hover {
+            background-color: var(--color-naranja, #f37a1f);
+            border-color: var(--color-naranja, #f37a1f);
+            color: #fff;
+        }
+        .metodo-pago-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #fff;
+            padding: 0.65rem 0.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .metodo-pago-btn:hover {
+            border-color: var(--color-naranja);
+            color: #fff;
+        }
+        .metodo-pago-btn.active {
+            background: linear-gradient(135deg, rgba(243, 122, 31, 0.2), rgba(44, 15, 66, 0.4));
+            border-color: var(--color-naranja);
+            color: #fff;
+            box-shadow: 0 0 10px rgba(243, 122, 31, 0.25);
+        }
+        .lista-carrito {
+            max-height: 280px;
+            overflow-y: auto;
+        }
+        .item-carrito-row {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 0.6rem 0;
+        }
+        .ticket-fiscal-modal {
+            background-color: #111;
+            color: #e0e0e0;
+            font-family: 'Courier New', Courier, monospace;
+            border: 1px dashed #555;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        .btn-cerrar-sesion {
+            background-color: rgba(220, 53, 69, 0.15);
+            border: 1px solid rgba(220, 53, 69, 0.4);
+            color: #ff8a95;
+            border-radius: 30px;
+            padding: 0.4rem 1.1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+        .btn-cerrar-sesion:hover {
+            background-color: rgba(220, 53, 69, 0.3);
+            border-color: rgba(220, 53, 69, 0.7);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR BACKOFFICE -->
+    <nav class="navbar navbar-admin fixed-top p-3" role="navigation" aria-label="Navegación principal">
+        <div class="container-fluid px-4 d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-2">
+                <a href="admin-menu.html" class="text-decoration-none d-flex align-items-center gap-2">
+                    <span class="fs-5 fw-bold text-uppercase tracking-wider text-white">MUSIC SHOW</span>
+                </a>
+                <span class="badge text-dark bg-light ms-2 fw-bold" style="font-size: 0.75rem;">Gestión</span>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <a href="../../index.html" class="btn btn-outline-custom rounded-pill px-3 py-2 fw-semibold d-none d-sm-inline-flex align-items-center gap-1" target="_blank">
+                    <i class="bi bi-box-arrow-up-right me-1"></i> Ver catálogo
+                </a>
+                <button class="btn btn-cerrar-sesion d-flex align-items-center gap-1" id="btnCerrarSesion" type="button">
+                    <i class="bi bi-power"></i>
+                    <span class="d-none d-sm-inline">Cerrar sesión</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- NAVEGACIÓN SECUNDARIA -->
+    <div class="container-fluid px-4 sub-navbar">
+        <div class="d-flex flex-wrap gap-4">
+            <a href="admin-menu.html" class="text-decoration-none btn-subnav">Panel Principal</a>
+            <a href="stock.html" class="text-decoration-none btn-subnav">Gestión de Stock</a>
+            <a href="facturacion.html" class="text-decoration-none btn-subnav active">Facturación Rápida</a>
+            <a href="historial.html" class="text-decoration-none btn-subnav">Historial de Comprobantes</a>
+        </div>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL: 2 COLUMNAS -->
+    <main class="container-fluid px-4 mb-5">
+        <div class="row g-4 pos-grid-container">
+
+            <!-- ── COLUMNA IZQUIERDA: CATÁLOGO Y BUSCADOR DE PRODUCTOS ── -->
+            <div class="col-lg-7 d-flex flex-column">
+                <div class="panel-pos p-4 h-100 d-flex flex-column">
+                    
+                    <!-- Encabezado Izquierdo -->
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-search fs-4" style="color: var(--color-naranja);"></i>
+                            <h2 class="fs-5 fw-bold m-0 text-white">Catálogo de Instrumentos</h2>
+                        </div>
+                        <span class="badge bg-secondary bg-opacity-25 text-white-50" id="contador-productos">Cargando...</span>
+                    </div>
+
+                    <!-- Buscador en tiempo real -->
+                    <div class="search-wrapper w-100 mb-3">
+                        <i class="bi bi-search search-icon"></i>
+                        <input type="text" id="buscador-pos" class="form-control search-minimalist w-100" placeholder="Buscar por código, nombre o marca para facturar...">
+                    </div>
+
+                    <!-- Filtro por Píldoras de Categoría -->
+                    <div class="d-flex flex-wrap gap-2 mb-3" id="contenedor-categorias">
+                        <button class="categoria-pill active" data-categoria="">Todas</button>
+                        <button class="categoria-pill" data-categoria="Cuerdas">Cuerdas</button>
+                        <button class="categoria-pill" data-categoria="Teclados">Teclados</button>
+                        <button class="categoria-pill" data-categoria="Percusión">Percusión</button>
+                        <button class="categoria-pill" data-categoria="Viento">Viento</button>
+                        <button class="categoria-pill" data-categoria="Audio">Audio</button>
+                    </div>
+
+                    <!-- Grilla con Scroll de Productos -->
+                    <div class="flex-grow-1 overflow-auto pe-1" style="max-height: 520px;" id="contenedor-productos-pos">
+                        <div class="text-center text-white-50 py-5">
+                            <div class="spinner-border spinner-border-sm me-2 text-warning" role="status"></div>
+                            Cargando productos del inventario...
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ── COLUMNA DERECHA: CARRITO, MEDIO DE PAGO Y FACTURACIÓN ── -->
+            <div class="col-lg-5 d-flex flex-column">
+                <div class="panel-pos p-4 h-100 d-flex flex-column">
+
+                    <!-- Encabezado de Venta -->
+                    <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom border-secondary">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-receipt-cutoff fs-4" style="color: var(--color-naranja);"></i>
+                            <h2 class="fs-5 fw-bold m-0 text-white">Comprobante de Venta</h2>
+                        </div>
+                        <span class="badge bg-warning bg-opacity-25 text-warning border border-warning">Punto de Venta 00005</span>
+                    </div>
+
+                    <!-- Datos del Cliente -->
+                    <div class="row g-2 mb-3">
+                        <div class="col-sm-7">
+                            <label class="form-label text-white-50 small mb-1">Cliente / Razón Social</label>
+                            <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary" id="clienteNombre" value="Consumidor Final" placeholder="Nombre del cliente">
+                        </div>
+                        <div class="col-sm-5">
+                            <label class="form-label text-white-50 small mb-1">DNI / CUIT (Opcional)</label>
+                            <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary font-monospace" id="clienteDocumento" placeholder="Sin DNI">
+                        </div>
+                    </div>
+
+                    <!-- Lista de Ítems en el Carrito -->
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <span class="text-white-50 small text-uppercase fw-semibold">Detalle del Carrito</span>
+                        <button class="btn btn-link btn-sm text-danger text-decoration-none p-0 small" id="btn-vaciar-carrito">
+                            <i class="bi bi-trash me-1"></i>Vaciar
+                        </button>
+                    </div>
+
+                    <div class="lista-carrito border border-secondary rounded-3 p-2 mb-3 flex-grow-1 bg-dark bg-opacity-50" id="contenedor-items-carrito">
+                        <!-- Mensaje vacío inicial -->
+                        <div class="text-center text-white-50 py-5" id="carrito-vacio-msg">
+                            <i class="bi bi-cart-x fs-1 d-block mb-2 text-secondary"></i>
+                            El carrito está vacío.<br>
+                            <small class="text-muted">Haz clic en un producto de la izquierda para agregarlo.</small>
+                        </div>
+                    </div>
+
+                    <!-- Desglose de Totales Fiscales -->
+                    <div class="p-3 bg-dark rounded-3 border border-secondary mb-3">
+                        <div class="d-flex justify-content-between text-white-50 small mb-1">
+                            <span>Subtotal Neto (Sin IVA):</span>
+                            <span id="txt-subtotal-neto">$ 0,00</span>
+                        </div>
+                        <div class="d-flex justify-content-between text-white-50 small mb-2">
+                            <span>IVA (21%):</span>
+                            <span id="txt-iva">$ 0,00</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center pt-2 border-top border-secondary">
+                            <span class="fs-5 fw-bold text-white">TOTAL A COBRAR:</span>
+                            <span class="fs-4 fw-bold" style="color: var(--color-naranja);" id="txt-total">$ 0,00</span>
+                        </div>
+                    </div>
+
+                    <!-- Selección de Medio de Pago -->
+                    <label class="form-label text-white-50 small mb-2 text-uppercase fw-semibold">Medio de Pago (*)</label>
+                    <div class="row g-2 mb-3" id="grupo-medios-pago">
+                        <div class="col-4">
+                            <button type="button" class="w-100 metodo-pago-btn active text-center" data-metodo="Efectivo">
+                                <i class="bi bi-cash-stack d-block fs-5 text-success mb-1"></i>
+                                Efectivo
+                            </button>
+                        </div>
+                        <div class="col-4">
+                            <button type="button" class="w-100 metodo-pago-btn text-center" data-metodo="Mercado Pago">
+                                <i class="bi bi-phone d-block fs-5 text-info mb-1"></i>
+                                Mercado Pago
+                            </button>
+                        </div>
+                        <div class="col-4">
+                            <button type="button" class="w-100 metodo-pago-btn text-center" data-metodo="Personal Pay">
+                                <i class="bi bi-credit-card-2-front d-block fs-5 text-warning mb-1"></i>
+                                Personal Pay
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Botón Emitir Comprobante -->
+                    <button class="btn w-100 py-3 text-white fw-bold fs-5 rounded-3 d-flex align-items-center justify-content-center gap-2 shadow" 
+                            id="btn-emitir-factura" 
+                            style="background: linear-gradient(135deg, var(--color-naranja, #f37a1f), #d9670f); border: none;" 
+                            disabled>
+                        <i class="bi bi-send-check"></i> Emitir Comprobante
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- MODAL: TICKET / COMPROBANTE FISCAL EMITIDO -->
+    <div class="modal fade" id="modalTicket" tabindex="-1" aria-labelledby="modalTicketTitulo" aria-hidden="true" data-bs-theme="dark">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-white border-secondary">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title text-success fw-bold" id="modalTicketTitulo">
+                        <i class="bi bi-check-circle-fill me-2"></i>¡Comprobante Emitido con Éxito!
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body p-4">
+                    
+                    <!-- Formato Ticket Térmico -->
+                    <div class="ticket-fiscal-modal shadow" id="area-ticket-impresion">
+                        <div class="text-center border-bottom border-secondary pb-3 mb-3">
+                            <h4 class="fw-bold mb-1 tracking-wider text-white">MUSIC SHOW</h4>
+                            <div class="small text-white-50">Batalla de Ayacucho 247</div>
+                            <div class="small text-white-50">San Miguel de Tucumán, Tucumán</div>
+                            <div class="small text-white-50">CUIT: 30-71234567-8 | IVA Responsable Inscripto</div>
+                            <div class="badge bg-secondary text-white mt-2 px-3 py-1">FACTURA B (Cod. 006)</div>
+                        </div>
+
+                        <div class="small border-bottom border-secondary pb-2 mb-2">
+                            <div class="d-flex justify-content-between">
+                                <span>COMPROBANTE:</span>
+                                <strong id="tkt-numero">—</strong>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>FECHA Y HORA:</span>
+                                <span id="tkt-fecha">—</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>CLIENTE:</span>
+                                <span id="tkt-cliente">—</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>DOC / CUIT:</span>
+                                <span id="tkt-doc">—</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>PAGO:</span>
+                                <strong id="tkt-pago">—</strong>
+                            </div>
+                        </div>
+
+                        <!-- Lista de Ítems en el Ticket -->
+                        <div class="border-bottom border-secondary py-2 mb-2">
+                            <div class="d-flex justify-content-between small text-white-50 mb-1 fw-bold">
+                                <span>DESCRIPCIÓN</span>
+                                <span>SUBTOTAL</span>
+                            </div>
+                            <div id="tkt-items-lista" class="small">
+                                <!-- Filas de ítems -->
+                            </div>
+                        </div>
+
+                        <!-- Totales -->
+                        <div class="small border-bottom border-secondary pb-2 mb-3">
+                            <div class="d-flex justify-content-between text-white-50">
+                                <span>Subtotal Neto:</span>
+                                <span id="tkt-neto">$ 0,00</span>
+                            </div>
+                            <div class="d-flex justify-content-between text-white-50">
+                                <span>IVA (21%):</span>
+                                <span id="tkt-iva">$ 0,00</span>
+                            </div>
+                            <div class="d-flex justify-content-between fs-5 fw-bold text-white mt-1">
+                                <span>TOTAL:</span>
+                                <span id="tkt-total">$ 0,00</span>
+                            </div>
+                        </div>
+
+                        <!-- Datos Fiscales ARCA / AFIP -->
+                        <div class="text-center pt-2">
+                            <div class="fw-bold small text-warning mb-1">AUTORIZADO POR ARCA (AFIP)</div>
+                            <div class="small text-white-50">CAE N°: <span class="font-monospace text-white fw-bold" id="tkt-cae">—</span></div>
+                            <div class="small text-white-50 mb-2">Vto. CAE: <span id="tkt-vtocae">—</span></div>
+                            <div class="my-2" id="tkt-qr-contenedor">
+                                <!-- QR renderizado -->
+                            </div>
+                            <div class="text-white-50" style="font-size: 0.65rem;">Comprobante Electrónico Válido como Factura Oficial</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer border-secondary justify-content-between">
+                    <button type="button" class="btn btn-outline-light rounded-pill px-3" data-bs-dismiss="modal">
+                        <i class="bi bi-cart-plus me-1"></i>Nueva Venta
+                    </button>
+                    <button type="button" class="btn text-white rounded-pill px-4" id="btn-imprimir-ticket" style="background-color: var(--color-naranja);">
+                        <i class="bi bi-printer me-1"></i>Imprimir Ticket
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Script de Facturación -->
+    <script src="../js/facturacion.js"></script>
+</body>
+</html>

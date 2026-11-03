@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Comprobantes - Music Show</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- CSS del Backoffice -->
+    <link rel="stylesheet" href="../CSS/admin-style.css">
+    <style>
+        .badge-pago-efectivo {
+            background-color: rgba(25, 135, 84, 0.15);
+            color: #75b798;
+            border: 1px solid rgba(25, 135, 84, 0.3);
+        }
+        .badge-pago-mp {
+            background-color: rgba(13, 202, 240, 0.15);
+            color: #6edff6;
+            border: 1px solid rgba(13, 202, 240, 0.3);
+        }
+        .badge-pago-pp {
+            background-color: rgba(255, 193, 7, 0.15);
+            color: #ffda6a;
+            border: 1px solid rgba(255, 193, 7, 0.3);
+        }
+        .badge-pago-otro {
+            background-color: rgba(108, 117, 125, 0.15);
+            color: #ced4da;
+            border: 1px solid rgba(108, 117, 125, 0.3);
+        }
+        .ticket-fiscal-modal {
+            background-color: #111;
+            color: #e0e0e0;
+            font-family: 'Courier New', Courier, monospace;
+            border: 1px dashed #555;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        .btn-cerrar-sesion {
+            background-color: rgba(220, 53, 69, 0.15);
+            border: 1px solid rgba(220, 53, 69, 0.4);
+            color: #ff8a95;
+            border-radius: 30px;
+            padding: 0.4rem 1.1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+        .btn-cerrar-sesion:hover {
+            background-color: rgba(220, 53, 69, 0.3);
+            border-color: rgba(220, 53, 69, 0.7);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR BACKOFFICE -->
+    <nav class="navbar navbar-admin fixed-top p-3" role="navigation" aria-label="Navegación principal">
+        <div class="container-fluid px-4 d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-2">
+                <a href="admin-menu.html" class="text-decoration-none d-flex align-items-center gap-2">
+                    <span class="fs-5 fw-bold text-uppercase tracking-wider text-white">MUSIC SHOW</span>
+                </a>
+                <span class="badge text-dark bg-light ms-2 fw-bold" style="font-size: 0.75rem;">Gestión</span>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <a href="../../index.html" class="btn btn-outline-custom rounded-pill px-3 py-2 fw-semibold d-none d-sm-inline-flex align-items-center gap-1" target="_blank">
+                    <i class="bi bi-box-arrow-up-right me-1"></i> Ver catálogo
+                </a>
+                <button class="btn btn-cerrar-sesion d-flex align-items-center gap-1" id="btnCerrarSesion" type="button">
+                    <i class="bi bi-power"></i>
+                    <span class="d-none d-sm-inline">Cerrar sesión</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- NAVEGACIÓN SECUNDARIA -->
+    <div class="container-fluid px-4 sub-navbar">
+        <div class="d-flex flex-wrap gap-4">
+            <a href="admin-menu.html" class="text-decoration-none btn-subnav">Panel Principal</a>
+            <a href="stock.html" class="text-decoration-none btn-subnav">Gestión de Stock</a>
+            <a href="facturacion.html" class="text-decoration-none btn-subnav">Facturación Rápida</a>
+            <a href="historial.html" class="text-decoration-none btn-subnav active">Historial de Comprobantes</a>
+        </div>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="container-fluid px-4 mb-5">
+        <div class="panel-tabla">
+
+            <!-- Encabezado -->
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+                <div class="d-flex align-items-center gap-3">
+                    <i class="bi bi-clock-history fs-2" style="color: var(--color-naranja);"></i>
+                    <div>
+                        <h2 class="fw-bold m-0 fs-3">Historial de Comprobantes Fiscales</h2>
+                        <p class="text-white-50 small m-0">Registro de facturas emitidas, consulta de CAE y reimpresión de tickets</p>
+                    </div>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button class="btn btn-outline-light rounded-pill px-3" id="btn-refrescar-historial" title="Recargar comprobantes">
+                        <i class="bi bi-arrow-clockwise me-1"></i>Actualizar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Métricas Financieras del Historial -->
+            <div class="row g-3 mb-4">
+                <div class="col-md-4 col-sm-6">
+                    <div class="p-3 rounded-3 bg-dark border border-secondary d-flex align-items-center gap-3">
+                        <i class="bi bi-cash-coin fs-2" style="color: var(--color-naranja);"></i>
+                        <div>
+                            <span class="text-white-50 small d-block">Recaudación Total</span>
+                            <span class="fs-4 fw-bold text-white" id="stat-total-facturado">$ 0,00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="p-3 rounded-3 bg-dark border border-secondary d-flex align-items-center gap-3">
+                        <i class="bi bi-receipt fs-2 text-info"></i>
+                        <div>
+                            <span class="text-white-50 small d-block">Comprobantes Emitidos</span>
+                            <span class="fs-4 fw-bold text-info" id="stat-cant-comprobantes">0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="p-3 rounded-3 bg-dark border border-secondary d-flex align-items-center gap-3">
+                        <i class="bi bi-graph-up-arrow fs-2 text-success"></i>
+                        <div>
+                            <span class="text-white-50 small d-block">Ticket Promedio</span>
+                            <span class="fs-4 fw-bold text-success" id="stat-ticket-promedio">$ 0,00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Barra de Filtros (Buscador, Fechas y Medio de Pago) -->
+            <div class="p-3 rounded-3 bg-dark border border-secondary mb-4">
+                <div class="row g-3 align-items-end">
+                    <!-- Búsqueda rápida de texto -->
+                    <div class="col-lg-4 col-md-6">
+                        <label class="form-label text-white-50 small mb-1">Buscar Comprobante o Cliente</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-transparent text-secondary border-secondary">
+                                <i class="bi bi-search"></i>
+                            </span>
+                            <input type="text" id="filtro-texto" class="form-control bg-transparent text-white border-secondary" placeholder="Ej: B-00005 o Consumidor Final...">
+                        </div>
+                    </div>
+
+                    <!-- Filtro Fecha Desde -->
+                    <div class="col-lg-2 col-md-3 col-6">
+                        <label class="form-label text-white-50 small mb-1">Fecha Desde</label>
+                        <input type="date" id="filtro-fecha-desde" class="form-control bg-transparent text-white border-secondary">
+                    </div>
+
+                    <!-- Filtro Fecha Hasta -->
+                    <div class="col-lg-2 col-md-3 col-6">
+                        <label class="form-label text-white-50 small mb-1">Fecha Hasta</label>
+                        <input type="date" id="filtro-fecha-hasta" class="form-control bg-transparent text-white border-secondary">
+                    </div>
+
+                    <!-- Filtro Medio de Pago -->
+                    <div class="col-lg-2 col-md-6">
+                        <label class="form-label text-white-50 small mb-1">Medio de Pago</label>
+                        <select id="filtro-medio-pago" class="form-select bg-transparent text-white border-secondary">
+                            <option value="">Todos los medios</option>
+                            <option value="Efectivo">Efectivo</option>
+                            <option value="Mercado Pago">Mercado Pago</option>
+                            <option value="Personal Pay">Personal Pay</option>
+                            <option value="Débito">Débito</option>
+                            <option value="Crédito">Crédito</option>
+                            <option value="Transferencia">Transferencia</option>
+                        </select>
+                    </div>
+
+                    <!-- Botón Limpiar -->
+                    <div class="col-lg-2 col-md-6 d-flex gap-2">
+                        <button class="btn btn-outline-secondary w-100 rounded-pill" id="btn-limpiar-filtros" title="Restablecer filtros">
+                            <i class="bi bi-eraser me-1"></i>Limpiar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabla de Comprobantes -->
+            <div class="table-responsive rounded-3 border border-secondary">
+                <table class="table table-custom align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 18%;">Comprobante</th>
+                            <th scope="col" style="width: 18%;">Fecha y Hora</th>
+                            <th scope="col" style="width: 24%;">Cliente</th>
+                            <th scope="col" style="width: 15%;">Medio de Pago</th>
+                            <th scope="col" style="width: 15%;">Total</th>
+                            <th scope="col" class="text-center" style="width: 10%;">Estado</th>
+                            <th scope="col" class="text-center" style="width: 10%;">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpo-tabla-historial">
+                        <tr>
+                            <td colspan="7" class="text-center text-white-50 py-5">
+                                <div class="spinner-border spinner-border-sm me-2 text-warning" role="status"></div>
+                                Cargando historial de comprobantes...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- MODAL DETALLE DE FACTURA / REIMPRESIÓN -->
+    <div class="modal fade" id="modalDetalleFactura" tabindex="-1" aria-labelledby="modalDetalleTitulo" aria-hidden="true" data-bs-theme="dark">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-white border-secondary">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title fw-bold" id="modalDetalleTitulo">
+                        <i class="bi bi-receipt me-2" style="color: var(--color-naranja);"></i>Detalle de Comprobante
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body p-4" id="modalDetalleCuerpo">
+                    <!-- Contenido dinámico del ticket -->
+                    <div class="text-center py-5">
+                        <div class="spinner-border text-warning" role="status"></div>
+                    </div>
+                </div>
+                <div class="modal-footer border-secondary justify-content-between">
+                    <button type="button" class="btn btn-outline-light rounded-pill px-4" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn text-white rounded-pill px-4" id="btn-reimprimir-ticket" style="background-color: var(--color-naranja);">
+                        <i class="bi bi-printer me-1"></i>Reimprimir Ticket
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Script de Historial -->
+    <script src="../js/historial.js"></script>
+</body>
+</html>
