@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 1. Obtener parámetros desde la URL
     const parametrosURL = new URLSearchParams(window.location.search);
     const categoria = parametrosURL.get('categoria') || 'todos'; 
-    const terminoBusqueda = parametrosURL.get('buscar'); // Capturamos lo que el usuario buscó
+    const terminoBusqueda = parametrosURL.get('buscar');
 
     // 2. Actualizar el título de la página dinámicamente
     const tituloElemento = document.getElementById('titulo-categoria');
@@ -115,12 +115,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // 3. Referencias al DOM
+    // 3. Referencias al DOM con CONTROL DE PROTECCIÓN
     const contenedorProductos = document.getElementById('contenedor-productos');
+    
+    // SI EL CONTENEDOR NO EXISTE EN ESTA PÁGINA, CANCELAMOS LA EJECUCIÓN SIN DAR ERROR
+    if (!contenedorProductos) {
+        return;
+    }
 
     // 4. Determinar la URL de la API
-    // Si hay una búsqueda, traemos TODOS los productos para filtrarlos en el JS
-    // Si no hay búsqueda, usamos la URL con categoría como estaba antes
     let apiUrl = 'http://localhost:5144/api/instrumentos';
     if (categoria !== 'todos' && !terminoBusqueda) {
         apiUrl = `http://localhost:5144/api/instrumentos?categoria=${categoria}`;
@@ -135,21 +138,19 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(productos => {
             contenedorProductos.innerHTML = ""; // Limpiar el spinner de carga
 
-// 6. Aplicar el filtro de BÚSQUEDA si el usuario escribió algo
+            // 6. Aplicar el filtro de BÚSQUEDA si el usuario escribió algo
             let productosAMostrar = productos;
 
             if (terminoBusqueda) {
-                // Función interna para limpiar tildes y pasar a minúsculas
                 const limpiarTexto = (texto) => {
                     return texto
-                        .normalize("NFD") // Separa las letras de sus acentos
-                        .replace(/[\u0300-\u036f]/g, "") // Borra los acentos
-                        .toLowerCase(); // Pasa todo a minúsculas
+                        .normalize("NFD")
+                        .replace(/[\u0300-\u036f]/g, "")
+                        .toLowerCase();
                 };
 
                 const textoBuscado = limpiarTexto(terminoBusqueda);
                 
-                // Filtramos comparando el texto limpio con los datos limpios
                 productosAMostrar = productos.filter(producto => {
                     const nombreLimpio = producto.nombre ? limpiarTexto(producto.nombre) : "";
                     const marcaLimpia = producto.marca ? limpiarTexto(producto.marca) : "";
@@ -172,7 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            // 8. Dibujar cada producto filtrado con el diseño moderno
+            // 8. Dibujar cada producto filtrado
             productosAMostrar.forEach(producto => {
                 const precioBase = producto.precio;
                 const precioLista = precioBase * 1.15; 
@@ -184,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <a href="producto.html?id=${producto.id}" class="text-decoration-none d-block">
                             <div class="card h-100 card-producto-moderna">
                                 
-                            <div class="img-container">
+                                <div class="img-container">
                                     ${producto.urlImagen 
                                         ? `<img src="${producto.urlImagen}" alt="${producto.nombre}" class="w-100 h-100" style="object-fit: cover;">` 
                                         : `<div class="emoji-placeholder w-100 h-100 d-flex align-items-center justify-content-center text-white" style="font-size: 5rem;">${producto.emojiIcon || '🎸'}</div>`

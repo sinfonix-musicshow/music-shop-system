@@ -1,38 +1,73 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. Obtener el ID del producto desde la URL (ej: producto.html?id=1)
     const parametrosURL = new URLSearchParams(window.location.search);
-    const productoId = parametrosURL.get('id');
+    const idProducto = parametrosURL.get('id');
 
-    if (!productoId) {
-        document.getElementById('titulo-producto').textContent = "Producto no encontrado";
+    if (!idProducto) {
+        console.error("No se especificó un ID de producto en la URL.");
         return;
     }
 
-    // Ruta correcta al archivo JSON dentro de la carpeta data
-    fetch('data/producto.json')
-        .then(respuesta => respuesta.json())
-        .then(productos => {
-            const producto = productos.find(p => p.id == productoId);
+    const apiUrl = `http://localhost:5144/api/instrumentos/${idProducto}`;
 
-            if (producto) {
-                document.getElementById('bread-modelo').textContent = producto.modelo;
-                document.getElementById('titulo-producto').textContent = producto.modelo;
-                document.getElementById('precio-producto').textContent = producto.precio;
-                document.getElementById('desc-producto').textContent = producto.descripcion;
-                
-                const imgElement = document.getElementById('img-producto');
-                imgElement.src = producto.imagen;
-                imgElement.alt = producto.modelo;
+    // 2. Fetch a la API de .NET
+    fetch(apiUrl)
+        .then(respuesta => {
+            if (!respuesta.ok) throw new Error(`HTTP Error: ${respuesta.status}`);
+            return respuesta.json();
+        })
+        .then(producto => {
+            console.log("Producto recibido de la API:", producto);
 
-                const specsContainer = document.getElementById('specs-producto');
-                specsContainer.innerHTML = ''; 
-                producto.especificaciones.forEach(especificacion => {
-                    const li = document.createElement('li');
-                    li.textContent = especificacion;
-                    specsContainer.appendChild(li);
-                });
-            } else {
-                document.getElementById('titulo-producto').textContent = "Producto no existe";
+            // 3. Referencias a los IDs exactos de tu producto.html
+            const elBreadModelo = document.getElementById('bread-modelo');
+            const elTitulo = document.getElementById('titulo-producto');
+            const elPrecio = document.getElementById('precio-producto');
+            const elDesc = document.getElementById('desc-producto');
+            const elImg = document.getElementById('img-producto');
+            const elSpecs = document.getElementById('specs-producto');
+
+            // Mapeo flexible para soportar tanto camelCase como PascalCase desde C#
+            const nombre = producto.nombre || producto.Nombre || '';
+            const marca = producto.marca || producto.Marca || '';
+            const precio = producto.precio || producto.Precio || 0;
+            const descripcion = producto.descripcion || producto.Descripcion || '';
+            const urlImagen = producto.urlImagen || producto.UrlImagen || '';
+            const categoria = producto.categoria || producto.Categoria || '';
+            const stock = producto.stock ?? producto.Stock ?? 0;
+
+            const nombreCompleto = `${marca} ${nombre}`.trim();
+
+            // 4. Inyectar datos en el HTML
+            if (elBreadModelo) elBreadModelo.textContent = nombreCompleto;
+            if (elTitulo) elTitulo.textContent = nombreCompleto;
+            
+            if (elPrecio) {
+                elPrecio.textContent = `$ ${precio.toLocaleString('es-AR', { minimumFractionDigits: 2 })}`;
+            }
+
+            if (elDesc) {
+                elDesc.textContent = descripcion ? descripcion : 'Sin descripción disponible para este artículo.';
+            }
+
+            if (elImg) {
+                if (urlImagen) {
+                    elImg.src = urlImagen;
+                    elImg.alt = nombreCompleto;
+                } else {
+                    elImg.src = '../img/music show.jpeg'; // Imagen por defecto si viene vacía
+                }
+            }
+
+            if (elSpecs) {
+                elSpecs.innerHTML = `
+                    <li><strong>Categoría:</strong> ${categoria ? categoria.toUpperCase() : 'GENERAL'}</li>
+                    <li><strong>Stock disponible:</strong> ${stock} unidades</li>
+                    <li><strong>Garantía:</strong> 6 meses oficial</li>
+                `;
             }
         })
-        .catch(error => console.error("Error cargando los productos:", error));
+        .catch(error => {
+            console.error("Error al cargar detalle del producto:", error);
+        });
 });
