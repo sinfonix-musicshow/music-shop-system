@@ -1,4 +1,6 @@
-// Al cargar la página, revisamos si el usuario ya había elegido un color antes
+// ==========================================
+// 1. MANEJO DE TARJETAS CLIQUEABLES
+// ==========================================
 document.addEventListener('DOMContentLoaded', () => {
     const tarjetas = document.querySelectorAll('.tarjeta-cliqueable');
 
@@ -12,13 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// ==========================================
+// 2. TEMAS Y MODO OSCURO/CLARO
+// ==========================================
 function alternarTema() {
     const htmlElement = document.documentElement;
     const temaActual = htmlElement.getAttribute("data-bs-theme");
     const nuevoTema = temaActual === "dark" ? "light" : "dark";
     
     aplicarTema(nuevoTema);
-    // Guardar la elección en el navegador
     localStorage.setItem("musicShowTema", nuevoTema);
 }
 
@@ -28,74 +32,53 @@ function aplicarTema(tema) {
     
     htmlElement.setAttribute("data-bs-theme", tema);
     
-    // Cambiar el ícono: Sol para modo oscuro (cambiar a claro), Luna para modo claro (cambiar a oscuro)
     if (tema === "dark") {
         iconoTema.className = "bi bi-sun-fill";
-        iconoTema.style.color = "#ffc107"; // Sol amarillo
+        iconoTema.style.color = "#ffc107"; 
     } else {
         iconoTema.className = "bi bi-moon-stars-fill";
-        iconoTema.style.color = "#ffffff"; // Luna blanca
+        iconoTema.style.color = "#ffffff"; 
     }
 }
 
-/* --------------------------------------------------------------------------------- */
-
 // ==========================================
-// ANIMACIÓN AL HACER SCROLL (RECURRENTE)
+// 3. ANIMACIÓN AL HACER SCROLL (RECURRENTE)
 // ==========================================
 document.addEventListener("DOMContentLoaded", () => {
-    // Configuramos el observador
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Cuando la sección ENTRA en pantalla, aparece
                 entry.target.classList.add('visible');
             } else {
-                // Cuando la sección SALE de la pantalla (al subir o bajar mucho), desaparece
                 entry.target.classList.remove('visible');
             }
         });
     }, { 
-        threshold: 0.10 // Se activa apenas el 10% de la sección entra en el campo de visión
+        threshold: 0.10 
     });
 
-    // Buscamos todas las secciones que tengan la clase animacion-scroll
     const elementosAnimados = document.querySelectorAll('.animacion-scroll');
     elementosAnimados.forEach(el => observer.observe(el));
 });
 
 // ==========================================
-// NAVEGACIÓN DEL CARRUSEL DE PRODUCTOS
+// 4. NAVEGACIÓN DEL CARRUSEL DE PRODUCTOS
 // ==========================================
 function moverCarrusel(direccion) {
     const carrusel = document.getElementById('carruselDestacados');
-    // Ancho de la tarjeta (310px) + gap de Bootstrap (aprox 24px) = 334px
     const distancia = 334; 
-    
-    // Scrollear hacia la izquierda (-1) o derecha (1)
-    carrusel.scrollBy({ 
-        left: distancia * direccion, 
-        behavior: 'smooth' 
-    });
+    carrusel.scrollBy({ left: distancia * direccion, behavior: 'smooth' });
 }
 
-// Función universal para mover CUALQUIER carrusel pasándole su ID
 function moverCarruselUniversal(idCarrusel, direccion) {
     const carrusel = document.getElementById(idCarrusel);
-    if (!carrusel) return; // Si no lo encuentra, no hace nada
-    
+    if (!carrusel) return; 
     const distancia = 334; 
-    
-    carrusel.scrollBy({ 
-        left: distancia * direccion, 
-        behavior: 'smooth' 
-    });
+    carrusel.scrollBy({ left: distancia * direccion, behavior: 'smooth' });
 }
 
-/* -------------------------------------------------------------------------- */
-
 // ==========================================
-// CARGA Y FILTRADO DE PRODUCTOS (CATÁLOGO)
+// 5. CARGA Y FILTRADO DE PRODUCTOS (CATÁLOGO)
 // ==========================================
 document.addEventListener("DOMContentLoaded", () => {
     // 1. Obtener parámetros desde la URL
@@ -117,16 +100,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 3. Referencias al DOM con CONTROL DE PROTECCIÓN
     const contenedorProductos = document.getElementById('contenedor-productos');
-    
-    // SI EL CONTENEDOR NO EXISTE EN ESTA PÁGINA, CANCELAMOS LA EJECUCIÓN SIN DAR ERROR
     if (!contenedorProductos) {
-        return;
+        return; // Si no estamos en la página del catálogo, se detiene aquí silenciosamente
     }
 
-    // 4. Determinar la URL de la API
-    let apiUrl = 'http://localhost:5144/api/instrumentos';
+    // 4. Determinar la URL de la API (Apuntando al puerto 5000)
+    let apiUrl = 'http://localhost:5000/api/instrumentos';
     if (categoria !== 'todos' && !terminoBusqueda) {
-        apiUrl = `http://localhost:5144/api/instrumentos?categoria=${categoria}`;
+        apiUrl = `http://localhost:5000/api/instrumentos?categoria=${categoria}`;
     }
 
     // 5. Consumir la API
@@ -173,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            // 8. Dibujar cada producto filtrado
+            // 8. Dibujar cada producto filtrado (usando tu diseño original)
             productosAMostrar.forEach(producto => {
                 const precioBase = producto.precio;
                 const precioLista = precioBase * 1.15; 
@@ -215,7 +196,8 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         })
         .catch(error => {
-            console.error("Error:", error);
+            // Este catch final atrapa cualquier error de red y lo muestra limpiamente en el HTML
+            console.error("Error de conexión:", error);
             contenedorProductos.innerHTML = `
                 <div class="col-12 text-center text-danger py-5">
                     <p>No se pudo cargar el catálogo. Asegúrate de que la API del backend esté encendida.</p>
