@@ -8,23 +8,18 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
+    // Apuntamos al puerto 5000 donde está tu PM2
     const apiUrl = `http://localhost:5000/api/instrumentos/${idProducto}`;
 
-
-// 2. Fetch a la API de .NET
-fetch(apiUrl)
-    .then(respuesta => {
-        if (!respuesta.ok) throw new Error(`HTTP Error: ${respuesta.status}`);
-        return respuesta.json();
-    })
-    .then(producto => {
-        console.log("Producto recibido de la API:", producto);
-        // Aquí agregas la lógica para mostrar los detalles del producto en la vista
-    })
-    .catch(error => {
-        console.error("Error al conectar con la API:", error);
-
-
+    // 2. Fetch a la API de .NET
+    fetch(apiUrl)
+        .then(respuesta => {
+            if (!respuesta.ok) throw new Error(`HTTP Error: ${respuesta.status}`);
+            return respuesta.json();
+        })
+        .then(producto => {
+            console.log("Producto recibido de la API:", producto);
+            
             // 3. Referencias a los IDs exactos de tu producto.html
             const elBreadModelo = document.getElementById('bread-modelo');
             const elTitulo = document.getElementById('titulo-producto');
@@ -74,6 +69,7 @@ fetch(apiUrl)
             }
         })
         .catch(error => {
+            // Un solo bloque catch al final para manejar cualquier fallo
             console.error("Error al cargar detalle del producto:", error);
         });
 });
