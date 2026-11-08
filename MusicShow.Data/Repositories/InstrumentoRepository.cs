@@ -44,10 +44,15 @@ public class InstrumentoRepository : IInstrumentoRepository
     public async Task<bool> ExisteCodigoAsync(string codigo)
         => await _context.Instrumentos.AnyAsync(i => i.Codigo == codigo);
 
+    public async Task<int> ContarInstrumentosActivosAsync()
+        => await _context.Instrumentos.CountAsync(i => i.Activo);
+
     public async Task AgregarAsync(Instrumento instrumento)
         => await _context.Instrumentos.AddAsync(instrumento);
 
     public async Task GuardarCambiosAsync()
         => await _context.SaveChangesAsync();
+
+
 }
 

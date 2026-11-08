@@ -32,5 +32,7 @@ public interface IInstrumentoRepository
     /// Persiste los cambios realizados sobre una entidad rastreada.
     /// </summary>
     Task GuardarCambiosAsync();
+
+    Task<int> ContarInstrumentosActivosAsync();
 }
 
